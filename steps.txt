@@ -1,0 +1,142 @@
+Steps and Sub-steps:
+
+---
+
+### 1. **Understand the Requirements**
+   - **Sub-steps**:
+     - Carefully read the project instructions and understand the expected output.
+     - Identify the key features: reading maps, rendering wireframes, handling user inputs, etc.
+
+---
+
+### 2. **Set Up the Environment**
+   - **Sub-steps**:
+     - Ensure **minilibX** is correctly installed and linked.
+     - Test a simple window creation with `mlx` to confirm setup (e.g., open a window, set background color).
+
+---
+
+### 3. **Read and Parse the Map File**
+   - **Sub-steps**:
+     - Open and read the file (using functions like `open`, `read`).
+     - Parse the file line by line to extract height and width.
+     - Store the parsed data in a suitable data structure (e.g., a 2D array).
+
+---
+
+### 4. **Set Up the Rendering Loop**
+   - **Sub-steps**:
+     - Initialize a rendering window using `mlx_new_window`.
+     - Set up the main loop to handle rendering (`mlx_loop`).
+     - Create a function to handle redrawing the window each frame.
+
+---
+
+### 5. **Convert Map Data to Coordinates**
+   - **Sub-steps**:
+     - Convert the 2D array of height values into 3D coordinates.
+     - Consider the scaling and positioning of the map on the window.
+     - Apply transformations for isometric or parallel projection.
+
+---
+
+### 6. **Draw the Wireframe**
+   - **Sub-steps**:
+     - Implement line drawing using Bresenham's algorithm or a similar method.
+     - Draw lines between points to form the wireframe.
+     - Ensure proper scaling and perspective.
+
+---
+
+### 7. **Handle User Inputs**
+   - **Sub-steps**:
+     - Capture keyboard and mouse events using `mlx_key_hook` and `mlx_mouse_hook`.
+     - Implement basic controls like zoom, pan, and rotate.
+     - Provide feedback to ensure user interactions are reflected.
+
+---
+
+### 8. **Add Visual Enhancements**
+   - **Sub-steps**:
+     - Implement color gradients based on height values.
+     - Add smooth transitions or shading effects.
+     - Handle edge cases, such as negative heights or large maps.
+
+---
+
+### 9. **Debug and Optimize**
+   - **Sub-steps**:
+     - Test with different map files, check for performance issues.
+     - Optimize the drawing loop to handle larger maps smoothly.
+     - Use debugging tools or print statements to trace issues.
+
+---
+
+### 10. **Final Touches and Documentation**
+   - **Sub-steps**:
+     - Ensure code is clean and well-documented.
+     - Write a README file explaining how to use your program.
+     - Test thoroughly before final submission.
+
+---
+
+
+
+
+**Step 1: Understanding the Requirements** and identify the **key features** of the FDF project. Here’s a detailed breakdown:
+
+### 1. **Reading Map Files**
+   - **Purpose**: The program needs to read and interpret data from map files, which typically contain height values arranged in a grid.
+   - **Details**:
+     - Each line in the file represents a row of the grid.
+     - Each number in the line represents the height at that grid point.
+     - The file format is plain text, with rows separated by newlines and values separated by spaces.
+
+### 2. **Storing Map Data**
+   - **Purpose**: After reading the file, the data needs to be stored in a structured way for easy access during rendering.
+   - **Details**:
+     - Use a 2D array or similar data structure to store the grid of height values.
+     - This structure will allow you to map each (x, y) coordinate to its corresponding height value.
+
+### 3. **Rendering the Wireframe**
+   - **Purpose**: Visualize the map as a wireframe model in a window.
+   - **Details**:
+     - Convert the 2D height map into a 3D coordinate system.
+     - Use basic 3D-to-2D projection (like isometric projection) to render the wireframe on a 2D screen.
+     - Draw lines between neighboring points to form the wireframe.
+
+### 4. **Implementing User Interaction**
+   - **Purpose**: Allow users to interact with the model (e.g., rotate, zoom, pan).
+   - **Details**:
+     - **Keyboard Controls**: For actions like rotating or translating the view.
+     - **Mouse Controls**: For zooming or rotating, enhancing the interactive experience.
+     - Consider using key and mouse hooks provided by `minilibX`.
+
+### 5. **Applying Transformations**
+   - **Purpose**: Apply transformations to the model for better visualization.
+   - **Details**:
+     - **Scaling**: Adjust the size of the model to fit the window.
+     - **Translation**: Move the model to center it or adjust its position.
+     - **Rotation**: Rotate the model around different axes to view it from various angles.
+     - These transformations allow dynamic adjustments for better exploration of the map.
+
+### 6. **Enhancing Visuals**
+   - **Purpose**: Improve the visual appeal and clarity of the wireframe.
+   - **Details**:
+     - Use color gradients or shading to differentiate heights.
+     - Add features like background color or grid lines for better visual separation.
+     - Optional: Add a UI or text overlays for additional information (e.g., current zoom level, rotation angle).
+
+### 7. **Handling Edge Cases**
+   - **Purpose**: Ensure the program handles all possible inputs gracefully.
+   - **Details**:
+     - Handle large maps by optimizing memory and rendering performance.
+     - Ensure proper handling of maps with extreme height values (both positive and negative).
+     - Manage incorrect or corrupted files by providing error messages and safe exits.
+
+### 8. **Optimizing Performance**
+   - **Purpose**: Ensure smooth operation, especially with larger maps.
+   - **Details**:
+     - Optimize the rendering loop to maintain a good frame rate.
+     - Efficiently handle user input without lag.
+     - Consider performance during transformations and line drawing.
