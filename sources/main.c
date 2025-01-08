@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:35:37 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/06 13:57:05 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/08 11:11:48 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,25 @@
 
 int	main(void)
 {
-	t_mlx mlx;
+	t_app app;
 
-	if(!initialize_mlx(&mlx))
+	if (!initialize_mlx(&app))
 		return (1);
-	mlx_loop(mlx.mlx_ptr);
+	mlx_key_hook(app.win.win, handle_key, &app);
+	mlx_hook(app.win.win, 17, 0, handle_close, &app);
+	mlx_loop(app.win.mlx);
 	return (0);
 }
+
+// int	main(void)
+// {
+// 	t_mlx mlx;
+
+// 	if(!initialize_mlx(&mlx))
+// 		return (1);
+// 	mlx_loop(mlx.mlx_ptr);
+// 	return (0);
+// }
 
 // #include "../minilibx-linux/mlx.h"
 // #include <unistd.h>

@@ -6,7 +6,7 @@
 #    By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/06 13:24:44 by daniefe2          #+#    #+#              #
-#    Updated: 2025/01/06 15:23:24 by daniefe2         ###   ########.fr        #
+#    Updated: 2025/01/08 11:01:20 by daniefe2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRCS = sources/main.c \
        sources/render.c \
        sources/initialize_mlx.c \
        sources/handle_key.c \
-       sources/cleanup.c
+	   sources/handle_close.c \
+       sources/cleanup_window.c
 
 # Automatically generate object files from .c files
 OBJS = $(SRCS:%.c=%.o)
@@ -48,6 +49,9 @@ clean:
 # Target to remove both the object files and the final executable
 fclean: clean
 	rm -f $(NAME)  # Remove the final executable
+
+test: all
+	./fdf
 
 # Target to clean and then rebuild everything from scratch
 re: fclean all

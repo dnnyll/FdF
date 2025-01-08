@@ -16,7 +16,7 @@ Steps and Sub-steps:
 
 ---
 
-### 3. **Read and Parse the Map File**
+### 3. **Read and Parse the Map Fiale**
    - **Sub-steps**:
      - Open and read the file (using functions like `open`, `read`).
      - Parse the file line by line to extract height and width.

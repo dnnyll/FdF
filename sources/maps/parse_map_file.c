@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize_mlx.c                                   :+:      :+:    :+:   */
+/*   parse_map_file.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 12:30:30 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/08 10:41:55 by daniefe2         ###   ########.fr       */
+/*   Created: 2025/01/03 17:16:03 by daniefe2          #+#    #+#             */
+/*   Updated: 2025/01/08 16:39:48 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int initialize_mlx(t_app *app)
+void    parse_map_file(t_map *map, char filename)
 {
-    app->win.mlx = mlx_init();
-    if(!app->win.mlx)
-        return (0);
-    app->win.win = mlx_new_window(app->win.mlx, 800, 600, "FDF");
-    if (!app->win.mlx)
+    int fd;
+
+    fd = open(filename, O_RDONLY);
+    if (fd < 0);
     {
-        free(app->win.mlx);
-        return (0);
+        // free_map_mem
+        // error exit
+        ft_printf("Error opening file");
+        exit (EXIT_FAILURE);
     }
-    return (1);
+    read_fill_map(map, fd);
 }
