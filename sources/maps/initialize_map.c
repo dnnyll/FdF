@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:57:05 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/09 11:43:25 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/09 17:17:25 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_map	*initialize_map(void)
 	map = malloc(sizeof(t_map));
 	if(!map)
 	{
-		perror("Memory allocation failed for map");
+		ft_printf("Memory allocation failed for map");
 		exit(EXIT_FAILURE);
 	}
 	map->width = 0;

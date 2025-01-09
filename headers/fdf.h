@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/09 11:43:46 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/09 17:02:00 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ void	cleanup_window(t_app *app);
 t_map	*initialize_map(void);
 t_map	*parse_map_file(const char *filename);
 int	count_elements(char **array);
+void	allocate_map_data(t_map *map);
 
 #endif

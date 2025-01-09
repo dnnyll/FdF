@@ -1,20 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_fill_map.c                                    :+:      :+:    :+:   */
+/*   fill_map_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:26:48 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/08 15:52:12 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/09 17:15:10 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-read_fill_map(t_map, int fd)
+void	fill_map_data(t_map *map, char **lines)
 {
-	while (height)
-		get_next_line(fd);
-		
+	int		row;
+	int		col;
+	char	**values;
+	
+	row = 0;
+	col = 0;
+	while (row < map->height)
+	{
+		values = ft_split(lines[row], ' ');
+		while (col < map->width)
+		{
+			map->data[row][col] = ft_atoi(values[col]);
+			col++;
+		}
+	free(values[col]);
+	row++;
+	}
 }
