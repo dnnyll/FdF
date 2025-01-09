@@ -6,23 +6,39 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:35:37 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/08 11:11:48 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/09 12:06:22 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	t_app app;
+//	t_map	*map;
+	char	*file;
 
-	if (!initialize_mlx(&app))
-		return (1);
-	mlx_key_hook(app.win.win, handle_key, &app);
-	mlx_hook(app.win.win, 17, 0, handle_close, &app);
-	mlx_loop(app.win.mlx);
+	if (argc != 2)
+	{
+		perror("Error opening file");
+		exit(EXIT_FAILURE);
+	}
+	file = argv[1];
+//	map = initialize_map(file);
+	parse_map_file(file);
 	return (0);
 }
+
+// int	main(void)
+// {
+// 	t_app app;
+
+// 	if (!initialize_mlx(&app))
+// 		return (1);
+// 	mlx_key_hook(app.win.win, handle_key, &app);
+// 	mlx_hook(app.win.win, 17, 0, handle_close, &app);
+// 	mlx_loop(app.win.mlx);
+// 	return (0);
+// }
 
 // int	main(void)
 // {

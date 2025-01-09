@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/08 15:53:35 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/09 11:43:46 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,37 +24,37 @@
 #include <math.h>
 
 // Structure to hold the window and mlx pointers
-typedef struct s_window
+typedef	struct s_window
 {
-    void    *mlx;
-    void    *win;
+	void	*mlx;
+	void	*win;
 }
 t_window;
 
 // Main application structure
-typedef struct s_app
+typedef	struct s_app
 {
-    t_window win;
-}   
+	t_window win;
+}
 t_app;
 
-typedef struct s_map
+typedef	struct s_map
 {
-    int **data;
-    int rows;
-    int cols;
-    int height;
-    int width;
+	int	**data;
+	int	rows;
+	int	cols;
+	int	height;
+	int	width;
 }
 t_map;
 
-int initialize_mlx(t_app *app);
-void render(t_app *app);
-int handle_key(int keycode, t_app *app);
-int handle_close(t_app *app);
-void cleanup_window(t_app *app);
-t_map	*initialize_map(char *filename);
-void    parse_map_file(t_map *map, char filename);
-
+int	initialize_mlx(t_app *app);
+void	render(t_app *app);
+int	handle_key(int keycode, t_app *app);
+int	handle_close(t_app *app);
+void	cleanup_window(t_app *app);
+t_map	*initialize_map(void);
+t_map	*parse_map_file(const char *filename);
+int	count_elements(char **array);
 
 #endif
