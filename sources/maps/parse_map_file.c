@@ -3,26 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_file.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 17:16:03 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/08 16:39:48 by daniefe2         ###   ########.fr       */
+/*   Created: 2025/01/09 09:57:52 by daniefe2          #+#    #+#             */
+/*   Updated: 2025/01/09 10:15:39 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void    parse_map_file(t_map *map, char filename)
+t_map *parse_map_file(const char *filename)
 {
-    int fd;
+	t_map *map = initialize_map();
+	int fd = open(filename, O_RDONLY);
+	if (fd < 0)
+	{
+		perror("Error opening file");
+		free(map);
+		exit(EXIT_FAILURE);
+	}
 
-    fd = open(filename, O_RDONLY);
-    if (fd < 0);
-    {
-        // free_map_mem
-        // error exit
-        ft_printf("Error opening file");
-        exit (EXIT_FAILURE);
-    }
-    read_fill_map(map, fd);
+	char *line = get_next_line(fd);
+	if (line)
+	{
+		map->width = count_elements(ft_split(line, ' '));
+		while (line)
+		{
+			map->height++;
+			free(line);
+			line = get_next_line(fd);
+		}
+	}
+	close(fd);
+	return map;
+}
+
+int	count_elements(char **array)
+{
+	int	count;
+
+	count = 0;
+	while(array && array[count])
+		count++;
+	return (count);
 }
