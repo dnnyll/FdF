@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+         #
+#    By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/06 13:24:44 by daniefe2          #+#    #+#              #
-#    Updated: 2025/01/09 17:07:05 by daniefe2         ###   ########.fr        #
+#    Updated: 2025/01/11 16:23:09 by daniefe2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,9 @@ SRCS =	sources/main.c \
 		sources/cleanup_window.c \
 		sources/maps/initialize_map.c \
 		sources/maps/parse_map_file.c \
+		sources/maps/fill_map_data.c \
 		sources/memory/allocate_map_data.c \
+		sources/memory/free_map_data.c \
 		lib/get_next_line/get_next_line.c \
 		lib/get_next_line/get_next_line_utils.c 
 

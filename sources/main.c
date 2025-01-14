@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:35:37 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/09 12:06:22 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/14 08:28:39 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-//	t_map	*map;
+	t_map	*map;
 	char	*file;
 
 	if (argc != 2)
@@ -24,7 +24,14 @@ int	main(int argc, char **argv)
 	}
 	file = argv[1];
 //	map = initialize_map(file);
-	parse_map_file(file);
+	map = parse_map_file(file);
+	if(map->lines == NULL)
+	{
+		ft_printf("Error: map->lines is NULL before calling fill_map_data\n");
+		return(1);
+	}
+	fill_map_data(map, map->lines);
+	free_map_data(map);
 	return (0);
 }
 

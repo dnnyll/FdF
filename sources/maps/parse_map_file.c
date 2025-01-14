@@ -3,18 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_file.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 09:57:52 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/09 17:16:55 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/14 08:27:12 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+//sets up the size of your map and gives you access to the dimensions (height and width)
 #include "fdf.h"
 
 t_map *parse_map_file(const char *filename)
 {
 	t_map *map = initialize_map();
+	char *line;
 	int fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
@@ -22,24 +24,13 @@ t_map *parse_map_file(const char *filename)
 		free(map);
 		exit(EXIT_FAILURE);
 	}
-
-	char *line = get_next_line(fd);
+	line = get_next_line(fd);
 	if (line)
 	{
 		map->width = count_elements(ft_split(line, ' '));
 		while (line)
 		{
 			map->height++;
-			ft_printf("line: %s\n", line);
-            // int index = 0;
-            // while (index < 30)
-            // {
-            //     if(index == '\n')
-            //         ft_printf("the next character is a backslash n\n");
-            //     ft_printf("line %d character is: %c\n", index, line[index]);
-            //     index++;
-                
-            // }
 			ft_printf("line: %s\n", line);
 			free(line);
 			line = get_next_line(fd);
@@ -48,6 +39,7 @@ t_map *parse_map_file(const char *filename)
 		ft_printf("height: %d\n", map->height);
 		ft_printf("width: %d\n", map->width);
 	}
+	ft_printf("map before returning: %s\n", map);
 	close(fd);
 	return (map);
 }

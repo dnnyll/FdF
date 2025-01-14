@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/09 17:02:00 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/11 16:26:06 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef	struct s_map
 	int	cols;
 	int	height;
 	int	width;
+	char **lines;
 }
 t_map;
 
@@ -56,6 +57,8 @@ void	cleanup_window(t_app *app);
 t_map	*initialize_map(void);
 t_map	*parse_map_file(const char *filename);
 int	count_elements(char **array);
+void	fill_map_data(t_map *map, char **lines);
 void	allocate_map_data(t_map *map);
+void	free_map_data(t_map *map);
 
 #endif
