@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:35:37 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/14 08:28:39 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/14 14:01:05 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,8 @@ int	main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	file = argv[1];
-//	map = initialize_map(file);
+	map = initialize_map();
 	map = parse_map_file(file);
-	if(map->lines == NULL)
-	{
-		ft_printf("Error: map->lines is NULL before calling fill_map_data\n");
-		return(1);
-	}
 	fill_map_data(map, map->lines);
 	free_map_data(map);
 	return (0);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+         #
+#    By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/06 13:24:44 by daniefe2          #+#    #+#              #
-#    Updated: 2025/01/11 16:23:09 by daniefe2         ###   ########.fr        #
+#    Updated: 2025/01/14 14:49:44 by daniefe2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,16 +16,17 @@ CFLAGS = -Wall -Wextra -Werror -g -I./headers
 
 # Source files and object files
 SRCS =	sources/main.c \
-		sources/render.c \
-		sources/initialize_mlx.c \
-		sources/handle_key.c \
-		sources/handle_close.c \
-		sources/cleanup_window.c \
+		sources/window/render.c \
+		sources/window/initialize_mlx.c \
+		sources/window/handle_key.c \
+		sources/window/handle_close.c \
+		sources/window/cleanup_window.c \
 		sources/maps/initialize_map.c \
 		sources/maps/parse_map_file.c \
 		sources/maps/fill_map_data.c \
 		sources/memory/allocate_map_data.c \
 		sources/memory/free_map_data.c \
+		sources/memory/allocate_map_axis.c \
 		lib/get_next_line/get_next_line.c \
 		lib/get_next_line/get_next_line_utils.c 
 

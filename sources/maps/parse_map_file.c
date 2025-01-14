@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_file.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 09:57:52 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/14 08:27:12 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/14 14:00:31 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_map *parse_map_file(const char *filename)
 		free(map);
 		exit(EXIT_FAILURE);
 	}
+//	gets the values of height and width for our argument map
 	line = get_next_line(fd);
 	if (line)
 	{
@@ -35,11 +36,13 @@ t_map *parse_map_file(const char *filename)
 			free(line);
 			line = get_next_line(fd);
 		}
-		allocate_map_data(map);
 		ft_printf("height: %d\n", map->height);
 		ft_printf("width: %d\n", map->width);
+		allocate_map_data(map);
+		
+
 	}
-	ft_printf("map before returning: %s\n", map);
+	ft_printf("parse successful\n");
 	close(fd);
 	return (map);
 }

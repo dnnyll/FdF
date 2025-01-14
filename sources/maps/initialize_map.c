@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:57:05 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/09 17:17:25 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/14 14:10:20 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_map	*initialize_map(void)
 	map->width = 0;
 	map->height = 0;
 	map->data = NULL;
+	map->lines = NULL;
 	return map;
 }
 // t_map	*initialize_map(char *filename)

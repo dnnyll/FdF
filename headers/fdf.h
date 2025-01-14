@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/11 16:26:06 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/14 15:10:00 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ int	count_elements(char **array);
 void	fill_map_data(t_map *map, char **lines);
 void	allocate_map_data(t_map *map);
 void	free_map_data(t_map *map);
+char	**allocate_map_axis(t_map *map);
 
 #endif
