@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:26:48 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/15 12:59:31 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/15 14:40:20 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,6 @@ void	fill_map_data(t_map *map, const char *filename)
 		row++;
 	}
 }
+
+
 

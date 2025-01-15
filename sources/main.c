@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:35:37 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/15 10:04:11 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:11:02 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,16 @@ int	main(int argc, char **argv)
 	}
 	file = argv[1];
 	map = initialize_map();
+	ft_printf("main->initialize_map completed.\n");
 	map = parse_map_file(file);
+	ft_printf("main->parse_map completed.\n");
 	fill_map_data(map, file);
+	ft_printf("main->fill_map_data completed.\n");
+	color_occurence(map, file);
+	ft_printf("main->color_occurence completed.\n");
 	free_map_data(map);
+	ft_printf("main->free_map_data completed.\n");
+
 	return (0);
 }
 

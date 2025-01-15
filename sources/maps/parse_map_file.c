@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 09:57:52 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/15 13:23:03 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:01:25 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ t_map *parse_map_file(const char *filename)
 	width_checker = 0;
 	while(line)
 	{
+		// if(!check_line_is_okay(line))
+		// 	exit(EXIT_FAILURE);
 		map->width = count_elements(ft_split(line, ' '));
 		map->height++;
 		ft_printf("line: %s\n", line);
@@ -63,5 +65,5 @@ int	count_elements(char **array)
 		count++;
 	ft_printf("count_elements with newline at end: %d\n", count);
 	//count is giving  an extra value, unknown yet, maybe \n
-	return (count - 1);
+	return (count);
 }

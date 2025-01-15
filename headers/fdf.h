@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/15 13:25:15 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:58:31 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ t_app;
 
 typedef	struct s_map
 {
-	int	**data;
-	int	rows;
-	int	cols;
-	int	height;
-	int	width;
-	char **lines;
-	char **data_char;
+	int		**data;
+	int		color_count;
+	char	**color_stash;
+	int		height;
+	int		width;
+	char 	**lines;
+	char 	**data_char;
 }
 t_map;
 
@@ -62,5 +62,6 @@ void	fill_map_data(t_map *map, const char *filename);
 void	allocate_map_data_int(t_map *map);
 char	**allocate_map_data_char(t_map *map);
 void	free_map_data(t_map *map);
+void	color_occurence(t_map *map, const char *filename);
 
 #endif
