@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   allocate_map_data.c                                :+:      :+:    :+:   */
+/*   allocate_map_data_int.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:55:03 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/09 17:09:52 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:26:53 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //allocates memory for rows based on height
 //allocates memory for elements contained in every row based on width
-void	allocate_map_data(t_map *map)
+void	allocate_map_data_int(t_map *map)
 {
 	int	index;
 
@@ -28,7 +28,7 @@ void	allocate_map_data(t_map *map)
 	index = 0;
 	while (index < map->height)
 	{
-		map->data[index] = malloc(sizeof(int *) * map->width);
+		map->data[index] = malloc(sizeof(int) * map->width);
 		if(!map->data[index])
 		{
 			free(map->data);
@@ -39,3 +39,5 @@ void	allocate_map_data(t_map *map)
 	}
 	ft_printf("allocate_map_data successful\n");
 }
+
+

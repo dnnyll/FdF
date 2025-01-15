@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/14 15:10:00 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:25:15 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef	struct s_map
 	int	height;
 	int	width;
 	char **lines;
+	char **data_char;
 }
 t_map;
 
@@ -57,9 +58,9 @@ void	cleanup_window(t_app *app);
 t_map	*initialize_map(void);
 t_map	*parse_map_file(const char *filename);
 int	count_elements(char **array);
-void	fill_map_data(t_map *map, char **lines);
-void	allocate_map_data(t_map *map);
+void	fill_map_data(t_map *map, const char *filename);
+void	allocate_map_data_int(t_map *map);
+char	**allocate_map_data_char(t_map *map);
 void	free_map_data(t_map *map);
-char	**allocate_map_axis(t_map *map);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/06 13:24:44 by daniefe2          #+#    #+#              #
-#    Updated: 2025/01/14 14:49:44 by daniefe2         ###   ########.fr        #
+#    Updated: 2025/01/15 13:26:25 by daniefe2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,9 @@ SRCS =	sources/main.c \
 		sources/maps/initialize_map.c \
 		sources/maps/parse_map_file.c \
 		sources/maps/fill_map_data.c \
-		sources/memory/allocate_map_data.c \
+		sources/memory/allocate_map_data_int.c \
+		sources/memory/allocate_map_data_char.c \
 		sources/memory/free_map_data.c \
-		sources/memory/allocate_map_axis.c \
 		lib/get_next_line/get_next_line.c \
 		lib/get_next_line/get_next_line_utils.c 
 

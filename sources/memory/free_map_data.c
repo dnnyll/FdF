@@ -3,31 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   free_map_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/11 16:15:31 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/11 16:30:16 by daniefe2         ###   ########.fr       */
+/*   Created: 2025/01/15 13:17:44 by daniefe2          #+#    #+#             */
+/*   Updated: 2025/01/15 13:21:18 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"  // Ensure this includes the definition of 't_map'
+//	Frees all struct map data
+#include "fdf.h"
 
-// Your free_map_data function definition
-void free_map_data(t_map *map)
+void	free_map_data(t_map *map)
 {
-    int i;
-
-    if (map)
-    {
-        if (map->data)
-        {
-            i = 0;
-            while (i < map->height)
-            {
-                free(map->data[i]);
-                i++;
-            }
-            free(map->data);
-        }
-    }
+	int	index;
+	
+	if (map)
+	{
+		if (map->data)
+		{
+			index = 0;
+			while (index < map->height)
+			{
+				free (map->data[index]);
+				index++;
+			}
+			free (map->data);
+		}
+	}
 }
