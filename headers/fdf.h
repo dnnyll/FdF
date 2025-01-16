@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/15 15:58:31 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/16 07:10:41 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@ void	allocate_map_data_int(t_map *map);
 char	**allocate_map_data_char(t_map *map);
 void	free_map_data(t_map *map);
 void	color_occurence(t_map *map, const char *filename);
+char	**allocate_color_data_char(t_map *map);
 
 #endif

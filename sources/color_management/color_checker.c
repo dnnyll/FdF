@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 15:17:01 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/15 16:26:53 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/16 07:20:45 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	color_occurence(t_map *map, const char *filename)
 {
 	char *line;
+	char **temp;
 	int	tracker;
 	int fd = open(filename, O_RDONLY);
 	if (fd < 0)
@@ -32,9 +33,11 @@ void	color_occurence(t_map *map, const char *filename)
 		{
 			ft_printf("ft_split.\n");
 			map->color_stash = allocate_color_data_char(map);
-			map->color_stash[tracker] = malloc(sizeof(char *) * 10 + 1); //this is not a correct allocation, refer to memory allocation functions for **
+			// map->color_stash[tracker] = malloc(sizeof(char *) * 10 + 1); //this is not a correct allocation, refer to memory allocation functions for **
 			ft_printf("color_stash allocation completed.\n");
-			map->color_stash[tracker] = ft_substr(filename, 0, 10);
+			temp = allocate_color_data_char(map);
+			temp = ft_subs
+//			map->color_stash[tracker] = ft_substr(filename, 0, 10);
 			ft_printf("color_stash[%d]: %s\n", map->color_count, map->color_stash);
 		}
 		tracker++;
