@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:35:37 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/15 16:11:02 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:05:50 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	main(int argc, char **argv)
 	ft_printf("main->color_occurence completed.\n");
 	free_map_data(map);
 	ft_printf("main->free_map_data completed.\n");
+	// convert_colors_to_int(map);
+	// ft_printf("main->onvert_colors_to_int completed.\n");
 
 	return (0);
 }
