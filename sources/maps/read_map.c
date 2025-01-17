@@ -1,44 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_map_file.c                                   :+:      :+:    :+:   */
+/*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/09 09:57:52 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/17 13:48:28 by daniefe2         ###   ########.fr       */
+/*   Created: 2025/01/17 15:26:59 by daniefe2          #+#    #+#             */
+/*   Updated: 2025/01/17 15:40:23 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//sets up the size of your map and gives you access to the dimensions (height and width)
+//	Opens and reads the map input
+//	Calculates the height and width of the map
+//	Verifies if the input is valid?!?!?!
 #include "fdf.h"
-
-t_map *parse_map_file(const char *filename)
+void	read_map(t_map *map, t_coordinates * coordinates, char *filename)
 {
-	int	width_checker;
-	t_map *map = initialize_map();
-	char *line;
+	char	*line;
+	int		width_checker;
 	int fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_printf("Error opening file");
-		free(map);
+		ft_printf("Error opening and reading file");
 		exit(EXIT_FAILURE);
 	}
-//	gets the values of height and width for our argument map
 	line = get_next_line(fd);
 	width_checker = 0;
 	while(line)
 	{
-		// if(!check_line_is_okay(line))
-		// 	exit(EXIT_FAILURE);
+		if(!line)
+		{
+			ft_printf("Error: no line.\n");
+			exit(EXIT_FAILURE);
+		}
 		map->width = count_elements(ft_split(line, ' '));
 		map->height++;
 		ft_printf("line: %s\n", line);
 		line = get_next_line(fd);
 		ft_printf("height: %d\n", map->height);
 		ft_printf("width: %d\n", map->width);
-		if (width_checker == 0)		//NOT WORKING
+		if (width_checker == 0)
 			width_checker = map->width;
 		else
 		{
@@ -51,15 +52,9 @@ t_map *parse_map_file(const char *filename)
 		}
 	}
 	ft_printf("parsing successful.\n");
-	allocate_map_data_int(map);
-	print_map_matrix(map);
-	// color_occurence(map, filename);
-	// convert_colors_to_int(map);
-	close(fd);
-	return (map);
 }
 
-int	count_elements(char **array)
+nt	count_elements(char **array)
 {
 	int	count;
 

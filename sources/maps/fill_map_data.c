@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:26:48 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/15 14:40:20 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/17 10:40:07 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	fill_map_data(t_map *map, const char *filename)
 			ft_printf("Converting values[%d] = %s to integer\n", col, values[col]);
 			map->data[row][col] = ft_atoi(values[col]);
 			ft_printf("map->data[%d][%d] = %d\n", row, col, map->data[row][col]);
+			ft_printf("---- WARNING:int_matrix stored in data! ----\n");
 			col++;
 		}
 //		free(values);

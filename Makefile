@@ -6,7 +6,7 @@
 #    By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/06 13:24:44 by daniefe2          #+#    #+#              #
-#    Updated: 2025/01/16 10:43:02 by daniefe2         ###   ########.fr        #
+#    Updated: 2025/01/17 11:09:14 by daniefe2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,10 @@ SRCS =	sources/main.c \
 		sources/memory/free_split_parts.c \
 		sources/color_management/color_checker.c \
 		sources/color_management/color_converter.c \
+		sources/verifier/matrix_printer.c \
 		lib/get_next_line/get_next_line.c \
 		lib/get_next_line/get_next_line_utils.c 
+		
 
 
 # Automatically generate object files from .c files

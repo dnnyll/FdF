@@ -1,0 +1,225 @@
++------------------------------------------------------+
+|                  color_occurence                     |
+|------------------------------------------------------|
+| 1. Open the file (filename)                          |
+| 2. Initialize row = 0                                |
+| 3. Read each line of the file using get_next_line()  |
+| 4. Pass each line to process_line_for_colors()       |
+| 5. Once done processing, call convert_colors_to_int()|
++-----------------------------------------------------+
+              |
+              V
++------------------------------------------------------+
+|                process_line_for_colors               |
+|------------------------------------------------------|
+| 1. Split line by spaces (ft_split)                   |
+| 2. Allocate memory for color_stash                   |
+| 3. Iterate through each split part of the line       |
+| 4. If part contains a comma, split it by commas      |
+| 5. Check if the part after the comma starts with "0x"|
+| 6. If valid hex color (e.g., "0xRRGGBB"), store it in|
+|    map->color_stash[row]                             |
+| 7. Continue checking the rest of the line            |
+| 8. Free split_parts memory after processing each part|
++------------------------------------------------------+
+              |
+              V
++------------------------------------------------------+
+|                  convert_colors_to_int               |
+|------------------------------------------------------|
+| 1. Iterate through each row in map->color_stash      |
+| 2. For each color in color_stash, check if it starts |
+|    with "0x"                                         |
+| 3. Convert the valid hex color string to an integer  |
+| 4. Store the integer value in map->color_values[row] |
+| 5. Print the conversion results (optional debug)     |
++------------------------------------------------------+
+
+
++----------------------------------------------------------------------+
+|                            color_occurence                           |
+|----------------------------------------------------------------------|
+| 1. Open the file (filename)                                          |
+|    - Open the file for reading using the `open()` system call.       |
+|    - Check if the file was opened successfully. If not, print an     |
+|      error message and exit the program.                             |
+|    - Example: `fd = open(filename, O_RDONLY);`                       |
+| 2. Initialize row = 0                                                |
+|    - Set the variable `row` to 0, as this will be used to track      |
+|      the row number in `color_stash`.                                |
+| 3. Read each line of the file using `get_next_line()`                |
+|    - The `get_next_line()` function is called in a loop to read      |
+|      the file line by line.                                          |
+|    - Each line is passed to `process_line_for_colors()` to extract   |
+|      the color data and store it in the map.                         |
+|    - Example: `line = get_next_line(fd);`                            |
+| 4. Pass each line to `process_line_for_colors()`                     |
+|    - For each line, call `process_line_for_colors()` and pass the    |
+|      current line and row as arguments.                              |
+|    - Example: `process_line_for_colors(map, line, row);`             |
+|    - Inside this function, we split the line, process the colors,    |
+|      and store them in `map->color_stash[row]`.                      |
+| 5. Once done processing, call `convert_colors_to_int()`              |
+|    - After all lines are processed, the `convert_colors_to_int()`    |
+|      function is called to convert the stored color codes (hex)      |
+|      into integers for further processing.                           |
+|    - Example: `convert_colors_to_int(map);`                          |
+|----------------------------------------------------------------------+
+              |
+              V
++------------------------------------------------------------------------------------------------------------------+
+|                     process_line_for_colors                                                                      |
+|------------------------------------------------------------------------------------------------------------------|
+| 1. Split line by spaces using `ft_split()`                                                                       |
+|    - The `ft_split(line, ' ')` function is called to split the line                                              |
+|      into an array of parts (words/values) based on spaces.                                                      |
+|    - Example: `parts = ft_split(line, ' ');`                                                                     |
+| 2. Allocate memory for `color_stash` using `allocate_color_data_char`                                            |
+|    - Inside `process_line_for_colors()`, call `allocate_color_data_char()` to                                    |
+|      allocate memory for `color_stash`. This stores colors for each column.                                      |
+|    - Example: `map->color_stash = allocate_color_data_char(map);`                                                |
+| 3. Iterate through each split part of the line                                                                   |
+|    - Use a `while` loop to iterate through the `parts` array, checking each part.                                |
+|    - For each column, we check if the part contains a color or other data.                                       |
+|    - Example: `while (parts[col] != NULL)`                                                                       |
+| 4. If part contains a comma, split it by commas using `ft_split()`                                               |
+|    - If the part contains a comma, it is split into two parts (before and after the comma).                      |
+|    - The part after the comma is assumed to be the color code.                                                   |
+|    - Example: `split_parts = ft_split(parts[col], ',');`                                                         |
+| 5. Check if the part after the comma starts with "0x"                                                            |
+|    - Check if the second part (`split_parts[1]`) starts with the string "0x".                                    |
+|    - This indicates that it is a hexadecimal color code.                                                         |
+|    - Example: `if (split_parts[1] && ft_strncmp(split_parts[1], "0x", 2) == 0)`                                  |
+| 6. If valid hex color (e.g., "0xRRGGBB"), store it in `color_stash`                                              |
+|    - If the part is a valid color code (length 8 and starts with "0x"), store it in `color_stash[row][col]`.     |
+|    - Use `ft_strdup()` to duplicate the color string and store it in the appropriate position.                   |
+|    - Example: `map->color_stash[row][col] = ft_strdup(split_parts[1]);`                                          | 
+|    - If memory allocation fails, print an error message.                                                         |
+| 7. Continue checking the rest of the line                                                                        |
+|    - The loop continues to check other columns in the line until all columns are processed.                      |
+|    - The row and column indices are updated for each iteration.                                                  |
+| 8. Free `split_parts` memory after processing each part                                                          |
+|    - After processing each part, free the memory allocated for the `split_parts` array.                          |
+|    - Example: `free_split_parts(split_parts);`                                                                   |
+|------------------------------------------------------------------------------------------------------------------+
+              |
+              V
++-------------------------------------------------------------------------------------------------------------------------+
+|                     convert_colors_to_int                                                                               |
+|-------------------------------------------------------------------------------------------------------------------------|
+| 1. Iterate through each row in `map->color_stash`                                                                       |
+|    - Loop through each row of the `color_stash` array to convert each stored color to an integer.                       |
+|    - Example: `for (int row = 0; row < map->rows; row++)`                                                               |
+| 2. For each color in `color_stash`, check if it starts with "0x"                                                        |
+|    - For each color in the row, check if it starts with `"0x"`. This is done by using `ft_strncmp`.                     |
+|    - Example: `if (ft_strncmp(map->color_stash[row][col], "0x", 2) == 0)`                                               |
+| 3. Convert the valid hex color string to an integer                                                                     |
+|    - If a valid color code is found, convert it to an integer using `strtol()` or another function that can convert hex.|
+|    - Example: `int color_int = (int)strtol(map->color_stash[row][col] + 2, NULL, 16);`                                  |
+| 4. Store the integer value in `map->color_values[row]`                                                                  |
+|    - Store the converted integer value in a new array, `color_values`, for further use (e.g., rendering).               |
+|    - Example: `map->color_values[row][col] = color_int;`                                                                |
+| 5. Print the conversion results (optional debug)                                                                        |
+|    - Print the resulting integer values for each row and column, as a debug feature.                                    |
+|    - Example: `ft_printf("Converted color at row[%d], col[%d]: %d\n", row + 1, col + 1, color_int);`                    |
++-------------------------------------------------------------------------------------------------------------------------+
+
+
+
+
+Let's break down the logic of your program based on the provided code, excluding the `fill_map_data` function for now.
+
+### Main Function (`main`)
+1. **Argument Check**:
+   - The program expects exactly one argument, which is the name of the file to be parsed.
+   - If the number of arguments is not equal to 2, it prints an error message and exits with failure.
+
+2. **File Parsing**:
+   - The file name is extracted from the command-line arguments.
+   - `initialize_map` is called to create a new `t_map` structure.
+   - `parse_map_file` is called with the file name to populate the `t_map` structure.
+
+3. **Memory Cleanup**:
+   - After parsing and filling the map data, the program calls `free_map_data` to free the allocated memory for the `t_map`.
+
+### Map Initialization (`initialize_map`)
+- This function allocates memory for a `t_map` structure and initializes its fields (`width`, `height`, `data`, `lines`) to default values (0 or NULL).
+- If memory allocation fails, it prints an error message and exits.
+
+### Parsing the Map File (`parse_map_file`)
+1. **File Opening**:
+   - Opens the specified file in read-only mode.
+   - If opening fails, it prints an error and exits after freeing any allocated memory.
+
+2. **File Reading**:
+   - Uses `get_next_line` to read the file line by line.
+   - The first line is used to determine the `width` by counting elements separated by spaces.
+   - Each subsequent line increases the `height`.
+
+3. **Memory Allocation for Data**:
+   - After determining the `width` and `height`, `allocate_map_data` is called to allocate the necessary memory for storing the map's integer data.
+
+4. **Closing the File**:
+   - The file descriptor is closed before returning the populated `t_map` structure.
+
+### Counting Elements (`count_elements`)
+- This function counts the number of non-null elements in a string array, which is used to determine the width of the map.
+
+### Allocating Map Data (`allocate_map_data`)
+- Allocates a 2D array (`data`) for the map.
+- Each row of the map is an array of integers.
+- If any allocation fails, it prints an error and exits.
+
+### Freeing Map Data (`free_map_data`)
+- Frees the memory allocated for each row in the `data` array.
+- Frees the `data` array itself after all rows are freed.
+
+### Observations:
+- **Error Handling**: The program consistently checks for errors (file opening, memory allocation) and exits with an appropriate message if an error occurs.
+- **Memory Management**: The program allocates and deallocates memory carefully to avoid memory leaks.
+- **Structure Usage**: The `t_map` structure holds the map data, its dimensions, and lines of strings from the file, though the `lines` array doesn't seem to be utilized after parsing.
+
+This setup prepares the map structure for further processing (like filling the map data), which you are currently working on.
+
+
+
+### Main Function Logic
+1. Check if the number of arguments is 2.
+2. If not, print error and exit.
+3. Extract the file name from arguments.
+4. Initialize a `t_map` structure.
+5. Parse the map file and populate the `t_map`.
+6. Free the allocated map data.
+7. Return 0 and exit.
+
+### Initialize Map Logic
+1. Allocate memory for `t_map`.
+2. Initialize `width`, `height`, `data`, and `lines` to default values.
+3. If memory allocation fails, print error and exit.
+4. Return the initialized `t_map`.
+
+### Parse Map File Logic
+1. Open the file for reading.
+2. If opening fails, print error, free memory, and exit.
+3. Read the first line, count elements to determine `width`.
+4. Count each line to determine `height`.
+5. Allocate memory for map data.
+6. Close the file.
+7. Return the populated `t_map`.
+
+### Count Elements Logic
+1. Initialize count to 0.
+2. Loop through the array, incrementing count for each non-null element.
+3. Return the count minus 1 (adjust for extra element).
+
+### Allocate Map Data Logic
+1. Allocate memory for `data` (array of integer pointers) with size `height`.
+2. Loop through each row, allocating memory for each row's elements with size `width`.
+3. If any allocation fails, print error, free memory, and exit.
+4. Return after successful allocation.
+
+### Free Map Data Logic
+1. Loop through each row in `data`.
+2. Free each row.
+3. Free the `data` array itself.
+4. Return.

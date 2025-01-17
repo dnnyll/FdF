@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 09:44:05 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/16 11:17:10 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/17 11:50:46 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,26 +42,32 @@ int	hex_to_int(const char *hex_str)
 	return (result);
 }
 
-void convert_colors_to_int(t_map *map)
+void	convert_colors_to_int(t_map *map)
 {
 	int	color_value;
-	int	row;
-	
-	row = 0;
-	// Ensure map->color_stash[row] is not NULL and starts with "0x"
-	printf("Checking color_stash[%d]: %s\n", row, map->color_stash[row]);
-	if(map->color_stash[row] && ft_strncmp(map->color_stash[row], "0x", 2) == 0)
+	int	row = 0;
+
+	while (row < map->height)
 	{
-		ft_printf("IN DA COLOR LOOOOOOOOOOOOOOOOOOOP");
-		color_value = hex_to_int(map->color_stash[row]);
-		if (color_value >= 0)
+		ft_printf("Row %d contains: %s\n", row, map->color_stash[row]);
+		if (map->color_stash[row] && ft_strncmp(map->color_stash[row], "0x", 2) == 0)
 		{
-			map->color_values[row] = color_value;
-			ft_printf("Converted color %s to integer: %d\n", map->color_stash[row], map->color_values[row]);
+			color_value = hex_to_int(map->color_stash[row]);
+			if (color_value >= 0)
+			{
+				ft_printf("debugging color %s to integer: %d\n", map->color_stash[row], map->color_values[row]);
+				map->color_values[row] = color_value;
+				ft_printf("Converted color %s to integer: %d\n", map->color_stash[row], map->color_values[row]);
+			}
+			else
+			{
+				ft_printf("Error converting color: %s\n", map->color_stash[row]);
+			}
 		}
 		else
-			ft_printf("Error converting color: %s\n", map->color_stash[row]);
+		{
+			ft_printf("No valid color code found at row %d\n", row);
+		}
+		row++;
 	}
-	else
-		ft_printf("No color code found at row %d\n", row);
 }

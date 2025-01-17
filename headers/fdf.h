@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/16 10:47:05 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:33:51 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ typedef	struct s_app
 }
 t_app;
 
+typedef	struct s_coordinates
+{
+	int	x;
+	int	y;
+	int	z;
+	int	color;
+}
+t_coordinates;
+
+
 typedef	struct s_map
 {
 	int		**data;
@@ -50,6 +60,9 @@ typedef	struct s_map
 	char 	**data_char;
 }
 t_map;
+
+//		-=""verifier /////////////////////////////////////////////
+void	print_map_matrix(t_map *map);
 
 //		-=""window management /////////////////////////////////////////////
 int	initialize_mlx(t_app *app);
@@ -72,6 +85,7 @@ int		hex_to_int(const char *hex_str);
 
 //		-=""memory management
 void	allocate_map_data_int(t_map *map);
+void	allocate_map_data_inttt(t_map *map);
 char	**allocate_map_data_char(t_map *map);
 char	**allocate_color_data_char(t_map *map);
 void	free_map_data(t_map *map);
