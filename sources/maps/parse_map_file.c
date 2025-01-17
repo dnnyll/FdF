@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_file.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 09:57:52 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/15 16:01:25 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/17 09:01:52 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ t_map *parse_map_file(const char *filename)
 	}
 	ft_printf("parsing successful.\n");
 	allocate_map_data_int(map);
+	color_occurence(map, filename);
+	convert_colors_to_int(map);
 	close(fd);
 	return (map);
 }
