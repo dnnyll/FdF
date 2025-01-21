@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:26:59 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/17 15:40:23 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/17 20:19:52 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,54 +14,66 @@
 //	Calculates the height and width of the map
 //	Verifies if the input is valid?!?!?!
 #include "fdf.h"
-void	read_map(t_map *map, t_coordinates * coordinates, char *filename)
+
+void	read_map_size(t_map *map, char *filename)
 {
+	int		fd;
 	char	*line;
-	int		width_checker;
-	int fd = open(filename, O_RDONLY);
+
+	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_printf("Error opening and reading file");
+		ft_printf("Error opening and reading file\n");
 		exit(EXIT_FAILURE);
 	}
 	line = get_next_line(fd);
-	width_checker = 0;
-	while(line)
+	while (line)
 	{
-		if(!line)
-		{
-			ft_printf("Error: no line.\n");
-			exit(EXIT_FAILURE);
-		}
-		map->width = count_elements(ft_split(line, ' '));
+		read_map_width(map, line);
 		map->height++;
-		ft_printf("line: %s\n", line);
+		free(line);
 		line = get_next_line(fd);
-		ft_printf("height: %d\n", map->height);
-		ft_printf("width: %d\n", map->width);
-		if (width_checker == 0)
-			width_checker = map->width;
-		else
-		{
-			if (map->width != width_checker)
-			{
-				ft_printf("Error: row width isn't constant.\n");
-				free_map_data(map);
-				exit(EXIT_FAILURE);
-			}
-		}
 	}
-	ft_printf("parsing successful.\n");
+	close(fd);
 }
 
-nt	count_elements(char **array)
+void	read_map_width(t_map *map, char *line)
 {
-	int	count;
+	char	**parts;
+	int		width;
 
-	count = 0;
-	while(array && array[count])
+	parts = ft_split(line, ' ');
+	if (!parts)
+	{
+		ft_printf("Error splitting line\n");
+		exit(EXIT_FAILURE);
+	}
+	width = count_line_elements(parts);
+	if (map->width == 0)
+		map->width = width;
+	else if (map->width != width)
+	{
+		ft_printf("Error: inconsistent row width\n");
+		free_split_result(parts);
+		exit(EXIT_FAILURE);
+	}
+	free_split_result(parts);
+}
+
+int	count_line_elements(char **array)
+{
+	int	count = 0;
+
+	while (array && array[count])
 		count++;
-	ft_printf("count_elements with newline at end: %d\n", count);
-	//count is giving  an extra value, unknown yet, maybe \n
-	return (count -1);
+	return (count);
+}
+
+void	free_split_result(char **array)
+{
+	int	i = 0;
+
+	while (array[i])
+		free(array[i++]);
+	free(array);
 }

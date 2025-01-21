@@ -3,54 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_printer.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:00:10 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/17 11:13:03 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/17 20:36:29 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-// Function to print the 2D matrix of the map
-void	print_map_matrix(t_map *map)
-{
+//Here you can find 2 printers for char or int matrix
+
+void print_char_map_matrix(t_map *map) {
 	ft_printf("Initiating map_matrix printing.\n");
-	int	i = 0;
-	while (i < map->height)
-	{
-		int	j = 0;
-		while (j < map->width)
-		{
-			ft_printf("%c\t", map->data[i][j]);
+	int i = 0;
+	while (i < map->height) {  // Iterating over rows
+		int j = 0;
+		while (j < map->width) {  // Iterating over columns
+			ft_printf("%c", map->data[i][j]);  // Print the character
+			if (j < map->width - 1) {  // Avoid printing a tab after the last column
+				ft_printf("\t");  // Print tab after each element except the last in a row
+			}
 			j++;
 		}
-		ft_printf("\n");
+		ft_printf("\n");  // Move to the next line after each row
 		i++;
 	}
 	ft_printf("Printing completed.\n");
 }
 
-// Function to print the 2D matrix of colors
-void	print_color_matrix(char ***color_stash, int height, int width)
-{
-	int	i = 0;
-	while (i < height)
-	{
-		int	j = 0;
-		while (j < width)
-		{
-			if (color_stash[i][j])
-			{
-				printf("%s\t", color_stash[i][j]);
-			}
-			else
-			{
-				printf("NULL\t");
+#include <stdio.h>
+
+typedef struct {
+	int height;
+	int width;
+	int **data;  // Assuming an int matrix
+} t_map;
+
+void print_int_map_matrix(t_map *map) {
+	ft_printf("Initiating map_matrix printing.\n");
+	int i = 0;
+	while (i < map->height) {  // Iterating over rows
+		int j = 0;
+		while (j < map->width) {  // Iterating over columns
+			ft_printf("%d", map->data[i][j]);  // Print the integer
+			if (j < map->width - 1) {  // Avoid printing a tab after the last column
+				ft_printf("\t");  // Print tab after each element except the last in a row
 			}
 			j++;
 		}
-		printf("\n");
+		ft_printf("\n");  // Move to the next line after each row
 		i++;
 	}
+	ft_printf("Printing completed.\n");
 }
