@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:08:55 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/21 12:06:18 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:35:22 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 
 #include "fdf.h"
 
-void	read_map_size(t_map *map, char *filename)
+void	read_map_repeat(t_map *map, char *filename)
 {
+	ft_printf("START read_map_repeat\n");
 	int		fd;
-	char	*line;
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
@@ -31,12 +31,12 @@ void	read_map_size(t_map *map, char *filename)
 		ft_printf("Error opening and reading file\n");
 		exit(EXIT_FAILURE);
 	}
-	matrix_memory_alloc(map);
+	matrix_alloc_height(map);
+	parse_map_row(map);
 }
 
-void	matrix_alloc_height(t_map *map, int tracker)
+void	matrix_alloc_height(t_map *map)
 {
-	tracker = 0;
 	ft_printf("Initiating memory allocation for z and colour matrices\n");
 	map->z_matrix = (int **)malloc(sizeof(int *) * map->height);
 	if(!map->z_matrix)
@@ -50,21 +50,24 @@ void	matrix_alloc_height(t_map *map, int tracker)
 		ft_printf("Error allocating height memory for colour_matrix");
 		exit(EXIT_FAILURE);
 	}
-	matrix_alloc_width(map, tracker);
+	matrix_alloc_width(map);
 }
 
-void	matrix_alloc_width(t_map *map, int tracker)
+void	matrix_alloc_width(t_map *map)
 {
+	int tracker;
+	
 	tracker = 0;
+	ft_printf("alloc height: %d\n",map->height);
 	while (tracker < map->height)
 	{
-		map->z_matrix[tracker] = (int *)malloc(sizeof(int *) * map->width);
+		map->z_matrix[tracker] = (int *)malloc(sizeof(int) * map->width);
 		if(!map->z_matrix[tracker])
 		{
 			ft_printf("Error allocating width memory for z_matrix");
 			exit(EXIT_FAILURE);
 		}
-		map->colour_matrix[tracker] = (int *)malloc(sizeof(int *) * map->width);
+		map->colour_matrix[tracker] = (int *)malloc(sizeof(int) * map->width);
 		if(!map->colour_matrix[tracker])
 		{
 			ft_printf("Error allocating width memory for colour_matrix");
@@ -73,52 +76,47 @@ void	matrix_alloc_width(t_map *map, int tracker)
 		tracker++;
 	}
 }
-void parse_map_row(char *row, int *z_row, int *color_row, int width)
+void parse_map_row(t_map *map)
 {
-	char 	**parts;
-	char	**z_str;
-	char	**colour_str;
-	char	**z_colour;
-	char	**comma_pos;
+	ft_printf("START parse_map_row\n");
+	char 	**parts1;
 	int		index;
-
-	parts = ft_split(line, ' ');
-	if (!parts)
+	
+	parts1 = ft_split(map->line, ' ');
+		index = 0;
+	while(parts1[index])
 	{
-		ft_printf("Error splitting line\n");
-		exit(EXIT_FAILURE);
-	}
-	index = 0;
-	while(parts[index])
-	{
-		z_str = parts[index];
-		colour_str = NULL;
-		comma_pos = ft_strchr(parts[index], ',');
-		if (comma_pos)
+		ft_printf("IHHHHHHHHHHHHHHHHHHHHHHH\n");
+		map->z_row[index] = ft_atoi(parts1[index]);
+		// map->z_str[index] = parts[index];
+		// map->colour_str = NULL;
+		map->comma_pos[index] = ft_strchr(parts1[index], ',');
+		ft_printf("OHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH\n");
+		if (map->comma_pos)
 		{
-			*comma_pos = '\0';
-			colour_str = comma_pos + 1;
+			ft_printf("AHHHHHHHHHHHHHHHHHHHHHHHHHH\n");
+			*map->comma_pos = '\0';
+			map->colour_str[index] = map->comma_pos[index] + 1;	// The color starts right after the comma.
+			map->colour_row[index] = hex_to_int(map->colour_str[index]);
 		}
-		z_row[index] = ft_atoi(z_str);
-		if(colour_str)
-			colour_str = hex_to_int(colour_str);
 		else
-			colour_row[index] = 0xFF8DA1;
+			map->colour_row[index] = 0xFF8DA1;
+		map->z_matrix[map->y][index] = map->z_row[index];  // Store z-value in z_matrix
+		map->colour_matrix[map->y][index] = map->colour_row[index];  // Store color in colour_matrix
 		index++;
 	}
-	free (parts);
-}
+	free (parts1);
 }
 
-int	hex_to_int(const char *hex_str)
-{	
+int	hex_to_int(char *hex_str)
+{
+	ft_printf("START last\n");
 	int	index;
 	int	result;
 
 	index = 2; // skips 0x
 	result = 0;
-
-	while(hex_str[index] != '\0')
+	while (hex_str[index] != '\0')
 	{
 		result *= 16;
 		if (ft_isdigit(hex_str[index]))
