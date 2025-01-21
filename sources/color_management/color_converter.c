@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 09:44:05 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/17 11:50:46 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/21 12:01:13 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,34 @@ void	convert_colors_to_int(t_map *map)
 		}
 		row++;
 	}
+}
+
+int	hex_to_int(const char *hex_str)
+{
+	int	index;
+	int	result;
+
+	index = 2; // skips 0x
+	result = 0;
+
+	while(hex_str[index] != '\0')
+	{
+		result *= 16;
+		if (ft_isdigit(hex_str[index]))
+			result += hex_str[index] - 0;
+		else if (ft_isalpha(hex_str[index]))
+		{
+			if (hex_str[index] >='a' && hex_str[index] <= 'f')
+				result += hex_str[index] - 'a' + 10;
+			if (hex_str[index] >='A' && hex_str[index] <= 'F')
+				result += hex_str[index] - 'A' + 10;
+		}
+		else
+		{
+			ft_printf("Error: invalid hexadecimal character: %c\n.", hex_str[index]);
+			return (-1);
+		}
+		index++;
+	}
+	return (result);
 }

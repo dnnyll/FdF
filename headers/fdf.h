@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/17 15:33:51 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/21 10:25:10 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ t_coordinates;
 
 typedef	struct s_map
 {
+	int		**z_matrix;	
+	int		**colour_matrix;
 	int		**data;
 	int		color_count;
 	int		*color_values;
@@ -90,5 +92,6 @@ char	**allocate_map_data_char(t_map *map);
 char	**allocate_color_data_char(t_map *map);
 void	free_map_data(t_map *map);
 void	free_split_parts(char **parts);
+void	matrix_memory_alloc(t_map *map);
 
 #endif

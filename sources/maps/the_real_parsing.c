@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   the_real_parsing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 20:18:53 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/18 14:32:03 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/21 10:08:25 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ void parse_map(t_map *map, char *filename)
 	{
 		ft_printf("Error reading file\n");
 	}
+
+void	allocate_mem_matrices (t_map *data)
+{
+	int	index;
+
+
+}
+    
 
     // 2. Allocate memory for matrices based on width and height
 	matrix = malloc((sizeof(char *)) * (map->height * map->width));
