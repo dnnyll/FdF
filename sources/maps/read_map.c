@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:26:59 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/21 16:10:52 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:31:24 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	read_map_size(t_map *map, char *filename)
 		free(map->line);
 		map->line = get_next_line(fd);
 	}
+	free(map->line);
 	close(fd);
 }
 
@@ -68,7 +69,7 @@ int	count_line_elements(char **array)
 	while (array && array[count])
 		count++;
 	ft_printf("count: %d\n", count);
-	return (count - 1); //not sure if i should do this
+	return (count); //not sure if i should do this
 }
 
 void	free_split_result(char **array)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   the_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:08:55 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/22 10:20:46 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:30:04 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@
 
 #include "fdf.h"
 
-void	read_map_repeat(t_map *map, char *filename)
+void	read_store_map_lines(t_map *map, char *filename)
 {
-	ft_printf("START read_map_repeat\n");
+	ft_printf("Initiating: read_store_map_lines\n");
 	int		fd;
+	int		tracker;
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
@@ -31,59 +32,34 @@ void	read_map_repeat(t_map *map, char *filename)
 		ft_printf("Error opening and reading file\n");
 		exit(EXIT_FAILURE);
 	}
-	matrix_alloc_height(map);
-	parse_map_row(map);
-}
-
-void	matrix_alloc_height(t_map *map)
-{
-	ft_printf("Initiating memory allocation for z and colour matrices\n");
-	map->z_matrix = (int **)malloc(sizeof(int *) * map->height);
-	if(!map->z_matrix)
-	{
-		ft_printf("Error allocating height memory for z_matrix");
-		exit(EXIT_FAILURE);
-	}
-	map->colour_matrix = (int **)malloc(sizeof(int *)* map->height);
-	if(!map->colour_matrix)
-	{
-		ft_printf("Error allocating height memory for colour_matrix");
-		exit(EXIT_FAILURE);
-	}
-	matrix_alloc_width(map);
-}
-
-void	matrix_alloc_width(t_map *map)
-{
-	int tracker;
-	
+	char_matrix_alloc(map);
 	tracker = 0;
-	ft_printf("alloc height: %d\n",map->height);
+	ft_printf("width: %d\n", map->width);
+	ft_printf("height: %d\n", map->height);
 	while (tracker < map->height)
 	{
-		map->z_matrix[tracker] = (int *)malloc(sizeof(int) * map->width);
-		if(!map->z_matrix[tracker])
-		{
-			ft_printf("Error allocating width memory for z_matrix");
-			exit(EXIT_FAILURE);
-		}
-		map->colour_matrix[tracker] = (int *)malloc(sizeof(int) * map->width);
-		if(!map->colour_matrix[tracker])
-		{
-			ft_printf("Error allocating width memory for colour_matrix");
-			exit(EXIT_FAILURE);
-		}
+		map->line = get_next_line(fd);
+		map->char_matrix_stash[tracker] = ft_strdup(map->line);
+		ft_printf("char_matrix_stash[line: %d]: %s\n", tracker, map->char_matrix_stash[tracker]);
+		ft_printf("line %d: %s\n", tracker, map->line);
+		free(map->line);
 		tracker++;
 	}
+	close(fd);
+	print_char_stash_matrix(map);
+//	parse_map_row(map);
 }
 void parse_map_row(t_map *map)
 {
 	ft_printf("START parse_map_row\n");
 	char 	**parts1;
 	int		index;
+	int		jndex;
 	
-	parts1 = ft_split(map->line, ' ');
-		index = 0;
+	jndex = 0;
+	parts1 = ft_split(map->char_matrix_stash[jndex], ' ');
+	jndex++;
+	index = 0;
 	while(parts1[index])
 	{
 		map->z_row[index] = ft_atoi(parts1[index]);
@@ -133,6 +109,76 @@ int	hex_to_int(char *hex_str)
 		index++;
 	}
 	return (result);
+}
+
+
+void	matrix_alloc_height(t_map *map)
+{
+	ft_printf("Initiating memory allocation for z and colour matrices\n");
+	map->z_matrix = (int **)malloc(sizeof(int *) * map->height);
+	if(!map->z_matrix)
+	{
+		ft_printf("Error allocating height memory for z_matrix");
+		exit(EXIT_FAILURE);
+	}
+	map->colour_matrix = (int **)malloc(sizeof(int *)* map->height);
+	if(!map->colour_matrix)
+	{
+		ft_printf("Error allocating height memory for colour_matrix");
+		exit(EXIT_FAILURE);
+	}
+	matrix_alloc_width(map);
+}
+
+void	matrix_alloc_width(t_map *map)
+{
+	int tracker;
+	
+	tracker = 0;
+	ft_printf("alloc height: %d\n",map->height);
+	while (tracker < map->height)
+	{
+		map->z_matrix[tracker] = (int *)malloc(sizeof(int) * map->width);
+		if(!map->z_matrix[tracker])
+		{
+			ft_printf("Error allocating width memory for z_matrix");
+			exit(EXIT_FAILURE);
+		}
+		map->colour_matrix[tracker] = (int *)malloc(sizeof(int) * map->width);
+		if(!map->colour_matrix[tracker])
+		{
+			ft_printf("Error allocating width memory for colour_matrix");
+			exit(EXIT_FAILURE);
+		}
+		tracker++;
+	}
+}
+
+void	char_matrix_alloc(t_map *map)
+{
+	int tracker;
+	
+	tracker = 0;
+	ft_printf("Initiating memory allocation for char_matrix_stash\n");
+	map->char_matrix_stash = (char **)malloc(sizeof(char *) * map->height);
+	if(!map->char_matrix_stash)
+	{
+		ft_printf("Error allocating height memory for z_matrix");
+		exit(EXIT_FAILURE);
+	}
+	ft_printf("alloc height: %d\n",map->height);
+	while (tracker < map->height)
+	{
+		map->char_matrix_stash[tracker] = (char *)malloc(sizeof(char) * (map->width + 1));
+		if(!map->char_matrix_stash[tracker])
+		{
+			while (--tracker >= 0)
+				free(map->char_matrix_stash[tracker]);
+			ft_printf("Error allocating width memory for char_matrix_stash");
+			exit(EXIT_FAILURE);
+		}
+		tracker++;
+	}
 }
 
 //exp
