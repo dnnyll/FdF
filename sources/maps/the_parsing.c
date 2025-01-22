@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   the_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:08:55 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/21 16:35:22 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/22 10:20:46 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,12 @@ void parse_map_row(t_map *map)
 		index = 0;
 	while(parts1[index])
 	{
-		ft_printf("IHHHHHHHHHHHHHHHHHHHHHHH\n");
 		map->z_row[index] = ft_atoi(parts1[index]);
 		// map->z_str[index] = parts[index];
 		// map->colour_str = NULL;
 		map->comma_pos[index] = ft_strchr(parts1[index], ',');
-		ft_printf("OHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH\n");
 		if (map->comma_pos)
 		{
-			ft_printf("AHHHHHHHHHHHHHHHHHHHHHHHHHH\n");
 			*map->comma_pos = '\0';
 			map->colour_str[index] = map->comma_pos[index] + 1;	// The color starts right after the comma.
 			map->colour_row[index] = hex_to_int(map->colour_str[index]);

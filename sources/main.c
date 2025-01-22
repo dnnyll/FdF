@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:35:37 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/21 15:54:51 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/22 10:14:03 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 	ft_printf("main->read_map_size completed.\n");
 	read_map_repeat(map, file);
 	print_z_matrix(map);
-	ft_printf("main->rprint_z_matrix completed.\n");
+	ft_printf("main->prrint_z_matrix completed.\n");
 
 	// map = parse_map_file(file);
 	// ft_printf("main->parse_map completed.\n");
