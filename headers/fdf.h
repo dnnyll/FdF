@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/22 12:15:05 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:28:00 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ typedef	struct s_map
 	char	*line;
 	char	**comma_pos;
 	char	**char_matrix_stash;
+
+	char	***parts_values;
+	char	***parts_colours;
 	// t_coordinates coordinates_matrix;
 	// int		**data;
 	// int		color_count;
@@ -81,6 +84,15 @@ int	handle_close(t_app *app);
 void	cleanup_window(t_app *app);
 
 //		-=""map management		///////////////////////////////////////////////
+
+void	read_map_repeat(t_map *map, char *filename);
+void	store_map_lines(t_map *map, int fd);
+void	process_lines(t_map *map);
+void	process_parts(t_map *map, int row, int col);
+void	char_matrix_alloc(t_map *map);
+
+
+
 void	read_store_map_lines(t_map *map, char *filename);
 void	read_map_size(t_map *map, char *filename);
 void parse_map_row(t_map *map);
@@ -117,6 +129,7 @@ void	matrix_memory_alloc(t_map *map);
 //		-=""printers			/////////////////////////////////////////////
 void	print_z_matrix(t_map *map);
 void 	print_char_stash_matrix(t_map *map);
-
+void print_parts_colours_matrix(t_map *map);
+void print_parts_values_matrix(t_map *map);
 
 #endif
