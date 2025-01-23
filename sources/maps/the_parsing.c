@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:08:55 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/22 17:29:43 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/23 08:33:12 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,18 @@ void	process_lines(t_map *map)
 	while (row < map->height)
 	{
 		col = 0; // Reset column index for every row
-		map->parts_values[row] = ft_split(map->char_matrix_stash[row], ' ');
+		map->c_parts_values[row] = ft_split(map->char_matrix_stash[row], ' ');
 		//debug
 	ft_printf("split result: ");
-	for (int i = 0; map->parts_values[row][i] != NULL; i++)
-	ft_printf("'%s' ", map->parts_values[row][i]);
+	for (int i = 0; map->c_parts_values[row][i] != NULL; i++)
+	ft_printf("'%s' ", map->c_parts_values[row][i]);
 	ft_printf("\n");
-		if (!map->parts_values[row])
+		if (!map->c_parts_values[row])
 		{
 			ft_printf("Error: no row content\n");
 			exit(EXIT_FAILURE);
 		}
-		while (map->parts_values[row][col])
+		while (map->c_parts_values[row][col])
 		{
 			process_parts(map, row, col);
 			col++;
@@ -86,16 +86,16 @@ void	process_parts(t_map *map, int row, int col)
 	char	*value_element;
 	char	*comma_pos;
 
-	value_element = map->parts_values[row][col];
+	value_element = map->c_parts_values[row][col];
 	comma_pos = ft_strchr(value_element, ',');
 	if (comma_pos)
 	{
 		*comma_pos = '\0';	
-		map->parts_colours[row][col] = ft_strdup(comma_pos + 1); // Save the color part
+		map->c_parts_colours[row][col] = ft_strdup(comma_pos + 1); // Save the color part
 	}
 	else
-		map->parts_colours[row][col] = NULL; // No color
-	map->parts_values[row][col] = ft_strdup(value_element); // Store the value part
+		map->c_parts_colours[row][col] = NULL; // No color
+	map->c_parts_values[row][col] = ft_strdup(value_element); // Store the value part
 }
 
 void	char_matrix_alloc(t_map *map)
@@ -105,10 +105,10 @@ void	char_matrix_alloc(t_map *map)
 	ft_printf("Allocating memory - Width: %d, Height: %d\n", map->width, map->height);
 
 	map->char_matrix_stash = malloc(sizeof(char *) * map->height);
-	map->parts_values = malloc(sizeof(char **) * map->height);
-	map->parts_colours = malloc(sizeof(char **) * map->height);
+	map->c_parts_values = malloc(sizeof(char **) * map->height);
+	map->c_parts_colours = malloc(sizeof(char **) * map->height);
 
-	if (!map->char_matrix_stash || !map->parts_values || !map->parts_colours)
+	if (!map->char_matrix_stash || !map->c_parts_values || !map->c_parts_colours)
 	{
 		ft_printf("Error: memory allocation failed\n");
 		exit(EXIT_FAILURE);
@@ -118,10 +118,10 @@ void	char_matrix_alloc(t_map *map)
 	while (i < map->height)
 	{
 		map->char_matrix_stash[i] = NULL;
-		map->parts_values[i] = malloc(sizeof(char *) * map->width);
-		map->parts_colours[i] = malloc(sizeof(char *) * map->width);
+		map->c_parts_values[i] = malloc(sizeof(char *) * map->width);
+		map->c_parts_colours[i] = malloc(sizeof(char *) * map->width);
 
-		if (!map->parts_values[i] || !map->parts_colours[i])
+		if (!map->c_parts_values[i] || !map->c_parts_colours[i])
 		{
 			ft_printf("Error: memory allocation failed at row %d\n", i);
 			exit(EXIT_FAILURE);

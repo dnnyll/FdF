@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/22 17:28:00 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/23 10:42:38 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,16 @@ typedef	struct s_map
 	char	*line;
 	char	**comma_pos;
 	char	**char_matrix_stash;
+	int		**int_matrix_stash;
+	
+	int		**values_matrix;
+	int		**colours_matrix;
 
-	char	***parts_values;
-	char	***parts_colours;
+	char	***c_parts_values;		//rename this to char_matrix_values
+	char	***c_parts_colours;		//rename this to char_matrix_colours
+	int		**i_parts_values;		//rename this to int_matrix_values
+	int		**i_parts_colours;		//rename this to int_matrix_colours
+	
 	// t_coordinates coordinates_matrix;
 	// int		**data;
 	// int		color_count;
@@ -77,59 +84,65 @@ typedef	struct s_map
 t_map;
 
 //		-=""window management	/////////////////////////////////////////////
-int	initialize_mlx(t_app *app);
+int		initialize_mlx(t_app *app);
 void	render(t_app *app);
-int	handle_key(int keycode, t_app *app);
-int	handle_close(t_app *app);
+int		handle_key(int keycode, t_app *app);
+int		handle_close(t_app *app);
 void	cleanup_window(t_app *app);
 
 //		-=""map management		///////////////////////////////////////////////
-
+t_map	*initialize_map(void);
+void	read_map_size(t_map *map, char *filename);
+void	read_map_width(t_map *map, char *line);
 void	read_map_repeat(t_map *map, char *filename);
 void	store_map_lines(t_map *map, int fd);
 void	process_lines(t_map *map);
 void	process_parts(t_map *map, int row, int col);
 void	char_matrix_alloc(t_map *map);
-
-
-
-void	read_store_map_lines(t_map *map, char *filename);
-void	read_map_size(t_map *map, char *filename);
-void parse_map_row(t_map *map);
-void	read_map_width(t_map *map, char *line);
-int	count_line_elements(char **array);
+int		count_line_elements(char **array);
 void	free_split_result(char **array);
 
-t_map	*initialize_map(void);
-t_map	*parse_map_file(const char *filename);
-int	count_elements(char **array);
-void	fill_map_data(t_map *map, const char *filename);
+
+// void	read_store_map_lines(t_map *map, char *filename);
+// void parse_map_row(t_map *map);
+// t_map	*parse_map_file(const char *filename);
+// void	fill_map_data(t_map *map, const char *filename);
 
 //		-=""color management	/////////////////////////////////////////////
-int		hex_to_int(char *hex_str);
-
-void	color_occurence(t_map *map, const char *filename);
-void	process_line_for_colors(t_map *map, char *line, int row);
-void	convert_colors_to_int(t_map *map);
+// int		hex_to_int(char *hex_str);
+// void	color_occurence(t_map *map, const char *filename);
+// void	process_line_for_colors(t_map *map, char *line, int row);
+// void	convert_colors_to_int(t_map *map);
 
 
 //		-=""memory management
-void	matrix_alloc_height(t_map *map);
-void	matrix_alloc_width(t_map *map);
+void	int_matrix_alloc(t_map *map);
 void	char_matrix_alloc(t_map *map);
+void	int_matrix_alloc(t_map *map);
 
-void	allocate_map_data_int(t_map *map);
-void	allocate_map_data_inttt(t_map *map);
-char	**allocate_map_data_char(t_map *map);
-char	**allocate_color_data_char(t_map *map);
-void	free_map_data(t_map *map);
-void	free_split_parts(char **parts);
-void	matrix_memory_alloc(t_map *map);
+// void	allocate_map_data_int(t_map *map);
+// void	allocate_map_data_inttt(t_map *map);
+// char	**allocate_map_data_char(t_map *map);
+// char	**allocate_color_data_char(t_map *map);
+// void	free_map_data(t_map *map);
+// void	free_split_parts(char **parts);
+// void	matrix_memory_alloc(t_map *map);
 
 //		-=""printers			/////////////////////////////////////////////
-void	print_z_matrix(t_map *map);
-void 	print_char_stash_matrix(t_map *map);
-void print_parts_colours_matrix(t_map *map);
-void print_parts_values_matrix(t_map *map);
+void	print_char_values_matrix(t_map *map);
+void	print_char_colours_matrix(t_map *map);
+void	print_int_values_matrix(t_map *map);
+void	print_int_colours_matrix(t_map *map);
+
+//		-=""conversions			///////////////////////////////////////////////
+void 	matrix_converter(t_map *map);
+int		colour_converter(const char *hex_str);
+void	populate_int_values(t_map *map);
+void	populate_int_colours(t_map *map);
+int		ft_atoi_base(const char *str, const char *base);
+int		ft_isspace(char c);
+int		get_base_len(const char *base);
+int		is_valid_base(const char *base);
+int		get_base_index(char c, const char *base);
 
 #endif

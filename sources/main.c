@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:35:37 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/22 17:27:14 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/23 10:20:27 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ int	main(int argc, char **argv)
 	ft_printf("main->read_map_size completed.\n");
 	ft_printf("main->map->height = %d\n", map->height);
 	read_map_repeat(map, file);
-	print_parts_values_matrix(map);
-	print_parts_colours_matrix(map);
-
-	// print_z_matrix(map);
-	// ft_printf("main->prrint_z_matrix completed.\n");
+	print_char_values_matrix(map);
+	print_char_colours_matrix(map);
+	matrix_converter(map);
+	print_int_values_matrix(map);
+	print_int_colours_matrix(map);
 
 	// map = parse_map_file(file);
 	// ft_printf("main->parse_map completed.\n");
