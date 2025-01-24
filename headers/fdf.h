@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/24 10:09:02 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/24 10:47:10 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,32 +72,14 @@ void	char_matrix_alloc(t_map *map);
 int		count_line_elements(char **parts);
 void	free_split_result(char **parts);
 
-
-// void	read_store_map_lines(t_map *map, char *filename);
-// void parse_map_row(t_map *map);
-// t_map	*parse_map_file(const char *filename);
-// void	fill_map_data(t_map *map, const char *filename);
-
-//		-=""color management	/////////////////////////////////////////////
-// int		hex_to_int(char *hex_parts);
-// void	color_occurence(t_map *map, const char *filename);
-// void	process_line_for_colors(t_map *map, char *line, int row);
-// void	convert_colors_to_int(t_map *map);
-
-
 //		-=""memory management
 void	int_matrix_alloc(t_map *map);
 void	char_matrix_alloc(t_map *map);
 void	int_matrix_alloc(t_map *map);
 void	free_t_map(t_map *map);
-
-// void	allocate_map_data_int(t_map *map);
-// void	allocate_map_data_inttt(t_map *map);
-// char	**allocate_map_data_char(t_map *map);
-// char	**allocate_color_data_char(t_map *map);
-// void	free_map_data(t_map *map);
-// void	free_split_parts(char **parts);
-// void	matrix_memory_alloc(t_map *map);
+void	free_char_matrix_stash(t_map *map);
+void	free_c_z_matrix(t_map *map);
+void	free_c_colours_matrix(t_map *map);
 
 //		-=""printers			/////////////////////////////////////////////
 void	print_char_values_matrix(t_map *map);

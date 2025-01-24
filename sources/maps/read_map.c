@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:26:59 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/23 11:20:23 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/24 10:55:21 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	read_map_width(t_map *map, char *line)
 	if (!parts)
 	{
 		ft_printf("Error splitting line\n");
+		free (parts);
 		exit(EXIT_FAILURE);
 	}
 	x = count_line_elements(parts);

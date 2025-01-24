@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:00:10 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/23 11:43:08 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/24 11:48:57 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,5 @@ void print_int_colours_matrix(t_map *map)
 		index++;
 	}
 	ft_printf("Printing completed.\n");
-	ft_printf("PS: Hey YOU, remember you have set 0x00FF41 (65345) as your default colour!!!!");
+	ft_printf("PS: Hey YOU, remember you have set 0x00FF41 (65345) as your default colour!!!!\n");
 }

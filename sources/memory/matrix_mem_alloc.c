@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:37:42 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/24 10:07:27 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/24 10:37:07 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	char_matrix_alloc(t_map *map)
 		if (!map->c_z_matrix[index] || !map->c_colours_matrix[index])
 		{
 			ft_printf("Error: memory allocation failed at row %d\n", index);
-			free_t_map(map);
+			// free_t_map(map);
 			exit(EXIT_FAILURE);
 		}
 		index++;
@@ -54,7 +54,7 @@ void	int_matrix_alloc(t_map *map)
 	if (!map->z_matrix || !map->colours_matrix)
 	{
 		ft_printf("Error: memory allocation failed\n");
-		free_t_map(map);
+		// free_t_map(map);
 		exit(EXIT_FAILURE);
 	}
 	i = 0;

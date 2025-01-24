@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:35:37 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/24 10:12:40 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/24 11:56:52 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,11 @@ int	main(int argc, char **argv)
 	print_char_values_matrix(map);
 	print_char_colours_matrix(map);
 	matrix_converter(map);
+	ft_printf("main->matrix_converter comlpeted\n");
 	print_int_values_matrix(map);
 	print_int_colours_matrix(map);
+	// free_c_z_matrix(map);
+	// free_c_colours_matrix(map);
 	// free_t_map(map);
 	return (0);
 }
