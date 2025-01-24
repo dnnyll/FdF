@@ -6,7 +6,7 @@
 #    By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/06 13:24:44 by daniefe2          #+#    #+#              #
-#    Updated: 2025/01/24 10:38:58 by daniefe2         ###   ########.fr        #
+#    Updated: 2025/01/24 14:20:24 by daniefe2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,6 @@ SRCS =	sources/main.c \
  		sources/converters/atoi_base.c \
 		sources/converters/convert_to_int.c \
 		sources/memory/matrix_mem_alloc.c \
-		sources/memory/free.c \
 		sources/memory/free_matrix.c
 
 # Automatically generate object files from .c files

@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:00:10 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/24 11:48:57 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/24 13:03:33 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,20 @@ void print_char_colours_matrix(t_map *map)
 {
 	ft_printf("Initiating parts_colours matrix printing.\n");
 	int index = 0;
-	while (index < map->y) {  // Iterating over rows
+	while (index < map->y)
+	{
 		int jndex = 0;
-		while (jndex < map->x) {  // Iterating over columns
-			if (map->c_colours_matrix[index][jndex])  // Check if there is a color
-				ft_printf("%s", map->c_colours_matrix[index][jndex]);  // Print the color
+		while (jndex < map->x)
+		{
+			if (map->c_colours_matrix[index][jndex])
+				ft_printf("%s", map->c_colours_matrix[index][jndex]);
 			else
-				ft_printf("NULL");  // If no color, print NULL
-			if (jndex < map->x - 1)  // Avoid printing a tab after the last column
-				ft_printf("\t");  // Print tab after each element except the last in a row
+				ft_printf("NULL");
+			if (jndex < map->x - 1)
+				ft_printf("\t");
 			jndex++;
 		}
-		ft_printf("\n");  // Move to the next line after each row
+		ft_printf("\n");
 		index++;
 	}
 	ft_printf("Printing completed.\n");

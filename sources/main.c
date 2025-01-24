@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:35:37 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/24 11:56:52 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:09:59 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	main(int argc, char **argv)
 	}
 	file = argv[1];
 	map = initialize_map();
+	if (!map)
+		exit (EXIT_FAILURE);
 	ft_printf("main->initialize_map completed.\n");
 	read_map_size(map, file);
 	ft_printf("main->read_map_size completed.\n");
@@ -34,9 +36,8 @@ int	main(int argc, char **argv)
 	ft_printf("main->matrix_converter comlpeted\n");
 	print_int_values_matrix(map);
 	print_int_colours_matrix(map);
-	// free_c_z_matrix(map);
-	// free_c_colours_matrix(map);
-	// free_t_map(map);
+	free_z_matrix(map);
+	free_colours_matrix(map);
 	return (0);
 }
 

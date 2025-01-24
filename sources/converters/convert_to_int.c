@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 08:19:52 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/24 12:05:27 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/24 13:19:31 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,21 @@
 
 void matrix_converter(t_map *map)
 {
-	// Step 1: Allocate memory for int matrices
 	ft_printf("Allocating memory for z_matrix and colours_matrix\n");
-	int_matrix_alloc(map); // Function to allocate memory for integer matrices
-	// Step 2: Convert values from char ***z_matrix to int ***z_matrix
+	int_matrix_alloc(map);
 	ft_printf("Converting z_matrix to z_matrix\n");
-	populate_int_values(map); // Function to convert string values to integers
+	populate_int_values(map);
 	free_c_z_matrix(map);
-	// Step 3: Convert colors from char ***colours_matrix to int ***colours_matrix
 	ft_printf("Converting colours_matrix to colours_matrix\n");
-	populate_int_colours(map); // Function to convert color strings to integer values
-	// free_c_colours_matrix(map);
+	populate_int_colours(map);
+	free_c_colours_matrix(map);
 }
 
 int	colour_converter(const char *hex_str)
 {
-	const char *hex_base = "0123456789ABCDEF";
-
+	const char *hex_base;
+	
+	hex_base = "0123456789ABCDEF";
 	ft_printf("Initiating hex conversion to int\n");
 	if (!hex_str)
 	{
@@ -47,19 +45,19 @@ int	colour_converter(const char *hex_str)
 void	populate_int_values(t_map *map)
 {
 	ft_printf("Populating z_matrix with converted integers\n");
-	int	index;
-	int	jndex;
+	int	i;
+	int	j;
 
-	index = 0;
-	while (index < map->y)
+	i = 0;
+	while (i < map->y)
 	{
-		jndex = 0;
-		while (jndex < map->x)
+		j = 0;
+		while (j < map->x)
 		{
-			map->z_matrix[index][jndex] = ft_atoi(map->c_z_matrix[index][jndex]);
-			jndex++;
+			map->z_matrix[i][j] = ft_atoi(map->c_z_matrix[i][j]);
+			j++;
 		}
-		index++;
+		i++;
 	}
 	ft_printf("z_matrix population completed\n");
 }
@@ -67,24 +65,24 @@ void	populate_int_values(t_map *map)
 void	populate_int_colours(t_map *map)
 {
 	ft_printf("Populating colours_matrix with converted hex values\n");
-	int	index;
-	int	jndex;
+	int	i;
+	int	j;
 	int	default_colour;
 
-	index = 0;
+	i = 0;
 	default_colour = 0X00FF41;
-	while (index < map->y)
+	while (i < map->y)
 	{
-		jndex = 0;
-		while (jndex < map->x)
+		j = 0;
+		while (j < map->x)
 		{
-			if (map->c_colours_matrix[index][jndex])
-				map->colours_matrix[index][jndex] = colour_converter(map->c_colours_matrix[index][jndex]);
+			if (map->c_colours_matrix[i][j])
+				map->colours_matrix[i][j] = colour_converter(map->c_colours_matrix[i][j]);
 			else
-				map->colours_matrix[index][jndex] = default_colour; // Default value for no color
-			jndex++;
+				map->colours_matrix[i][j] = default_colour; // Default value for no color
+			j++;
 		}
-		index++;
+		i++;
 	}
 	ft_printf("colours_matrix population completed\n");
 }

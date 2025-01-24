@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/24 10:47:10 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/24 15:57:37 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ typedef	struct s_map
 	int		x;
 	int		y;
 	int		z;
-	char	*line;
-	char	**char_matrix_stash;
 	int		**z_matrix;
 	int		**colours_matrix;
+	char	*line;
+	char	**char_matrix_stash;
 	char	***c_z_matrix;
 	char	***c_colours_matrix;
 }
@@ -62,6 +62,7 @@ void	cleanup_window(t_app *app);
 
 //		-=""map management		///////////////////////////////////////////////
 t_map	*initialize_map(void);
+void	initialize_map_fields(t_map *map);
 void	read_map_size(t_map *map, char *filename);
 void	read_map_width(t_map *map, char *line);
 void	read_map_repeat(t_map *map, char *filename);
@@ -80,6 +81,10 @@ void	free_t_map(t_map *map);
 void	free_char_matrix_stash(t_map *map);
 void	free_c_z_matrix(t_map *map);
 void	free_c_colours_matrix(t_map *map);
+void	free_t_map(t_map *map);
+void	free_colours_matrix(t_map *map);
+void	free_z_matrix(t_map *map);
+void	free_split_parts(char **parts);
 
 //		-=""printers			/////////////////////////////////////////////
 void	print_char_values_matrix(t_map *map);
