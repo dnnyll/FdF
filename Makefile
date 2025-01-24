@@ -6,7 +6,7 @@
 #    By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/06 13:24:44 by daniefe2          #+#    #+#              #
-#    Updated: 2025/01/23 10:21:45 by daniefe2         ###   ########.fr        #
+#    Updated: 2025/01/24 10:10:04 by daniefe2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,13 @@ SRCS =	sources/main.c \
 		sources/maps/initialize_map.c \
 		lib/get_next_line/get_next_line.c \
 		lib/get_next_line/get_next_line_utils.c \
-		sources/maps/the_parsing.c \
+		sources/maps/map_parsing.c \
 		sources/maps/read_map.c \
 		sources/verifier/matrix_printer.c \
  		sources/converters/atoi_base.c \
-		sources/converters/convert_to_int.c
+		sources/converters/convert_to_int.c \
+		sources/memory/matrix_mem_alloc.c \
+		sources/memory/free.c
 
 # Automatically generate object files from .c files
 OBJS = $(SRCS:%.c=%.o)

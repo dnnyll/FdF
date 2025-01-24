@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:35:37 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/23 10:20:27 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/24 10:12:40 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,13 @@ int	main(int argc, char **argv)
 	ft_printf("main->initialize_map completed.\n");
 	read_map_size(map, file);
 	ft_printf("main->read_map_size completed.\n");
-	ft_printf("main->map->height = %d\n", map->height);
 	read_map_repeat(map, file);
 	print_char_values_matrix(map);
 	print_char_colours_matrix(map);
 	matrix_converter(map);
 	print_int_values_matrix(map);
 	print_int_colours_matrix(map);
-
-	// map = parse_map_file(file);
-	// ft_printf("main->parse_map completed.\n");
-//	print_map_matrix(map);
-	// fill_map_data(map, file);
-	// ft_printf("main->fill_map_data completed.\n");
-	// color_occurence(map, file);
-	// ft_printf("main->color_occurence completed.\n");
-	// free_map_data(map);
-	// ft_printf("main->free_map_data completed.\n");
-	// convert_colors_to_int(map);
-	// ft_printf("main->onvert_colors_to_int completed.\n");
-
+	// free_t_map(map);
 	return (0);
 }
 

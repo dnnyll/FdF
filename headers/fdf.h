@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/23 10:42:38 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/24 10:09:02 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 // #include <errno.h>
 // #include <math.h>
 
-// Structure to hold the window and mlx pointers
+// structure to hold the window and mlx pointers
 typedef	struct s_window
 {
 	void	*mlx;
@@ -38,48 +38,18 @@ typedef	struct s_app
 }
 t_app;
 
-// typedef	struct s_coordinates
-// {
-
-
-// }
-// t_coordinates;
-
+// map parsing structure
 typedef	struct s_map
 {
 	int		x;
 	int		y;
 	int		z;
-	int		color;
-	int		*colour_row;
-	int		**z_matrix;
-	int		**colour_matrix;
-	int		*z_row;
-	char	**z_str;
-	char	**colour_str;
-	char	**row;
 	char	*line;
-	char	**comma_pos;
 	char	**char_matrix_stash;
-	int		**int_matrix_stash;
-	
-	int		**values_matrix;
+	int		**z_matrix;
 	int		**colours_matrix;
-
-	char	***c_parts_values;		//rename this to char_matrix_values
-	char	***c_parts_colours;		//rename this to char_matrix_colours
-	int		**i_parts_values;		//rename this to int_matrix_values
-	int		**i_parts_colours;		//rename this to int_matrix_colours
-	
-	// t_coordinates coordinates_matrix;
-	// int		**data;
-	// int		color_count;
-	// int		*color_values;
-	// char	**color_stash;
-	int		height;
-	int		width;
-	// char 	**lines;
-	// char 	**data_char;
+	char	***c_z_matrix;
+	char	***c_colours_matrix;
 }
 t_map;
 
@@ -99,8 +69,8 @@ void	store_map_lines(t_map *map, int fd);
 void	process_lines(t_map *map);
 void	process_parts(t_map *map, int row, int col);
 void	char_matrix_alloc(t_map *map);
-int		count_line_elements(char **array);
-void	free_split_result(char **array);
+int		count_line_elements(char **parts);
+void	free_split_result(char **parts);
 
 
 // void	read_store_map_lines(t_map *map, char *filename);
@@ -109,7 +79,7 @@ void	free_split_result(char **array);
 // void	fill_map_data(t_map *map, const char *filename);
 
 //		-=""color management	/////////////////////////////////////////////
-// int		hex_to_int(char *hex_str);
+// int		hex_to_int(char *hex_parts);
 // void	color_occurence(t_map *map, const char *filename);
 // void	process_line_for_colors(t_map *map, char *line, int row);
 // void	convert_colors_to_int(t_map *map);
@@ -119,6 +89,7 @@ void	free_split_result(char **array);
 void	int_matrix_alloc(t_map *map);
 void	char_matrix_alloc(t_map *map);
 void	int_matrix_alloc(t_map *map);
+void	free_t_map(t_map *map);
 
 // void	allocate_map_data_int(t_map *map);
 // void	allocate_map_data_inttt(t_map *map);
@@ -136,10 +107,10 @@ void	print_int_colours_matrix(t_map *map);
 
 //		-=""conversions			///////////////////////////////////////////////
 void 	matrix_converter(t_map *map);
-int		colour_converter(const char *hex_str);
+int		colour_converter(const char *hex_parts);
 void	populate_int_values(t_map *map);
 void	populate_int_colours(t_map *map);
-int		ft_atoi_base(const char *str, const char *base);
+int		ft_atoi_base(const char *parts, const char *base);
 int		ft_isspace(char c);
 int		get_base_len(const char *base);
 int		is_valid_base(const char *base);

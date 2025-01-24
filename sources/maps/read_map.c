@@ -6,12 +6,12 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:26:59 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/22 17:14:44 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/23 11:20:23 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //	Opens and reads the map input
-//	Calculates the height and width of the map
+//	Calculates the y and x of the map
 //	Verifies if the input is valid?!?!?!
 #include "fdf.h"
 
@@ -29,8 +29,8 @@ void	read_map_size(t_map *map, char *filename)
 	while (map->line)
 	{
 		read_map_width(map, map->line);
-		map->height++;
-		ft_printf("map->height = %d\n", map->height);
+		map->y++;
+		ft_printf("map->y = %d\n", map->y);
 		free(map->line);
 		map->line = get_next_line(fd);
 	}
@@ -41,7 +41,7 @@ void	read_map_size(t_map *map, char *filename)
 void	read_map_width(t_map *map, char *line)
 {
 	char	**parts;
-	int		width;
+	int		x;
 
 	parts = ft_split(line, ' ');
 	if (!parts)
@@ -49,35 +49,35 @@ void	read_map_width(t_map *map, char *line)
 		ft_printf("Error splitting line\n");
 		exit(EXIT_FAILURE);
 	}
-	width = count_line_elements(parts);
-	if (map->width == 0)
-		map->width = width;
-	else if (map->width != width)
+	x = count_line_elements(parts);
+	if (map->x == 0)
+		map->x = x;
+	else if (map->x != x)
 	{
-		ft_printf("Error: inconsistent row width\n");
+		ft_printf("Error: inconsistent row x\n");
 		free_split_result(parts);
 		exit(EXIT_FAILURE);
 	}
-	ft_printf("width: %d\n" ,map->width);
+	ft_printf("x: %d\n" ,map->x);
 	free_split_result(parts);
 }
 
-int	count_line_elements(char **array)
+int	count_line_elements(char **parts)
 {
 	int	count;
 
 	count = 0;
-	while (array && array[count])
+	while (parts && parts[count])
 		count++;
 	ft_printf("count: %d\n", count);
 	return (count); //not sure if i should do this
 }
 
-void	free_split_result(char **array)
+void	free_split_result(char **parts)
 {
 	int	i = 0;
 
-	while (array[i])
-		free(array[i++]);
-	free(array);
+	while (parts[i])
+		free(parts[i++]);
+	free(parts);
 }

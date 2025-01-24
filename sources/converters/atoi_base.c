@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 09:13:23 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/23 10:21:59 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/23 11:42:43 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ int	ft_isspace(char c)
 
 int	get_base_len(const char *base)
 {
-	int	len = 0;
+	int	len;
 
+	len = 0;
 	while (base[len])
 		len++;
 	return (len);
@@ -28,45 +29,50 @@ int	get_base_len(const char *base)
 
 int	is_valid_base(const char *base)
 {
-	int	i = 0;
+	int	index;
 
+	index = 0;
 	if (get_base_len(base) < 2)
 		return (0);
-	while (base[i])
+	while (base[index])
 	{
-		int	j = i + 1;
-		if (base[i] == '+' || base[i] == '-' || ft_isspace(base[i]))
+		int	jndex = index + 1;
+		if (base[index] == '+' || base[index] == '-' || ft_isspace(base[index]))
 			return (0);
-		while (base[j])
+		while (base[jndex])
 		{
-			if (base[i] == base[j])
+			if (base[index] == base[jndex])
 				return (0);
-			j++;
+			jndex++;
 		}
-		i++;
+		index++;
 	}
 	return (1);
 }
 
 int	get_base_index(char c, const char *base)
 {
-	int	i = 0;
-
-	while (base[i])
+	int	index;
+	
+	index = 0;
+	while (base[index])
 	{
-		if (base[i] == c)
-			return (i);
-		i++;
+		if (base[index] == c)
+			return (index);
+		index++;
 	}
 	return (-1);
 }
 
 int	ft_atoi_base(const char *str, const char *base)
 {
-	int	base_len = get_base_len(base);
-	int	result = 0;
-	int	sign = 1;
+	int	base_len;
+	int	result;
+	int	sign;
 
+	base_len = get_base_len(base);
+	result = 0;
+	sign = 1;
 	if (!is_valid_base(base))
 		return (0);
 	while (ft_isspace(*str))
