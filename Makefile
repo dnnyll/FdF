@@ -6,7 +6,7 @@
 #    By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/06 13:24:44 by daniefe2          #+#    #+#              #
-#    Updated: 2025/01/27 11:31:14 by daniefe2         ###   ########.fr        #
+#    Updated: 2025/01/27 13:32:03 by daniefe2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRCS =	sources/main.c \
 		sources/memory/matrix_mem_alloc.c \
 		sources/memory/free_matrix.c \
 		sources/maps/coordinates_grid.c \
-		sources/memory/free_coordinates_grid.c
+		sources/memory/free_coordinates_grid.c \
+		sources/maps/iso_conversion.c
 
 # Automatically generate object files from .c files
 OBJS = $(SRCS:%.c=%.o)
