@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:57:05 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/24 15:45:21 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/27 10:10:00 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ t_map	*initialize_map(void)
 		ft_printf("Memory allocation failed for map");
 		return (NULL);
 	}
-	initialize_map_fields(map);  // This modifies map directly, no need to return it
-	return (map);  // Now return the initialized map
+	initialize_map_fields(map);
+	return (map);
 }
 
 void initialize_map_fields(t_map *map)

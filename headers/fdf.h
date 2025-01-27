@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/24 15:57:37 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/27 11:31:50 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ typedef	struct s_map
 	char	**char_matrix_stash;
 	char	***c_z_matrix;
 	char	***c_colours_matrix;
+
+	int		***coordinates_grid;
 }
 t_map;
 
@@ -86,11 +88,16 @@ void	free_colours_matrix(t_map *map);
 void	free_z_matrix(t_map *map);
 void	free_split_parts(char **parts);
 
+void	alloc_coordinates_grid(t_map *map);
+void	free_coordinates_grid(t_map *map);
+
 //		-=""printers			/////////////////////////////////////////////
 void	print_char_values_matrix(t_map *map);
 void	print_char_colours_matrix(t_map *map);
 void	print_int_values_matrix(t_map *map);
 void	print_int_colours_matrix(t_map *map);
+
+void	print_coordinates_grid(t_map *map);
 
 //		-=""conversions			///////////////////////////////////////////////
 void 	matrix_converter(t_map *map);
