@@ -64,7 +64,6 @@ void print_coordinates_grid(t_map *map)
 				map->coordinates_grid[row][col][1], // y-coordinate
 				map->coordinates_grid[row][col][2]  // z-coordinate
 			);
-
 			if (col < map->x - 1) // Add a tab unless it's the last column in the row
 				ft_printf("\t");
 
@@ -73,7 +72,6 @@ void print_coordinates_grid(t_map *map)
 		ft_printf("\n"); // Move to the next line after each row
 		row++;
 	}
-
 	ft_printf("Printing completed.\n");
 }
 

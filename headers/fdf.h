@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/27 14:51:34 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:30:51 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,19 @@ typedef	struct s_app
 t_app;
 
 // map parsing structure
+
+typedef	struct	s_iso
+{
+	float	cos;
+	float	sin;
+	float	x_iso;
+	float	y_iso;
+	int		x_scaled;
+	int		y_scaled;
+	int		z_scaled;
+}
+t_iso;
+	
 typedef	struct s_map
 {
 	int		x;
@@ -52,12 +65,10 @@ typedef	struct s_map
 	char	***c_colours_matrix;
 
 	int		***coordinates_grid;
-	int		***conversion_grid;
+	float	**conversion_grid;
 	int		scaling_factor;
-	int		x_scaled;
-	int		y_scaled;
-	int		z_scaled;
 
+	struct s_iso *iso;
 }
 t_map;
 
@@ -82,6 +93,8 @@ int		count_line_elements(char **parts);
 void	free_split_result(char **parts);
 
 void	scaling(t_map *map);
+void	populate_conversion_grid(t_map * map);
+
 // void	iso_convertion(t_map *map);
 
 //		-=""memory management
@@ -100,6 +113,7 @@ void	free_split_parts(char **parts);
 void	alloc_coordinates_grid(t_map *map);
 void	free_coordinates_grid(t_map *map);
 void	alloc_conversion_grid(t_map *map);
+void	free_conversion_grid(t_map *map);
 
 //		-=""printers			/////////////////////////////////////////////
 void	print_char_values_matrix(t_map *map);
@@ -108,6 +122,7 @@ void	print_int_values_matrix(t_map *map);
 void	print_int_colours_matrix(t_map *map);
 
 void	print_coordinates_grid(t_map *map);
+void	print_conversion_grid(t_map *map);
 
 //		-=""conversions			///////////////////////////////////////////////
 void 	matrix_converter(t_map *map);

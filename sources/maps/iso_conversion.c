@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 11:50:42 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/27 14:59:39 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:40:04 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,55 +33,76 @@ void	scaling(t_map *map)
 	}
 }
 
-// void	iso_convertion(t_map *map)
-// {
-// 	int	row;
-// 	int	col;
-
-// 	row = 0;
-// 	col = 0;
-
-// 	alloc_conversion_grid(map);
-// }
-
 void	alloc_conversion_grid(t_map *map)
 {
-	float	cos = 0.866;
-	float	sin = 0.5;
-	float	x_iso;
-	float	y_iso;
+	int	i;
+	
+	ft_printf("Allocating memory for conversion_grid\n");
+	ft_printf("x: %d, y: %d\n", map->x, map->y);
+	i = 0;
+	map->conversion_grid = malloc((sizeof(float *)) * map->y);
+	if (!map->conversion_grid[i])
+	{
+		ft_printf("Error: memory allocation failed\n");
+		free_conversion_grid(map);
+		exit (EXIT_FAILURE);
+	}
+	while (i < map->y)
+	{
+		map->conversion_grid[i] = malloc((sizeof(float)) * (map->x * 2));
+		if (!map->conversion_grid[i])
+		{
+			ft_printf("Error: memory allocation failed\n");
+			free_conversion_grid(map);
+			exit (EXIT_FAILURE);
+		}
+		i++;
+	}
+	ft_printf("Memory allocation successful\n");
+	populate_conversion_grid(map);
+}
+void	populate_conversion_grid(t_map * map)
+{
 	int		row;
 	int		col;
 
-	ft_printf("Allocating memory for conversion_grid\n");
-	ft_printf("x: %d, y: %d\n", map->x, map->y);
 	row = 0;
 	while (row < map->y)
 	{
-		map->conversion_grid[row] = malloc((sizeof(float *)) * map->x);
-		if (!map->conversion_grid[row])
-		{
-			exit (EXIT_FAILURE);
-		}
-	
 		col = 0;
+		while (col < map-> x)
+		{
+		map->iso->x_scaled = map->coordinates_grid[row][col][0];
+		map->iso->y_scaled = map->coordinates_grid[row][col][1];
+		map->iso->z_scaled = map->coordinates_grid[row][col][2];
+		map->iso->x_iso = map->iso->x_scaled - map->iso->y_scaled * map->iso->cos;
+		map->iso->y_iso = map->iso->x_scaled + map->iso->y_scaled * map->iso->sin - map->iso->z_scaled;
+		map->conversion_grid[row][col * 2] = map->iso->x_iso;
+		map->conversion_grid[row][col * 2 + 1] = map->iso->y_iso;
+		col++;
+	}
+	row++;
+	}
+	print_conversion_grid(map);
+}
+
+void	print_conversion_grid(t_map *map)
+{
+	printf("Initiating conversion_grid printing.\n");
+	int row = 0;
+	while (row < map->y)
+	{
+		int col = 0;
 		while (col < map->x)
 		{
-			map->conversion_grid[row][col] = malloc((sizeof(float)) * 2);
-			if (!map->conversion_grid[row][col])
-			{
-				exit (EXIT_FAILURE);
-			}
-			map->x_scaled = map->coordinates_grid[row][col][0];
-			map->y_scaled = map->coordinates_grid[row][col][1];
-			map->z_scaled = map->coordinates_grid[row][col][2];
-			x_iso = map->x_scaled - map->y_scaled * cos;
-			y_iso = map->x_scaled + map->y_scaled * sin - map->z_scaled;
-			map->conversion_grid[row][col][0] = x_iso;
-			map->conversion_grid[row][col][1] = y_iso;
+			printf("%f\t", map->conversion_grid[row][col * 2]);
+			printf("%f\t", map->conversion_grid[row][col * 2 + 1]);
+			if (col < map->x - 1)
+				printf("\t");
 			col++;
 		}
-	row++;
-	ft_printf("Memory allocation completed successfully\n");
+		printf("\n");
+		row++;
 	}
+	printf("Printing completed.\n");
 }

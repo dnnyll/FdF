@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:37:42 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/24 14:33:19 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/28 10:39:20 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	char_matrix_alloc(t_map *map)
 		}
 		i++;
 	}
-	ft_printf("Memory allocation completed successfully\n");
+	ft_printf("Memory allocation successful\n");
 }
 
 void	int_matrix_alloc(t_map *map)
@@ -71,5 +71,5 @@ void	int_matrix_alloc(t_map *map)
 		}
 		i++;
 	}
-	ft_printf("Memory allocation completed successfully\n");
+	ft_printf("Memory allocation successful\n");
 }

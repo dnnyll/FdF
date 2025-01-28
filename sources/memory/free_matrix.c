@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:26:46 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/24 15:41:41 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/28 10:53:18 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,5 +131,24 @@ void free_t_map(t_map *map)
 	 if (map->line)
 		free(map->line);
 	free(map);
+}
+
+void	free_conversion_grid(t_map *map)
+{
+	int	i;
+	
+	i = 0;
+	if (map->conversion_grid)
+	{
+		while (i < map->y && map->conversion_grid[i])
+		{
+			ft_printf("Freeing conversion_grid row %d: %p\n", i, map->conversion_grid[i]);
+			free(map->conversion_grid[i]);
+			map->conversion_grid[i] = NULL;
+			i++;
+		}
+		free(map->conversion_grid);
+		map->conversion_grid = NULL;
+	}
 }
 
