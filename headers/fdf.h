@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/28 14:30:51 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/30 12:10:14 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,14 @@ typedef	struct	s_iso
 	int		x_scaled;
 	int		y_scaled;
 	int		z_scaled;
+	int		x_iso_shift;
+	int		y_iso_shift;
+	int		offset_x;
+	int		offset_y;
+	int		sum_x_points;
+	int		sum_y_points;
+	int		center_x;
+	int		center_y;
 }
 t_iso;
 	
@@ -67,6 +75,7 @@ typedef	struct s_map
 	int		***coordinates_grid;
 	float	**conversion_grid;
 	int		scaling_factor;
+
 
 	struct s_iso *iso;
 }

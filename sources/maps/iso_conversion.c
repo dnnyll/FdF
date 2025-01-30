@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 11:50:42 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/28 14:40:04 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/30 09:53:22 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	alloc_conversion_grid(t_map *map)
 	ft_printf("Memory allocation successful\n");
 	populate_conversion_grid(map);
 }
+//		needs to be free
 void	populate_conversion_grid(t_map * map)
 {
 	int		row;

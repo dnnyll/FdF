@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:57:05 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/28 14:32:44 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:01:09 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,7 @@ void initialize_map_fields(t_map *map)
 	map->iso->x_scaled = 0;
 	map->iso->y_scaled = 0;
 	map->iso->z_scaled = 0;
+	map->iso->sum_x_points = 0;
+	map->iso->sum_y_points = 0;
 
 }
