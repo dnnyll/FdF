@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:57:05 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/30 11:01:09 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:13:32 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void initialize_map_fields(t_map *map)
 	map->c_colours_matrix = NULL;
 	map->coordinates_grid = NULL;
 	map->conversion_grid = NULL;
-	map->scaling_factor = 10;
+	map->scaling_factor = 5;
 	
 	map->iso->cos = 0.866f;
 	map->iso->sin = 0.5f;
@@ -58,5 +58,7 @@ void initialize_map_fields(t_map *map)
 	map->iso->z_scaled = 0;
 	map->iso->sum_x_points = 0;
 	map->iso->sum_y_points = 0;
+	map->iso->window_width = 1920;
+	map->iso->window_height = 1080;
 
 }

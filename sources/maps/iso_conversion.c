@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 11:50:42 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/30 09:53:22 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/03 13:57:05 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	scaling(t_map *map)
 	int	col;
 
 	row = 0;
-	map->scaling_factor = 10;
 	while (row < map->y)
 	{
 		col = 0;

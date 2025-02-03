@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:35:37 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/28 14:38:11 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:32:03 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	main(int argc, char **argv)
 {
 	t_map	*map;
 	char	*file;
-
+	void	*mlx_ptr;
+	void	*win_ptr;
 	if (argc != 2)
 	{
 		ft_printf("Error opening file");
@@ -26,24 +27,26 @@ int	main(int argc, char **argv)
 	map = initialize_map();
 	if (!map)
 		exit (EXIT_FAILURE);
-	ft_printf("main->initialize_map completed.\n");
 	read_map_size(map, file);
-	ft_printf("main->read_map_size completed.\n");
 	read_map_repeat(map, file);
-	print_char_values_matrix(map);
-	print_char_colours_matrix(map);
+	// print_char_values_matrix(map);
+	// print_char_colours_matrix(map);
 	matrix_converter(map);
-	ft_printf("main->matrix_converter comlpeted\n");
-	print_int_values_matrix(map);
-	print_int_colours_matrix(map);
+	// print_int_values_matrix(map);
+	// print_int_colours_matrix(map);
 	alloc_coordinates_grid(map);
-	print_coordinates_grid(map);
+	// print_coordinates_grid(map);
 	scaling(map);
-	print_coordinates_grid(map);
+	// print_coordinates_grid(map);
 	alloc_conversion_grid(map);
-	free_z_matrix(map);
-	free_colours_matrix(map);
-	free_coordinates_grid(map);
+	coordinates_shifting(map);
+	// free_z_matrix(map);
+	// free_colours_matrix(map);
+	// free_coordinates_grid(map);
+	mlx_ptr = mlx_init();
+	win_ptr = mlx_new_window(mlx_ptr, 1920, 1080, "FdF");
+	draw_line(mlx_ptr, win_ptr, map);
+	mlx_loop(mlx_ptr);
 	return (0);
 }
 

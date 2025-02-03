@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/30 12:10:14 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:30:58 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,15 @@
 // #include <unistd.h>
 // #include <fcntl.h>
 // #include <errno.h>
-// #include <math.h>
+#include <math.h>
 
 // structure to hold the window and mlx pointers
 typedef	struct s_window
 {
 	void	*mlx;
 	void	*win;
+
+
 }
 t_window;
 
@@ -57,6 +59,21 @@ typedef	struct	s_iso
 	int		sum_y_points;
 	int		center_x;
 	int		center_y;
+
+	int		window_width; 	//needs to be transfered to window struct
+	int		window_height;	//needs to be transfered to window struct
+
+	float	x1;
+	float	y1;
+	float	x2;
+	float	y2;
+
+	int		dif_x;
+	int		dif_y;
+	int		step_drct_x;
+	int		step_drct_y;
+	int		err;
+	int		temp_err;
 }
 t_iso;
 	
@@ -71,12 +88,9 @@ typedef	struct s_map
 	char	**char_matrix_stash;
 	char	***c_z_matrix;
 	char	***c_colours_matrix;
-
 	int		***coordinates_grid;
 	float	**conversion_grid;
 	int		scaling_factor;
-
-
 	struct s_iso *iso;
 }
 t_map;
@@ -103,6 +117,16 @@ void	free_split_result(char **parts);
 
 void	scaling(t_map *map);
 void	populate_conversion_grid(t_map * map);
+void	coordinates_shifting(t_map *map);
+void	axis_point_calculation(t_map *map);
+void	center_calculation(t_map *map);
+void	draw_line(void *mlx, void *win, t_map *map);
+int		dif_check(float a, float b, float epsilon);
+void run_tests(void *mlx, void *win);
+
+
+
+
 
 // void	iso_convertion(t_map *map);
 
