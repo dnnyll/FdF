@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 13:29:52 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/03 15:34:43 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/03 16:35:42 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,19 @@ void draw_line(void *mlx, void *win, t_map *map)
 int dif_check(float a, float b, float epsilon)
 {
 	return (fabs(a - b) < epsilon);
+}
+void	draw_grid(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (map->x > i)
+	{
+		while (map->y > j)
+		
+	}
 }
 
 

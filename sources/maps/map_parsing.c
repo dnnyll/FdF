@@ -6,30 +6,11 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:08:55 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/24 16:07:53 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:54:29 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	read_map_repeat(t_map *map, char *filename)
-{
-	int		fd;
-
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-	{
-		ft_printf("Error opening and reading file\n");
-		exit(EXIT_FAILURE);
-	}
-	char_matrix_alloc(map); // Allocate memory for all arrays first
-	store_map_lines(map, fd); // Read and store lines
-	process_lines(map); // Process parts and extract values/colors
-	free_char_matrix_stash(map);
-	// free_c_z_matrix(map);
-	// free_c_colours_matrix(map);
-	close(fd);
-}
 
 void	store_map_lines(t_map *map, int fd)
 {
@@ -96,4 +77,23 @@ void	process_parts(t_map *map, int row, int col)
 	else
 		map->c_colours_matrix[row][col] = NULL; // No color
 	map->c_z_matrix[row][col] = ft_strdup(value_element); // Store the value part
+}
+
+void	read_map_repeat(t_map *map, char *filename)
+{
+	int		fd;
+
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+	{
+		ft_printf("Error opening and reading file\n");
+		exit(EXIT_FAILURE);
+	}
+	char_matrix_alloc(map); // Allocate memory for all arrays first
+	store_map_lines(map, fd); // Read and store lines
+	process_lines(map); // Process parts and extract values/colors
+	free_char_matrix_stash(map);
+	// free_c_z_matrix(map);
+	// free_c_colours_matrix(map);
+	close(fd);
 }

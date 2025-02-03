@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/03 15:30:58 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/03 16:12:53 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void	axis_point_calculation(t_map *map);
 void	center_calculation(t_map *map);
 void	draw_line(void *mlx, void *win, t_map *map);
 int		dif_check(float a, float b, float epsilon);
-void run_tests(void *mlx, void *win);
+void	boundry_check(t_map *map);
 
 
 
