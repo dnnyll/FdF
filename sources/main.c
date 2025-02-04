@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:35:37 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/03 15:32:03 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/04 10:06:24 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int	main(int argc, char **argv)
 	// free_coordinates_grid(map);
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr, 1920, 1080, "FdF");
-	draw_line(mlx_ptr, win_ptr, map);
+	// draw_line(mlx_ptr, win_ptr, map);
+	draw_grid(mlx_ptr, win_ptr, map);
 	mlx_loop(mlx_ptr);
 	return (0);
 }

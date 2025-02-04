@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   rendering_projection.c                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/03 13:29:52 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/03 16:35:42 by daniefe2         ###   ########.fr       */
-/*                                                                            */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   rendering_projection.c							 :+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: daniefe2 <daniefe2@student.42.fr>		  +#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2025/02/03 13:29:52 by daniefe2		  #+#	#+#			 */
+/*   Updated: 2025/02/03 17:40:34 by daniefe2		 ###   ########.fr	   */
+/*																			*/
 /* ************************************************************************** */
 
 #include "fdf.h"
@@ -86,22 +86,54 @@ void draw_line(void *mlx, void *win, t_map *map)
 }
 
 // Function to check if the difference between two floating-point values is within a threshold
+void	draw_grid(void *mlx_ptr, void *win_ptr, t_map *map)
+{
+	draw_horizontal_lines(mlx_ptr, win_ptr, map);
+	draw_vertical_lines(mlx_ptr, win_ptr, map);
+}
+
+void draw_horizontal_lines(void *mlx_ptr, void *win_ptr, t_map *map)
+{
+    int i, j;
+
+    i = 0;
+    while (i < map->y) // Iterate over rows
+    {
+        j = 0;
+        while (j < map->x - 1) // Iterate over columns (except last one)
+        {
+            map->iso->x1 = (int)roundf(map->conversion_grid[i][j * 2]);
+            map->iso->y1 = (int)roundf(map->conversion_grid[i][j * 2 + 1]);
+            map->iso->x2 = (int)roundf(map->conversion_grid[i][(j + 1) * 2]);
+            map->iso->y2 = (int)roundf(map->conversion_grid[i][(j + 1) * 2 + 1]);
+            draw_line(mlx_ptr, win_ptr, map);
+            j++;
+        }
+        i++;
+    }
+}
+
+void draw_vertical_lines(void *mlx_ptr, void *win_ptr, t_map *map)
+{
+    int i, j;
+
+    i = 0;
+    while (i < map->y - 1) // Iterate over rows (except last one)
+    {
+        j = 0;
+        while (j < map->x) // Iterate over columns
+        {
+            map->iso->x1 = (int)roundf(map->conversion_grid[i][j * 2]);
+            map->iso->y1 = (int)roundf(map->conversion_grid[i][j * 2 + 1]);
+            map->iso->x2 = (int)roundf(map->conversion_grid[i + 1][j * 2]);
+            map->iso->y2 = (int)roundf(map->conversion_grid[i + 1][j * 2 + 1]);
+            draw_line(mlx_ptr, win_ptr, map);
+            j++;
+        }
+        i++;
+    }
+}
 int dif_check(float a, float b, float epsilon)
 {
-	return (fabs(a - b) < epsilon);
+    return (fabs(a - b) < epsilon);
 }
-void	draw_grid(t_map *map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (map->x > i)
-	{
-		while (map->y > j)
-		
-	}
-}
-
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   coodinates_shifting.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:23:18 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/03 13:36:25 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/04 09:48:07 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	axis_point_calculation(t_map *map)
 		row++;
 	}
 }
-
 
 void	center_calculation(t_map *map)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/03 16:12:53 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/04 09:49:37 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,9 @@ void	center_calculation(t_map *map);
 void	draw_line(void *mlx, void *win, t_map *map);
 int		dif_check(float a, float b, float epsilon);
 void	boundry_check(t_map *map);
-
+void	draw_grid(void *mlx_ptr, void *win_ptr, t_map *map);
+void	draw_vertical_lines(void *mlx_ptr, void *win_ptr, t_map *map);
+void	draw_horizontal_lines(void *mlx_ptr, void *win_ptr, t_map *map);
 
 
 
