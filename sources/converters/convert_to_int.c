@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 08:19:52 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/04 11:16:09 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/05 15:03:57 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void matrix_converter(t_map *map)
 {
-	ft_printf("Allocating memory for z_matrix and colours_matrix\n");
+	// ft_printf("Allocating memory for z_matrix and colours_matrix\n");
 	int_matrix_alloc(map);
-	ft_printf("Converting z_matrix to z_matrix\n");
+	// ft_printf("Converting z_matrix to z_matrix\n");
 	populate_int_values(map);
 	// free_c_z_matrix(map);
-	ft_printf("Converting colours_matrix to colours_matrix\n");
+	// ft_printf("Converting colours_matrix to colours_matrix\n");
 	populate_int_colours(map);
 	// free_c_colours_matrix(map);
 }
@@ -29,7 +29,7 @@ int	colour_converter(const char *hex_str)
 	const char *hex_base;
 	
 	hex_base = "0123456789ABCDEF";
-	ft_printf("Initiating hex conversion to int\n");
+	// ft_printf("Initiating hex conversion to int\n");
 	if (!hex_str)
 	{
 		ft_printf("Error: NULL input.\n");
@@ -38,13 +38,13 @@ int	colour_converter(const char *hex_str)
 	if (hex_str[0] == '0' && (hex_str[1] == 'x' || hex_str[1] == 'X'))
 		hex_str += 2;
 	int result = ft_atoi_base(hex_str, hex_base);
-	ft_printf("Hex conversion completed: %s -> %d\n", hex_str, result);
+	// ft_printf("Hex conversion completed: %s -> %d\n", hex_str, result);
 	return (result);
 }
 
 void	populate_int_values(t_map *map)
 {
-	ft_printf("Populating z_matrix with converted integers\n");
+	// ft_printf("Populating z_matrix with converted integers\n");
 	int	i;
 	int	j;
 
@@ -59,12 +59,12 @@ void	populate_int_values(t_map *map)
 		}
 		i++;
 	}
-	ft_printf("z_matrix population completed\n");
+	// ft_printf("z_matrix population completed\n");
 }
 
 void	populate_int_colours(t_map *map)
 {
-	ft_printf("Populating colours_matrix with converted hex values\n");
+	// ft_printf("Populating colours_matrix with converted hex values\n");
 	int	i;
 	int	j;
 	int	default_colour;
@@ -84,5 +84,5 @@ void	populate_int_colours(t_map *map)
 		}
 		i++;
 	}
-	ft_printf("colours_matrix population completed\n");
+	// ft_printf("colours_matrix population completed\n");
 }

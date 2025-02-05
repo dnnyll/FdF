@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:57:05 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/05 12:00:28 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/05 15:35:15 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ t_map	*initialize_map(void)
 	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
 	{
-		ft_printf("Memory allocation failed for structs");
+		// ft_printf("Memory allocation failed for structs");
 		free (map);
 		return (NULL);
 	}
 	map->iso = (t_iso *)malloc(sizeof(t_iso));
 	if (!map->iso)
 	{
-		ft_printf("Memory allocation failed for structs");
+		// ft_printf("Memory allocation failed for structs");
 		free (map);
 		return (NULL);
 	}
@@ -47,10 +47,10 @@ void initialize_map_fields(t_map *map)
 	map->c_colours_matrix = NULL;
 	map->coordinates_grid = NULL;
 	map->conversion_grid = NULL;
-	map->scaling_factor = 35;
+	map->scaling_factor = 30;
 	map->iso->pi_val = 3.141592653589793;
-	map->iso->alpha = 0.0 * (map->iso->pi_val / 180.0);
-	map->iso->beta = 15.0 * (map->iso->pi_val / 180.0);
+	map->iso->alpha = 90.0 * (map->iso->pi_val / 180.0);
+	map->iso->beta = 30.0 * (map->iso->pi_val / 180.0);
 	
 	map->iso->cos_alpha = cos(map->iso->alpha);
 	map->iso->sin_alpha = sin(map->iso->alpha);
@@ -66,7 +66,7 @@ void initialize_map_fields(t_map *map)
 	map->iso->z_scaled = 0;
 	map->iso->sum_x_points = 0;
 	map->iso->sum_y_points = 0;
-	map->iso->window_width = 2560;
-	map->iso->window_height = 1440;
+	map->iso->window_width = 3200;
+	map->iso->window_height = 2048;
 
 }

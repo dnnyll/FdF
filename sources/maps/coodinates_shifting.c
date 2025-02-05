@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:23:18 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/05 10:58:01 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/05 15:18:15 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	axis_point_calculation(t_map *map)
 void	center_calculation(t_map *map)
 {
 	int count_points = map->x * map->y; // gets total number of points
-	printf("COUNT = %d\n", count_points);
+	// printf("COUNT = %d\n", count_points);
 	// calculate the average position (center of mass)
-	printf("sum_x_points: %d, sum_y_points = %d\n", map->iso->sum_x_points, map->iso->sum_y_points);
+	// printf("sum_x_points: %d, sum_y_points = %d\n", map->iso->sum_x_points, map->iso->sum_y_points);
 	map->iso->center_x = map->iso->sum_x_points / count_points;
 	map->iso->center_y = map->iso->sum_y_points / count_points;
 

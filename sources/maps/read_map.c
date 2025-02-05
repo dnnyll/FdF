@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:26:59 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/04 15:07:16 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:59:40 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ void	read_map_size(t_map *map, char *filename)
 	{
 		read_map_width(map, map->line);
 		map->y++;
-		ft_printf("map->y = %d\n", map->y);
+		// ft_printf("map->y = %d\n", map->y);
 		free(map->line);
 		map->line = get_next_line(fd);
 	}
 	free(map->line);
 	close(fd);
 }
-
+// deactivated the verification of the input lines consistency bcs it causes problems (mars map)
 void	read_map_width(t_map *map, char *line)
 {
 	char	**parts;
@@ -53,13 +53,13 @@ void	read_map_width(t_map *map, char *line)
 	x = count_line_elements(parts);
 	if (map->x == 0)
 		map->x = x;
-	else if (map->x != x)
-	{
-		ft_printf("Error: inconsistent row x\n");
-		free_split_result(parts);
-		exit(EXIT_FAILURE);
-	}
-	ft_printf("x: %d\n" ,map->x);
+	// else if (map->x != x)
+	// {
+	// 	ft_printf("Error: inconsistent row x\n");
+	// 	free_split_result(parts);
+	// 	exit(EXIT_FAILURE);
+	// }
+	// ft_printf("x: %d\n" ,map->x);
 	free_split_result(parts);
 }
 
@@ -70,7 +70,7 @@ int	count_line_elements(char **parts)
 	count = 0;
 	while (parts && parts[count])
 		count++;
-	ft_printf("count: %d\n", count);
+	// ft_printf("count: %d\n", count);
 	return (count); //not sure if i should do this
 }
 

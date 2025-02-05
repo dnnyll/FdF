@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/05 12:08:24 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:45:35 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ t_app;
 
 typedef	struct	s_iso
 {
+	double	min_x_iso;
+	double	min_y_iso;
+	double	max_x_iso;
+	double	max_y_iso;
 	double	pi_val;
 	double	alpha;
 	double	beta;
@@ -122,7 +126,7 @@ void	char_matrix_alloc(t_map *map);
 int		count_line_elements(char **parts);
 void	free_split_result(char **parts);
 
-void	scaling(t_map *map);
+void	scaling_coordinates(t_map *map);
 void	populate_conversion_grid(t_map * map);
 void	coordinates_shifting(t_map *map);
 void	axis_point_calculation(t_map *map);
@@ -136,7 +140,8 @@ void	draw_horizontal_lines(void *mlx_ptr, void *win_ptr, t_map *map);
 void	init_draw_line(t_map *map);
 double	find_x_iso_min(t_map *map);
 double	find_y_iso_min(t_map *map);
-
+double	find_x_iso_max(t_map *map);
+double	find_y_iso_max(t_map *map);
 
 
 

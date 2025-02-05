@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:08:55 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/04 11:12:38 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:58:43 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	store_map_lines(t_map *map, int fd)
 {
-	ft_printf("Initiating: read_store_map_lines\n");
+	// ft_printf("Initiating: read_store_map_lines\n");
 	int		index;
 
 	index = 0;
-	ft_printf("x: %d\n", map->x);
-	ft_printf("y: %d\n", map->y);
+	// ft_printf("x: %d\n", map->x);
+	// ft_printf("y: %d\n", map->y);
 	while (index < map->y)
 	{
 		map->line = get_next_line(fd);
@@ -30,8 +30,8 @@ void	store_map_lines(t_map *map, int fd)
 			exit(EXIT_FAILURE);
 		}
 		map->char_matrix_stash[index] = ft_strdup(map->line);
-		ft_printf("char_matrix_stash[line: %d]: %s\n", index, map->char_matrix_stash[index]);
-		ft_printf("line %d: %s\n", index, map->line);
+		// ft_printf("char_matrix_stash[line: %d]: %s\n", index, map->char_matrix_stash[index]);
+		// ft_printf("line %d: %s\n", index, map->line);
 		free(map->line);
 		index++;
 	}
