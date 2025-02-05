@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:08:55 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/03 15:54:29 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/04 11:12:38 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	read_map_repeat(t_map *map, char *filename)
 	char_matrix_alloc(map); // Allocate memory for all arrays first
 	store_map_lines(map, fd); // Read and store lines
 	process_lines(map); // Process parts and extract values/colors
-	free_char_matrix_stash(map);
+	// free_char_matrix_stash(map);
 	// free_c_z_matrix(map);
 	// free_c_colours_matrix(map);
 	close(fd);

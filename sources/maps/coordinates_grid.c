@@ -16,7 +16,8 @@ void	alloc_coordinates_grid(t_map *map)
 {
 	int	row;
 	int	col;
-	ft_printf("x: %d, y: %d, z: %d\n", map->x, map->y, map->z);
+	
+	// ft_printf("x: %d, y: %d, z: %d\n", map->x, map->y, map->z);
 	map->coordinates_grid = malloc(sizeof(int **) * map->y);
 	if(!map->coordinates_grid)
 	{

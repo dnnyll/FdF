@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:26:59 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/24 15:52:53 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:07:16 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	count_line_elements(char **parts)
 	while (parts && parts[count])
 		count++;
 	ft_printf("count: %d\n", count);
-	return (count - 1); //not sure if i should do this
+	return (count); //not sure if i should do this
 }
 
 void	free_split_result(char **parts)

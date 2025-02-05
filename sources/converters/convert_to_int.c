@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 08:19:52 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/24 13:19:31 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/04 11:16:09 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void matrix_converter(t_map *map)
 	int_matrix_alloc(map);
 	ft_printf("Converting z_matrix to z_matrix\n");
 	populate_int_values(map);
-	free_c_z_matrix(map);
+	// free_c_z_matrix(map);
 	ft_printf("Converting colours_matrix to colours_matrix\n");
 	populate_int_colours(map);
-	free_c_colours_matrix(map);
+	// free_c_colours_matrix(map);
 }
 
 int	colour_converter(const char *hex_str)

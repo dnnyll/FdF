@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/04 09:49:37 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/05 12:08:24 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,17 @@ t_app;
 
 typedef	struct	s_iso
 {
-	float	cos;
-	float	sin;
-	float	x_iso;
-	float	y_iso;
+	double	pi_val;
+	double	alpha;
+	double	beta;
+	double	cos_alpha;
+	double	sin_alpha;
+	double	cos_beta;
+	double	sin_beta;
+	double	cos;
+	double	sin;
+	double	x_iso;
+	double	y_iso;
 	int		x_scaled;
 	int		y_scaled;
 	int		z_scaled;
@@ -63,10 +70,10 @@ typedef	struct	s_iso
 	int		window_width; 	//needs to be transfered to window struct
 	int		window_height;	//needs to be transfered to window struct
 
-	float	x1;
-	float	y1;
-	float	x2;
-	float	y2;
+	double	x1;
+	double	y1;
+	double	x2;
+	double	y2;
 
 	int		dif_x;
 	int		dif_y;
@@ -89,7 +96,7 @@ typedef	struct s_map
 	char	***c_z_matrix;
 	char	***c_colours_matrix;
 	int		***coordinates_grid;
-	float	**conversion_grid;
+	double	**conversion_grid;
 	int		scaling_factor;
 	struct s_iso *iso;
 }
@@ -121,11 +128,14 @@ void	coordinates_shifting(t_map *map);
 void	axis_point_calculation(t_map *map);
 void	center_calculation(t_map *map);
 void	draw_line(void *mlx, void *win, t_map *map);
-int		dif_check(float a, float b, float epsilon);
+int		dif_check(double a, double b, double epsilon);
 void	boundry_check(t_map *map);
 void	draw_grid(void *mlx_ptr, void *win_ptr, t_map *map);
 void	draw_vertical_lines(void *mlx_ptr, void *win_ptr, t_map *map);
 void	draw_horizontal_lines(void *mlx_ptr, void *win_ptr, t_map *map);
+void	init_draw_line(t_map *map);
+double	find_x_iso_min(t_map *map);
+double	find_y_iso_min(t_map *map);
 
 
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:35:37 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/04 10:06:24 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/05 11:54:47 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,33 @@ int	main(int argc, char **argv)
 		exit (EXIT_FAILURE);
 	read_map_size(map, file);
 	read_map_repeat(map, file);
-	// print_char_values_matrix(map);
-	// print_char_colours_matrix(map);
+	print_char_values_matrix(map);
+	print_char_colours_matrix(map);
 	matrix_converter(map);
-	// print_int_values_matrix(map);
-	// print_int_colours_matrix(map);
+	print_int_values_matrix(map);
+	print_int_colours_matrix(map);
+
+	printf("OBSERVE FROM HERE\n\n");
 	alloc_coordinates_grid(map);
-	// print_coordinates_grid(map);
+	print_coordinates_grid(map);
 	scaling(map);
-	// print_coordinates_grid(map);
+	print_coordinates_grid(map);
 	alloc_conversion_grid(map);
+	populate_conversion_grid(map);
 	coordinates_shifting(map);
-	// free_z_matrix(map);
-	// free_colours_matrix(map);
-	// free_coordinates_grid(map);
+	populate_conversion_grid(map);
+	print_conversion_grid(map);
+		
+
+	print_conversion_grid(map);
+	populate_conversion_grid(map);
+	print_conversion_grid(map);
+	// // free_z_matrix(map);
+	// // free_colours_matrix(map);
+	// // free_coordinates_grid(map);
+	// // init_draw_line(map);
 	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 1920, 1080, "FdF");
-	// draw_line(mlx_ptr, win_ptr, map);
+	win_ptr = mlx_new_window(mlx_ptr, map->iso->window_width, map->iso->window_height, "FdF");
 	draw_grid(mlx_ptr, win_ptr, map);
 	mlx_loop(mlx_ptr);
 	return (0);
