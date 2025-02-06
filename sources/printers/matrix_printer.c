@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:00:10 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/05 14:44:05 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:14:13 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,4 +138,31 @@ void	print_conversion_grid(t_map *map)
 		row++;
 	}
 	printf("Printing completed.\n");
+}
+
+void print_rgb_grid(t_map *map)
+{
+	ft_printf("Initiating rgb_grid matrix printing.\n");
+
+	int row = 0;
+	while (row < map->y) // Iterating over rows
+	{
+		int col = 0;
+		while (col < map->x) // Iterating over columns
+		{
+			// Access and print [x, y, z] for each coordinate
+			ft_printf("[r: %d, g: %d, b: %d]", 
+			map->colour->rgb_grid[row][col][0] = map->colour->red,
+			map->colour->rgb_grid[row][col][1] = map->colour->green,
+			map->colour->rgb_grid[row][col][2] = map->colour->blue
+			);
+			if (col < map->x - 1) // Add a tab unless it's the last column in the row
+				ft_printf("\t");
+
+			col++;
+		}
+		ft_printf("\n"); // Move to the next line after each row
+		row++;
+	}
+	ft_printf("Printing completed.\n");
 }

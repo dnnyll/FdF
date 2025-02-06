@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 11:50:42 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/05 15:18:56 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/06 10:49:55 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,9 @@ void	scaling_coordinates(t_map *map)
 		col = 0;
 		while (col < map->x)
 		{
-			map->coordinates_grid[row][col][0] = 
-			map->coordinates_grid[row][col][0] * map->scaling_factor;
-			map->coordinates_grid[row][col][1] = 
-			map->coordinates_grid[row][col][1] * map->scaling_factor;
-			map->coordinates_grid[row][col][2] = 
-			map->coordinates_grid[row][col][2] * map->scaling_factor;
+			map->coordinates_grid[row][col][0] *= map->scaling_factor;
+			map->coordinates_grid[row][col][1] *= map->scaling_factor;
+			map->coordinates_grid[row][col][2] *= map->scaling_factor;
 			col++;
 		}
 	row++;
@@ -37,7 +34,6 @@ void	scaling_coordinates(t_map *map)
 void	alloc_conversion_grid(t_map *map)
 {
 	int	i;
-	
 	// ft_printf("Allocating memory for conversion_grid\n");
 	// ft_printf("x: %d, y: %d\n", map->x, map->y);
 	i = 0;
@@ -189,7 +185,17 @@ double	find_y_iso_max(t_map *map)
 		{
 			map->iso->x_scaled = map->coordinates_grid[row][col][0];
 			map->iso->y_scaled = map->coordinates_grid[row][col][1];
-			map->iso->y_iso = (map->iso->y_scaled + map->iso->x_scaled) * map->iso->cos;
+			// map->iso->x_iso = (map->iso->x_scaled - map->iso->y_scaled) * map->iso->cos - map->iso->min_x_iso;
+			// map->iso->y_iso = ((map->iso->x_scaled + map->iso->y_scaled) * map->iso->sin - map->iso->z_scaled) - map->iso->min_y_iso;
+			map->iso->x_iso = (map->iso->x_scaled * map->iso->cos_beta) 
+			- (map->iso->y_scaled * map->iso->sin_beta) 
+			- map->iso->min_x_iso;
+
+			map->iso->y_iso = (map->iso->x_scaled * map->iso->sin_alpha * map->iso->sin_beta) 
+			+ (map->iso->y_scaled * map->iso->sin_alpha * map->iso->cos_beta) 
+			- (map->iso->z_scaled * map->iso->cos_alpha) 
+			- map->iso->min_y_iso;
+
 			if (map->iso->y_iso > max_y)
 				max_y = map->iso->y_iso;
 			col++;

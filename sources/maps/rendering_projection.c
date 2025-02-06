@@ -15,6 +15,8 @@
 
 void draw_line(void *mlx, void *win, t_map *map)
 {
+
+
 	// Calculate the differences
 	map->iso->dif_x = map->iso->x2 - map->iso->x1;
 	if (map->iso->dif_x < 0)  // Absolute value of dif_x
@@ -34,11 +36,15 @@ void draw_line(void *mlx, void *win, t_map *map)
 		map->iso->step_drct_y = 1;
 	else
 		map->iso->step_drct_y = -1;
-
-
 	// Initial error term (used for determining step direction)
 	map->iso->err = map->iso->dif_x - map->iso->dif_y;
 	double epsilon = 0.000000000000001;
+
+
+	map->colour->x_colour_grid = map->iso->x1 / map->iso->window_width;
+	map->colour->y_colour_grid = map->iso->y1 / map->iso->window_height;
+
+
 	while (1)
 	{
 		if (map->iso->x1 < 0 || map->iso->x1 >= map->iso->window_width ||
@@ -47,14 +53,13 @@ void draw_line(void *mlx, void *win, t_map *map)
 			printf("Warning: Exiting at (%f, %f) - Out of bounds\n", map->iso->x1, map->iso->y1);
 			exit(EXIT_FAILURE);
 		}
-		// Boundary check: Skip drawing if outside the window
-		// if (map->iso->x1 >= 0 && map->iso->x1 < map->iso->window_width &&
-		// 	map->iso->y1 >= 0 && map->iso->y1 < map->iso->window_height)
-		// {
-		// 	mlx_pixel_put(mlx, win, map->iso->x1, map->iso->y1, 0xFFFFFF); // White color
-		// }
-		// Draw the pixel at current (x1, y1)
-		mlx_pixel_put(mlx, win, map->iso->x1, map->iso->y1, 0xFFFFFF); // White color
+		int r = map->colour->rgb_grid[map->colour->x_colour_grid][map->colour->y_colour_grid][0];
+		int g = map->colour->rgb_grid[map->colour->x_colour_grid][map->colour->y_colour_grid][1];
+		int b = map->colour->rgb_grid[map->colour->x_colour_grid][map->colour->y_colour_grid][2];
+		// printf("r: %d, g: %d, b: %d\n", r, g, b);
+		int colour = (r << 16) | (g << 8) | b;
+		// printf("colour: %d\n", colour);
+		mlx_pixel_put(mlx, win, map->iso->x1, map->iso->y1, colour);
 
 		// If we've reached the destination, break the loop
 		if (dif_check(map->iso->x1, map->iso->x2, epsilon) && 
@@ -78,9 +83,6 @@ void draw_line(void *mlx, void *win, t_map *map)
 			map->iso->y1 += map->iso->step_drct_y;  // Step in the y-direction
 		}
 	}
-	// printf("dif_x: %d, dif_y: %d\n", map->iso->dif_x, map->iso->dif_y);
-	// printf("Drawing at x: %f, y: %f\n", map->iso->x1, map->iso->y1);
-	// printf("Drawing line from (%f, %f) to (%f, %f)\n", map->iso->x1, map->iso->y1, map->iso->x2, map->iso->y2);
 }
 
 // Function to check if the difference between two floating-point values is within a threshold

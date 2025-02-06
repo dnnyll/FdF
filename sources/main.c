@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:35:37 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/05 15:02:39 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:20:37 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,17 @@ int	main(int argc, char **argv)
 	read_map_repeat(map, file);
 	// print_char_values_matrix(map);
 	// print_char_colours_matrix(map);
+
 	matrix_converter(map);
+
 	// print_int_values_matrix(map);
 	// print_int_colours_matrix(map);
 	alloc_coordinates_grid(map);
 	// print_coordinates_grid(map);
+	print_int_colours_matrix(map);
+	malloc_rgb_grid(map);
+	rgb_grid_populate(map);
+	print_rgb_grid(map);
 	scaling_coordinates(map);
 	// print_coordinates_grid(map);
 	alloc_conversion_grid(map);
@@ -46,10 +52,13 @@ int	main(int argc, char **argv)
 	// // free_colours_matrix(map);
 	// // free_coordinates_grid(map);
 	// // init_draw_line(map);
+
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr, map->iso->window_width, map->iso->window_height, "FdF");
+	// mlx_key_hook(win_ptr, handle_key, map);
 	draw_grid(mlx_ptr, win_ptr, map);
 	mlx_loop(mlx_ptr);
+
 	return (0);
 }
 

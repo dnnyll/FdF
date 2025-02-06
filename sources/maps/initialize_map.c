@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:57:05 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/05 15:35:15 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:13:03 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ t_map	*initialize_map(void)
 		free (map);
 		return (NULL);
 	}
+	map->colour = (t_colour *)malloc(sizeof(t_colour));
+	if (!map->colour)
+	{
+		// ft_printf("Memory allocation failed for structs");
+		free (map);
+		return (NULL);
+	}
 	initialize_map_fields(map);
 	return (map);
 }
@@ -47,18 +54,24 @@ void initialize_map_fields(t_map *map)
 	map->c_colours_matrix = NULL;
 	map->coordinates_grid = NULL;
 	map->conversion_grid = NULL;
-	map->scaling_factor = 30;
+
+	map->scaling_factor = 7;
 	map->iso->pi_val = 3.141592653589793;
-	map->iso->alpha = 90.0 * (map->iso->pi_val / 180.0);
-	map->iso->beta = 30.0 * (map->iso->pi_val / 180.0);
+	map->iso->alpha = 45.0 * (map->iso->pi_val / 180.0);
+	map->iso->beta = 90.0 * (map->iso->pi_val / 180.0);
 	
 	map->iso->cos_alpha = cos(map->iso->alpha);
 	map->iso->sin_alpha = sin(map->iso->alpha);
 	map->iso->cos_beta = cos(map->iso->beta);
 	map->iso->sin_beta = sin(map->iso->beta);
 
-	map->iso->cos = map->iso->cos_alpha;
-	map->iso->sin = map->iso->sin_beta;
+	map->iso->zoom = 1;
+	map->iso->x_shift = 0;
+	map->iso->y_shift = 0;
+
+	map->iso->cos = map->iso->cos_beta;
+	map->iso->sin = map->iso->sin_alpha;
+	
 	map->iso->x_iso = 0;
 	map->iso->y_iso = 0;	
 	map->iso->x_scaled = 0;
@@ -69,4 +82,9 @@ void initialize_map_fields(t_map *map)
 	map->iso->window_width = 3200;
 	map->iso->window_height = 2048;
 
+	map->colour->red = 0;
+	map->colour->green = 0;
+	map->colour->blue = 0;
+	map->colour->default_colour = 0xFFFFFF;
+	map->colour->rgb_grid = NULL;
 }

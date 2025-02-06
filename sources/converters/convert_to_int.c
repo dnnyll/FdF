@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 08:19:52 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/05 15:03:57 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:12:32 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,8 @@ void	populate_int_colours(t_map *map)
 	// ft_printf("Populating colours_matrix with converted hex values\n");
 	int	i;
 	int	j;
-	int	default_colour;
 
 	i = 0;
-	default_colour = 0X00FF41;
 	while (i < map->y)
 	{
 		j = 0;
@@ -79,7 +77,7 @@ void	populate_int_colours(t_map *map)
 			if (map->c_colours_matrix[i][j])
 				map->colours_matrix[i][j] = colour_converter(map->c_colours_matrix[i][j]);
 			else
-				map->colours_matrix[i][j] = default_colour; // Default value for no color
+				map->colours_matrix[i][j] = map->colour->default_colour; // Default value for no color
 			j++;
 		}
 		i++;

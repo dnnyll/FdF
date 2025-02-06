@@ -6,29 +6,31 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/05 14:45:35 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:59:41 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
-#define FDH_H
+#define FDF_H
 
 #include "../lib/minilibx-linux/mlx.h"
 #include "../lib/get_next_line/get_next_line.h"
 #include "../lib/ft_printf/ft_printf.h"
 #include "../lib/Libft/libft.h"
-// #include <stdlib.h>
-// #include <unistd.h>
-// #include <fcntl.h>
-// #include <errno.h>
 #include <math.h>
+
+
+//maping keys
+
+#define KEY_ESC 0xff1b
+#define KEY_W 119
+#define KEY_S 115
+#define KEY_A 97
+#define KEY_D 100
 
 // structure to hold the window and mlx pointers
 typedef	struct s_window
 {
-	void	*mlx;
-	void	*win;
-
 
 }
 t_window;
@@ -41,6 +43,16 @@ typedef	struct s_app
 t_app;
 
 // map parsing structure
+typedef struct	s_colour
+{
+	int	red;
+	int	green;
+	int	blue;
+	int	default_colour;
+	int	***rgb_grid;
+	int	x_colour_grid;
+	int	y_colour_grid;
+}t_colour;
 
 typedef	struct	s_iso
 {
@@ -73,6 +85,9 @@ typedef	struct	s_iso
 
 	int		window_width; 	//needs to be transfered to window struct
 	int		window_height;	//needs to be transfered to window struct
+	double	x_shift;
+	double	y_shift;
+	double	zoom;
 
 	double	x1;
 	double	y1;
@@ -90,6 +105,8 @@ t_iso;
 	
 typedef	struct s_map
 {
+	void	*mlx_ptr;
+	void	*win_ptr;
 	int		x;
 	int		y;
 	int		z;
@@ -103,15 +120,9 @@ typedef	struct s_map
 	double	**conversion_grid;
 	int		scaling_factor;
 	struct s_iso *iso;
+	struct s_colour *colour;
 }
 t_map;
-
-//		-=""window management	/////////////////////////////////////////////
-int		initialize_mlx(t_app *app);
-void	render(t_app *app);
-int		handle_key(int keycode, t_app *app);
-int		handle_close(t_app *app);
-void	cleanup_window(t_app *app);
 
 //		-=""map management		///////////////////////////////////////////////
 t_map	*initialize_map(void);
@@ -137,7 +148,6 @@ void	boundry_check(t_map *map);
 void	draw_grid(void *mlx_ptr, void *win_ptr, t_map *map);
 void	draw_vertical_lines(void *mlx_ptr, void *win_ptr, t_map *map);
 void	draw_horizontal_lines(void *mlx_ptr, void *win_ptr, t_map *map);
-void	init_draw_line(t_map *map);
 double	find_x_iso_min(t_map *map);
 double	find_y_iso_min(t_map *map);
 double	find_x_iso_max(t_map *map);
@@ -170,6 +180,7 @@ void	print_char_values_matrix(t_map *map);
 void	print_char_colours_matrix(t_map *map);
 void	print_int_values_matrix(t_map *map);
 void	print_int_colours_matrix(t_map *map);
+void	print_rgb_grid(t_map *map);
 
 void	print_coordinates_grid(t_map *map);
 void	print_conversion_grid(t_map *map);
@@ -184,5 +195,15 @@ int		ft_isspace(char c);
 int		get_base_len(const char *base);
 int		is_valid_base(const char *base);
 int		get_base_index(char c, const char *base);
+
+//		-=""key handling			//////////////////////////////////////////
+void	maping_keys(int keycode, t_map *map);
+int		handle_key(int keycode, t_map *map);
+
+void	rgb_grid_populate(t_map *map);
+void	rgb_management(t_map *map, int row, int col);
+void	malloc_rgb_grid(t_map *map);
+
+
 
 #endif

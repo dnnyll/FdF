@@ -6,7 +6,7 @@
 #    By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/06 13:24:44 by daniefe2          #+#    #+#              #
-#    Updated: 2025/02/05 15:09:31 by daniefe2         ###   ########.fr        #
+#    Updated: 2025/02/06 12:30:32 by daniefe2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,6 @@ CFLAGS = -Wall -Wextra -Werror -g -I./headers
 
 # Source files and object files
 SRCS =	sources/main.c \
-		sources/window/render.c \
-		sources/window/initialize_mlx.c \
-		sources/window/handle_key.c \
-		sources/window/handle_close.c \
-		sources/window/cleanup_window.c \
 		sources/maps/initialize_map.c \
 		lib/get_next_line/get_next_line.c \
 		lib/get_next_line/get_next_line_utils.c \
@@ -35,7 +30,9 @@ SRCS =	sources/main.c \
 		sources/maps/coordinates_grid.c \
 		sources/maps/iso_conversion.c \
 		sources/maps/coodinates_shifting.c \
-		sources/maps/rendering_projection.c
+		sources/maps/rendering_projection.c \
+		sources/keys/maping_keys.c \
+		sources/colour_management/rgb.c
 
 # Automatically generate object files from .c files
 OBJS = $(SRCS:%.c=%.o)

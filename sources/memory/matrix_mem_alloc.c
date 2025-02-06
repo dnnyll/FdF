@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:37:42 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/05 15:21:05 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/06 12:37:10 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,3 +73,5 @@ void	int_matrix_alloc(t_map *map)
 	}
 	// ft_printf("Memory allocation successful\n");
 }
+
+
