@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:35:37 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/06 15:20:37 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/07 15:55:46 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int argc, char **argv)
 	print_int_colours_matrix(map);
 	malloc_rgb_grid(map);
 	rgb_grid_populate(map);
-	print_rgb_grid(map);
+	// print_rgb_grid(map);
 	scaling_coordinates(map);
 	// print_coordinates_grid(map);
 	alloc_conversion_grid(map);
@@ -49,7 +49,7 @@ int	main(int argc, char **argv)
 	coordinates_shifting(map);
 	// print_conversion_grid(map);
 	// // free_z_matrix(map);
-	// // free_colours_matrix(map);
+	// // free_colours_matrix(map);sdCxzv
 	// // free_coordinates_grid(map);
 	// // init_draw_line(map);
 

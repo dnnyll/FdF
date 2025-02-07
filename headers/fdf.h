@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/06 15:59:41 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/07 16:07:01 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct	s_colour
 	int	green;
 	int	blue;
 	int	default_colour;
-	int	***rgb_grid;
+	int	**rgb_grid;
 	int	x_colour_grid;
 	int	y_colour_grid;
 }t_colour;
@@ -142,7 +142,7 @@ void	populate_conversion_grid(t_map * map);
 void	coordinates_shifting(t_map *map);
 void	axis_point_calculation(t_map *map);
 void	center_calculation(t_map *map);
-void	draw_line(void *mlx, void *win, t_map *map);
+void	draw_line(void *mlx, void *win, t_map *map, int current_colour);
 int		dif_check(double a, double b, double epsilon);
 void	boundry_check(t_map *map);
 void	draw_grid(void *mlx_ptr, void *win_ptr, t_map *map);
@@ -203,6 +203,7 @@ int		handle_key(int keycode, t_map *map);
 void	rgb_grid_populate(t_map *map);
 void	rgb_management(t_map *map, int row, int col);
 void	malloc_rgb_grid(t_map *map);
+
 
 
 

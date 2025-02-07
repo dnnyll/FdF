@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:57:05 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/06 16:13:03 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/07 15:30:00 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,17 @@ void initialize_map_fields(t_map *map)
 	map->coordinates_grid = NULL;
 	map->conversion_grid = NULL;
 
-	map->scaling_factor = 7;
+	map->scaling_factor = 40;
 	map->iso->pi_val = 3.141592653589793;
-	map->iso->alpha = 45.0 * (map->iso->pi_val / 180.0);
-	map->iso->beta = 90.0 * (map->iso->pi_val / 180.0);
+	map->iso->alpha = 75.0 * (map->iso->pi_val / 180.0);
+	map->iso->beta = 45.0 * (map->iso->pi_val / 180.0);
 	
 	map->iso->cos_alpha = cos(map->iso->alpha);
 	map->iso->sin_alpha = sin(map->iso->alpha);
 	map->iso->cos_beta = cos(map->iso->beta);
 	map->iso->sin_beta = sin(map->iso->beta);
 
-	map->iso->zoom = 1;
+	map->iso->zoom = 20;
 	map->iso->x_shift = 0;
 	map->iso->y_shift = 0;
 
@@ -85,6 +85,8 @@ void initialize_map_fields(t_map *map)
 	map->colour->red = 0;
 	map->colour->green = 0;
 	map->colour->blue = 0;
-	map->colour->default_colour = 0xFFFFFF;
+	map->colour->default_colour = 0x009a22;
 	map->colour->rgb_grid = NULL;
+	map->colour->x_colour_grid = 0;;
+	map->colour->y_colour_grid = 0;;
 }

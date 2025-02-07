@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_printer.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:00:10 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/06 17:15:33 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/07 16:06:49 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,29 +140,23 @@ void	print_conversion_grid(t_map *map)
 	printf("Printing completed.\n");
 }
 
-void	print_rgb_grid(t_map *map)
+void print_rgb_grid(t_map *map)
 {
-	ft_printf("Initiating rgb_grid matrix printing.\n");
-
-	int row = 0;
-	while (row < map->y) // Iterating over rows
-	{
-		int col = 0;
-		while (col < map->x) // Iterating over columns
-		{
-			// Access and print [x, y, z] for each coordinate
-			ft_printf("[r: %d, g: %d, b: %d]", 
-			map->colour->rgb_grid[row][col][0],
-			map->colour->rgb_grid[row][col][1],
-			map->colour->rgb_grid[row][col][2]
-			);
-			if (col < map->x - 1) // Add a tab unless it's the last column in the row
-				ft_printf("\t");
-
-			col++;
+	ft_printf("Initiating rgb_grid printing.\n");
+	int index = 0;
+	while (index < map->y) {  // Iterating over rows
+		int jndex = 0;
+		while (jndex < map->x) {  // Iterating over columns
+			if (map->colour->rgb_grid[index][jndex])  // Check if there is a color
+				ft_printf("%d", map->colour->rgb_grid[index][jndex]);  // Print the color
+			else
+				ft_printf("NULL");  // If no color, print NULL
+			if (jndex < map->x - 1)  // Avoid printing a tab after the last column
+				ft_printf("\t");  // Print tab after each element except the last in a row
+			jndex++;
 		}
-		ft_printf("\n"); // Move to the next line after each row
-		row++;
+		ft_printf("\n");  // Move to the next line after each row
+		index++;
 	}
 	ft_printf("Printing completed.\n");
 }
