@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_printer.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:00:10 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/06 16:14:13 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:15:33 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ void	print_conversion_grid(t_map *map)
 	printf("Printing completed.\n");
 }
 
-void print_rgb_grid(t_map *map)
+void	print_rgb_grid(t_map *map)
 {
 	ft_printf("Initiating rgb_grid matrix printing.\n");
 
@@ -152,9 +152,9 @@ void print_rgb_grid(t_map *map)
 		{
 			// Access and print [x, y, z] for each coordinate
 			ft_printf("[r: %d, g: %d, b: %d]", 
-			map->colour->rgb_grid[row][col][0] = map->colour->red,
-			map->colour->rgb_grid[row][col][1] = map->colour->green,
-			map->colour->rgb_grid[row][col][2] = map->colour->blue
+			map->colour->rgb_grid[row][col][0],
+			map->colour->rgb_grid[row][col][1],
+			map->colour->rgb_grid[row][col][2]
 			);
 			if (col < map->x - 1) // Add a tab unless it's the last column in the row
 				ft_printf("\t");

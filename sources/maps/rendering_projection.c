@@ -15,8 +15,6 @@
 
 void draw_line(void *mlx, void *win, t_map *map)
 {
-
-
 	// Calculate the differences
 	map->iso->dif_x = map->iso->x2 - map->iso->x1;
 	if (map->iso->dif_x < 0)  // Absolute value of dif_x
@@ -40,11 +38,6 @@ void draw_line(void *mlx, void *win, t_map *map)
 	map->iso->err = map->iso->dif_x - map->iso->dif_y;
 	double epsilon = 0.000000000000001;
 
-
-	map->colour->x_colour_grid = map->iso->x1 / map->iso->window_width;
-	map->colour->y_colour_grid = map->iso->y1 / map->iso->window_height;
-
-
 	while (1)
 	{
 		if (map->iso->x1 < 0 || map->iso->x1 >= map->iso->window_width ||
@@ -53,6 +46,13 @@ void draw_line(void *mlx, void *win, t_map *map)
 			printf("Warning: Exiting at (%f, %f) - Out of bounds\n", map->iso->x1, map->iso->y1);
 			exit(EXIT_FAILURE);
 		}
+		map->colour->x_colour_grid = (map->iso->x1 * map->x) / map->iso->window_width;
+		map->colour->y_colour_grid = (map->iso->y1 * map->y) / map->iso->window_height;
+
+		if (map->colour->x_colour_grid >= map->x) 
+			map->colour->x_colour_grid = map->x - 1;
+		if (map->colour->y_colour_grid >= map->y) 
+			map->colour->y_colour_grid = map->y - 1;
 		int r = map->colour->rgb_grid[map->colour->x_colour_grid][map->colour->y_colour_grid][0];
 		int g = map->colour->rgb_grid[map->colour->x_colour_grid][map->colour->y_colour_grid][1];
 		int b = map->colour->rgb_grid[map->colour->x_colour_grid][map->colour->y_colour_grid][2];
