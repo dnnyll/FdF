@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:35:37 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/07 15:55:46 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/10 09:00:58 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_map	*map;
 	char	*file;
-	void	*mlx_ptr;
-	void	*win_ptr;
+
 	if (argc != 2)
 	{
 		ft_printf("Error opening file");
@@ -53,12 +52,15 @@ int	main(int argc, char **argv)
 	// // free_coordinates_grid(map);
 	// // init_draw_line(map);
 
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, map->iso->window_width, map->iso->window_height, "FdF");
+	map->window->mlx_ptr = mlx_init();
+	map->window->win_ptr = mlx_new_window(map->window->mlx_ptr, map->iso->window_width, map->iso->window_height, "FdF");
 	// mlx_key_hook(win_ptr, handle_key, map);
-	draw_grid(mlx_ptr, win_ptr, map);
-	mlx_loop(mlx_ptr);
-
+	mlx_key_hook(map->window->win_ptr, key_hook, map);
+	draw_grid(map->window->mlx_ptr, map->window->win_ptr, map);
+	mlx_hook(map->window->win_ptr, 17, 0, close_window, map);
+//	17 → Event code for DestroyNotify (X button press).
+//	0 → No mask needed.
+	mlx_loop(map->window->mlx_ptr);
 	return (0);
 }
 

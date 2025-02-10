@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/07 16:07:01 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/10 08:59:44 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@
 // structure to hold the window and mlx pointers
 typedef	struct s_window
 {
-
+	void	*mlx_ptr;
+	void	*win_ptr;
 }
 t_window;
 
@@ -39,6 +40,7 @@ t_window;
 typedef	struct s_app
 {
 	t_window win;
+	
 }
 t_app;
 
@@ -121,6 +123,8 @@ typedef	struct s_map
 	int		scaling_factor;
 	struct s_iso *iso;
 	struct s_colour *colour;
+	struct s_window *window;
+	
 }
 t_map;
 
@@ -199,6 +203,9 @@ int		get_base_index(char c, const char *base);
 //		-=""key handling			//////////////////////////////////////////
 void	maping_keys(int keycode, t_map *map);
 int		handle_key(int keycode, t_map *map);
+int		key_hook(int keycode, void *param);
+int		close_window(void *param);
+
 
 void	rgb_grid_populate(t_map *map);
 void	rgb_management(t_map *map, int row, int col);
