@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:35:37 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/10 09:00:58 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:15:37 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,168 +28,21 @@ int	main(int argc, char **argv)
 		exit (EXIT_FAILURE);
 	read_map_size(map, file);
 	read_map_repeat(map, file);
-	// print_char_values_matrix(map);
-	// print_char_colours_matrix(map);
-
 	matrix_converter(map);
-
-	// print_int_values_matrix(map);
-	// print_int_colours_matrix(map);
 	alloc_coordinates_grid(map);
-	// print_coordinates_grid(map);
 	print_int_colours_matrix(map);
 	malloc_rgb_grid(map);
 	rgb_grid_populate(map);
-	// print_rgb_grid(map);
 	scaling_coordinates(map);
-	// print_coordinates_grid(map);
 	alloc_conversion_grid(map);
-	populate_conversion_grid(map);
+	iso_conversion_grid(map);
 	coordinates_shifting(map);
-	// print_conversion_grid(map);
-	// // free_z_matrix(map);
-	// // free_colours_matrix(map);sdCxzv
-	// // free_coordinates_grid(map);
-	// // init_draw_line(map);
-
 	map->window->mlx_ptr = mlx_init();
-	map->window->win_ptr = mlx_new_window(map->window->mlx_ptr, map->iso->window_width, map->iso->window_height, "FdF");
-	// mlx_key_hook(win_ptr, handle_key, map);
+	map->window->win_ptr = mlx_new_window(map->window->mlx_ptr, map->iso->window_width, 
+	map->iso->window_height, "FdF");
 	mlx_key_hook(map->window->win_ptr, key_hook, map);
 	draw_grid(map->window->mlx_ptr, map->window->win_ptr, map);
 	mlx_hook(map->window->win_ptr, 17, 0, close_window, map);
-//	17 → Event code for DestroyNotify (X button press).
-//	0 → No mask needed.
 	mlx_loop(map->window->mlx_ptr);
 	return (0);
 }
-
-// int	main(void)
-// {
-// 	t_app app;
-
-// 	if (!initialize_mlx(&app))
-// 		return (1);
-// 	mlx_key_hook(app.win.win, handle_key, &app);
-// 	mlx_hook(app.win.win, 17, 0, handle_close, &app);
-// 	mlx_loop(app.win.mlx);
-// 	return (0);
-// }
-
-// int	main(void)
-// {
-// 	t_mlx mlx;
-
-// 	if(!initialize_mlx(&mlx))
-// 		return (1);
-// 	mlx_loop(mlx.mlx_ptr);
-// 	return (0);
-// }
-
-// #include "../minilibx-linux/mlx.h"
-// #include <unistd.h>
-// #include <stdlib.h>
-// #include <stdio.h>
-
-// #define KEY_ESC 0xff1b
-// #define KEY_W 119
-// #define KEY_S 115
-// #define KEY_A 97
-// #define KEY_D 100
-// #define	MAX_PIXELS 125
-
-
-// typedef struct s_data
-// {
-// 	void	*mlx_ptr;
-// 	void	*mlx_window;
-// 	int		pixels[MAX_PIXELS][2];
-// 	int		num_pixels;
-// 	int		x;
-// 	int		y;
-// }
-// t_data;
-
-// // static void	cleanup_window(t_appapp)
-// // {
-// // 	if (!app)
-// // 		return ;
-// // 	if (app->win.img)
-// // 	mlx_destroy_image(app->mlx_window)
-// // }
-// int key_hook(int keycode, t_data *data)
-// {
-// 	printf("Keycode: %d\n", keycode); // Debug message for keycode
-// 	// Initialize starting position if needed
-// 	if (data->num_pixels == 0)
-// 	{
-// 		data->pixels[0][0] = 250; // Starting x position
-// 		data->pixels[0][1] = 250; // Starting y position
-// 		data->num_pixels++;
-// 		mlx_pixel_put(data->mlx_ptr, data->mlx_window, 250, 250, 0xFFFFFF);
-// 		printf("First pixel at (250, 250)\n");
-// 		return (0);
-// 	}
-
-// 	// Get the current position
-// 	int curr_x = data->pixels[data->num_pixels - 1][0];
-// 	int curr_y = data->pixels[data->num_pixels - 1][1];
-// 	printf("1");
-// 	// Update position based on key press
-// 	if (keycode == KEY_W)      // Move up
-// 	{
-// 		curr_y -= 10;
-// 		printf("KEY_W used successfully.");
-// 	}
-// 	else if (keycode == KEY_S) // Move down
-// 	{
-// 		curr_y += 10;
-// 		printf("KEY_S used successfully.");
-// 	}
-// 	else if (keycode == KEY_A) // Move left
-// 	{
-// 		curr_x -= 10;
-// 		printf("KEY_A used successfully.");
-// 	}
-// 	else if (keycode == KEY_D) // Move right
-// 	{
-// 		curr_x += 10;
-// 		printf("KEY_D used successfully.");
-// 	}
-
-// 	// Draw the new pixel
-// 	if (data->num_pixels < MAX_PIXELS)
-// 	{
-// 		data->pixels[data->num_pixels][0] = curr_x;
-// 		data->pixels[data->num_pixels][1] = curr_y;
-// 		data->num_pixels++;
-// 		mlx_pixel_put(data->mlx_ptr, data->mlx_window, curr_x, curr_y, 0x2F677F);
-// 		printf("Drawn pixel at (%d, %d)\n", curr_x, curr_y);
-// 	}
-// 	// Closes window by pressing Esc
-// 	if (keycode == KEY_ESC)
-// 	{
-// 		mlx_destroy_window(data->mlx_ptr, data->mlx_window);
-// 		printf("ESC_KEY used successfully.");
-// 		exit (0);
-// 	}
-// 	return (0);
-// }
-// int	close_window(t_data *data)
-// {
-// 	mlx_destroy_window(data->mlx_ptr, data->mlx_window);
-// 	printf("Window manually closed.");
-// 	exit (0);
-// }
-// int	main (void)
-// {
-// 	t_data data;
-// 	data.mlx_ptr = mlx_init();
-// 	data.mlx_window = mlx_new_window(data.mlx_ptr, 500, 500, "default_window");
-// 	data.num_pixels = 0;
-// //	mlx_pixel_put(data.mlx_ptr, data.mlx_window, 250, 250, 0x2F677F);
-// 	mlx_key_hook(data.mlx_window, key_hook, &data);
-// 	mlx_hook(data.mlx_window, 17, 0, close_window, &data);
-// 	mlx_loop(data.mlx_ptr);
-// 	return(0);
-// }

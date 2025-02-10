@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:37:42 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/06 12:37:10 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:40:10 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,24 @@ void	char_matrix_alloc(t_map *map)
 		if (!map->c_z_matrix[i] || !map->c_colours_matrix[i])
 		{
 			ft_printf("Error: memory allocation failed at row %d\n", i);
-			// free_t_map(map);
-			exit(EXIT_FAILURE);
+			free_t_map(map);
+			return;
 		}
 		i++;
 	}
-	// ft_printf("Memory allocation successful\n");
 }
 
 void	int_matrix_alloc(t_map *map)
 {
 	int	i;
 
-	// ft_printf("Allocating memory - Width: %d, Height: %d\n", map->x, map->y);
 	map->z_matrix = malloc(sizeof(int *) * map->y);
 	map->colours_matrix = malloc(sizeof(int *) * map->y);
 	if (!map->z_matrix || !map->colours_matrix)
 	{
 		ft_printf("Error: memory allocation failed\n");
 		free_t_map(map);
-		exit(EXIT_FAILURE);
+		return;
 	}
 	i = 0;
 	while (i < map->y)
@@ -71,7 +69,6 @@ void	int_matrix_alloc(t_map *map)
 		}
 		i++;
 	}
-	// ft_printf("Memory allocation successful\n");
 }
 
 

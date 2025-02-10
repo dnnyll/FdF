@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/10 08:59:44 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:49:43 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,16 @@ typedef struct	s_colour
 	int	**rgb_grid;
 	int	x_colour_grid;
 	int	y_colour_grid;
+	int	start_colour;
+	int	end_colour;
+
+	int start_red;
+	int start_green;
+	int start_blue;
+	int end_red;
+	int end_green;
+	int end_blue;
+
 }t_colour;
 
 typedef	struct	s_iso
@@ -76,8 +86,6 @@ typedef	struct	s_iso
 	int		x_scaled;
 	int		y_scaled;
 	int		z_scaled;
-	int		x_iso_shift;
-	int		y_iso_shift;
 	int		offset_x;
 	int		offset_y;
 	int		sum_x_points;
@@ -142,7 +150,7 @@ int		count_line_elements(char **parts);
 void	free_split_result(char **parts);
 
 void	scaling_coordinates(t_map *map);
-void	populate_conversion_grid(t_map * map);
+void	iso_conversion_grid(t_map * map);
 void	coordinates_shifting(t_map *map);
 void	axis_point_calculation(t_map *map);
 void	center_calculation(t_map *map);

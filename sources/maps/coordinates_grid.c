@@ -17,11 +17,10 @@ void	alloc_coordinates_grid(t_map *map)
 	int	row;
 	int	col;
 	
-	// ft_printf("x: %d, y: %d, z: %d\n", map->x, map->y, map->z);
 	map->coordinates_grid = malloc(sizeof(int **) * map->y);
 	if(!map->coordinates_grid)
 	{
-		exit (EXIT_FAILURE);
+		return;
 	}
 	row = 0;
 	while (row < map->y)
@@ -29,20 +28,19 @@ void	alloc_coordinates_grid(t_map *map)
 		map->coordinates_grid[row] = malloc((sizeof(int*)) * map->x);
 		if (!map->coordinates_grid[row])
 		{
-			exit (EXIT_FAILURE);
+			return;
 		}
-	
 		col = 0;
 		while (col < map->x)
 		{
 			map->coordinates_grid[row][col] = malloc((sizeof(int*)) * 3);
 			if (!map->coordinates_grid[row][col])
 			{
-				exit (EXIT_FAILURE);
+				return;
 			}
-			map->coordinates_grid[row][col][0] = col;	// x-coordinate
-			map->coordinates_grid[row][col][1] = row;	// y-coordinate
-			map->coordinates_grid[row][col][2] = map->z_matrix[row][col];	// z-coordinate
+			map->coordinates_grid[row][col][0] = col;
+			map->coordinates_grid[row][col][1] = row;
+			map->coordinates_grid[row][col][2] = map->z_matrix[row][col];
 			col++;
 		}
 	row++;

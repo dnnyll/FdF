@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+         #
+#    By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/06 13:24:44 by daniefe2          #+#    #+#              #
-#    Updated: 2025/02/10 08:56:50 by daniefe2         ###   ########.fr        #
+#    Updated: 2025/02/10 14:34:56 by daniefe2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,12 +31,16 @@ SRCS =	sources/main.c \
 		sources/maps/iso_conversion.c \
 		sources/maps/coodinates_shifting.c \
 		sources/maps/rendering_projection.c \
-		sources/keys/maping_keys.c \
 		sources/colour_management/rgb.c \
-		sources/window_management/window.c
+		sources/window_hooks/window_hooks.c
 
 # Automatically generate object files from .c files
-OBJS = $(SRCS:%.c=%.o)
+OBJS = $(SRCS:.c=.o)
+
+# Rule to compile .c files from any subdirectory
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
 
 # Name of the output executable
 NAME = fdf

@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:26:59 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/06 14:04:00 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:29:02 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,13 @@ void	read_map_size(t_map *map, char *filename)
 	{
 		ft_printf("Error opening and reading file\n");
 		free_t_map(map);
-		exit(EXIT_FAILURE);
+		return;
 	}
 	map->line = get_next_line(fd);
 	while (map->line)
 	{
 		read_map_width(map, map->line);
 		map->y++;
-		// ft_printf("map->y = %d\n", map->y);
 		free(map->line);
 		map->line = get_next_line(fd);
 	}
@@ -48,7 +47,7 @@ void	read_map_width(t_map *map, char *line)
 	if (!parts)
 	{
 		ft_printf("Error splitting line\n");
-		exit(EXIT_FAILURE);
+		return;
 	}
 	x = count_line_elements(parts);
 	if (map->x == 0)
@@ -70,8 +69,7 @@ int	count_line_elements(char **parts)
 	count = 0;
 	while (parts && parts[count])
 		count++;
-	// ft_printf("count: %d\n", count);
-	return (count); //not sure if i should do this
+	return (count);
 }
 
 void	free_split_result(char **parts)
@@ -79,6 +77,8 @@ void	free_split_result(char **parts)
 	int	i;
 	
 	i = 0;
+	if(!parts)
+		return;
 	while (parts[i])
 		free(parts[i++]);
 	free(parts);
