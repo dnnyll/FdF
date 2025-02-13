@@ -6,19 +6,19 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 08:19:52 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/10 14:15:00 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/13 13:33:28 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void matrix_converter(t_map *map)
+void	matrix_converter(t_map *map)
 {
 	int_matrix_alloc(map);
 	populate_int_values(map);
-	// free_c_z_matrix(map);
+	free_c_z_matrix(map);
 	populate_int_colours(map);
-	// free_c_colours_matrix(map);
+	free_c_colours_matrix(map);
 }
 
 int	colour_converter(const char *hex_str)

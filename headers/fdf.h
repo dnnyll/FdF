@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/10 11:49:43 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/13 13:44:18 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,14 +156,11 @@ void	axis_point_calculation(t_map *map);
 void	center_calculation(t_map *map);
 void	draw_line(void *mlx, void *win, t_map *map, int current_colour);
 int		dif_check(double a, double b, double epsilon);
-void	boundry_check(t_map *map);
 void	draw_grid(void *mlx_ptr, void *win_ptr, t_map *map);
 void	draw_vertical_lines(void *mlx_ptr, void *win_ptr, t_map *map);
 void	draw_horizontal_lines(void *mlx_ptr, void *win_ptr, t_map *map);
 double	find_x_iso_min(t_map *map);
 double	find_y_iso_min(t_map *map);
-double	find_x_iso_max(t_map *map);
-double	find_y_iso_max(t_map *map);
 
 
 
@@ -181,11 +178,32 @@ void	free_t_map(t_map *map);
 void	free_colours_matrix(t_map *map);
 void	free_z_matrix(t_map *map);
 void	free_split_parts(char **parts);
+void	free_rgb_grid(t_map *map);
+
 
 void	alloc_coordinates_grid(t_map *map);
 void	free_coordinates_grid(t_map *map);
 void	alloc_conversion_grid(t_map *map);
 void	free_conversion_grid(t_map *map);
+t_map	*allocate_map(void);
+t_map	*initialize_map(void);
+void	initialize_other_fields(t_map *map);
+void	initialize_iso_fields(t_iso *iso);
+void	free_map_resources(t_map *map);
+
+void	initialize_matrices(t_map *map);
+void	init_row_pointers(t_map *map);
+void	init_cell_pointers(t_map *map);
+
+int		alloc_char_matrix_stash(t_map *map);
+int		alloc_c_z_matrix(t_map *map);
+int		alloc_c_colours_matrix(t_map *map);
+void	char_matrix_alloc(t_map *map);
+
+
+int		alloc_z_matrix(t_map *map);
+int		alloc_colours_matrix(t_map *map);
+void	int_matrix_alloc(t_map *map);
 
 //		-=""printers			/////////////////////////////////////////////
 void	print_char_values_matrix(t_map *map);
@@ -209,8 +227,6 @@ int		is_valid_base(const char *base);
 int		get_base_index(char c, const char *base);
 
 //		-=""key handling			//////////////////////////////////////////
-void	maping_keys(int keycode, t_map *map);
-int		handle_key(int keycode, t_map *map);
 int		key_hook(int keycode, void *param);
 int		close_window(void *param);
 

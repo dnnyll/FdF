@@ -1,41 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_coordinates_grid.c                            :+:      :+:    :+:   */
+/*   free_ressources.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/27 11:30:19 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/13 14:28:24 by daniefe2         ###   ########.fr       */
+/*   Created: 2025/02/13 09:37:44 by daniefe2          #+#    #+#             */
+/*   Updated: 2025/02/13 09:38:04 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void free_coordinates_grid(t_map *map)
+void free_map_resources(t_map *map)
 {
-	int row;
-	int col;
-	
-	if (!map->coordinates_grid)
+	if (!map)
 		return;
-	row = 0;
-	while (row < map->y)
-	{
-			if (!map->coordinates_grid[row])
-		{
-		row++;
-				continue;
-		}
-			col = 0;
-		while (col < map->x)
-			{
-			free(map->coordinates_grid[row][col]);
-			col++;
-		}
-		free(map->coordinates_grid[row]);
-		row++;
-	}
-	free(map->coordinates_grid);
+	free(map->iso);
+	free(map->colour);
+	free(map->window);
+	free(map);
 }
-

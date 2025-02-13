@@ -45,26 +45,26 @@ void draw_line(void *mlx, void *win, t_map *map, int current_colour)
 		// if (map->iso->y1 < 0) map->iso->y1 = 0;
 		// else if (map->iso->y1 >= map->iso->window_height) map->iso->y1 = map->iso->window_height - 1;
 
-		// Now check if the coordinates are still valid (this should not trigger if clamping works)
-		if (map->iso->x1 < 0 || map->iso->x1 >= map->iso->window_width ||
-			map->iso->y1 < 0 || map->iso->y1 >= map->iso->window_height)
-		{
-			printf("Warning: Exiting at (%f, %f) - Out of bounds\n", map->iso->x1, map->iso->y1);
-			exit(EXIT_FAILURE);
-		}
+		// // Now check if the coordinates are still valid (this should not trigger if clamping works)
+		// if (map->iso->x1 < 0 || map->iso->x1 >= map->iso->window_width ||
+		// 	map->iso->y1 < 0 || map->iso->y1 >= map->iso->window_height)
+		// {
+		// 	printf("Warning: Exiting at (%f, %f) - Out of bounds\n", map->iso->x1, map->iso->y1);
+		// 	exit(EXIT_FAILURE);
+		// }
 
-		if (map->iso->x1 < 0 || map->iso->x1 >= map->iso->window_width ||
-		map->iso->y1 < 0 || map->iso->y1 >= map->iso->window_height)
-		{
-			printf("Warning: Exiting at (%f, %f) - Out of bounds\n", map->iso->x1, map->iso->y1);
-			exit(EXIT_FAILURE);
-		}
-		if (map->colour->x_colour_grid >= map->x || map->colour->y_colour_grid >= map->y)
-		{
-			printf("Error: Index out of bounds! x_colour_grid: %d, y_colour_grid: %d\n", 
-				map->colour->x_colour_grid, map->colour->y_colour_grid);
-			exit(EXIT_FAILURE);
-		}
+		// if (map->iso->x1 < 0 || map->iso->x1 >= map->iso->window_width ||
+		// map->iso->y1 < 0 || map->iso->y1 >= map->iso->window_height)
+		// {
+		// 	printf("Warning: Exiting at (%f, %f) - Out of bounds\n", map->iso->x1, map->iso->y1);
+		// 	exit(EXIT_FAILURE);
+		// }
+		// if (map->colour->x_colour_grid >= map->x || map->colour->y_colour_grid >= map->y)
+		// {
+		// 	printf("Error: Index out of bounds! x_colour_grid: %d, y_colour_grid: %d\n", 
+		// 		map->colour->x_colour_grid, map->colour->y_colour_grid);
+		// 	exit(EXIT_FAILURE);
+		// }
 
 		// if (!map->colour->rgb_grid[map->colour->x_colour_grid][map->colour->y_colour_grid])
 		// {

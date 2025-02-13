@@ -6,11 +6,34 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:26:46 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/28 10:53:18 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/13 13:39:15 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	free_t_map(t_map *map)
+{
+	if (map->line)
+		free(map->line);
+	if (map->char_matrix_stash)
+		free_char_matrix_stash(map);
+	if (map->z_matrix)
+		free_z_matrix(map);
+	if	(map->colours_matrix)
+		free_colours_matrix(map);
+	if (map->c_z_matrix)
+		free_c_z_matrix(map);
+	if (map->c_colours_matrix)
+		free_c_colours_matrix(map);
+	if (map->z_matrix)	
+		free_z_matrix(map);
+	if (map->conversion_grid)
+		free_conversion_grid(map);
+	if (map->colour->rgb_grid)
+		free_rgb_grid(map);
+	free(map);
+}
 
 void free_char_matrix_stash(t_map *map)
 {
@@ -26,7 +49,7 @@ void free_char_matrix_stash(t_map *map)
 	map->char_matrix_stash = NULL;
 }
 
-void free_c_z_matrix(t_map *map)
+void	free_c_z_matrix(t_map *map)
 {
 	int i;
 	int	j;
@@ -34,10 +57,10 @@ void free_c_z_matrix(t_map *map)
 	i = 0;
 	if (map->c_z_matrix)
 	{
-		while (map->c_z_matrix[i])
+		while (i < map->y)
 		{
 			j = 0;
-			while (map->c_z_matrix[i][j])
+			while (j < map->x)
 			{
 				ft_printf("Freeing c_z_matrix[%d][%d]: %p\n", i, j, map->c_z_matrix[i][j]);
 				free(map->c_z_matrix[i][j]);
@@ -49,54 +72,55 @@ void free_c_z_matrix(t_map *map)
 		free(map->c_z_matrix);
 	}
 }
-
 void	free_c_colours_matrix(t_map *map)
 {
-	int	i;
-	int	j;
+	int i;
+	int j;
 
 	i = 0;
-	if (map->c_colours_matrix[i])
+	if (map->c_colours_matrix)
 	{
-		while (map->c_colours_matrix[i])
+		while (i < map->y)
 		{
-			j = 0;
-			while (j < map->x)
+			if (map->c_colours_matrix[i])
 			{
-				if (map->c_colours_matrix[i][j])
+				j = 0;
+				while (j < map->x)
 				{
-					ft_printf("Freeing c_colours_matrix[%d][%d]: %p\n", i, j, map->c_colours_matrix[i][j]);
-					free(map->c_colours_matrix[i][j]);
+					if (map->c_colours_matrix[i][j])
+						free(map->c_colours_matrix[i][j]);
+					j++;
 				}
-				else
-					ft_printf("Skipping NULL c_colours_matrix[%d][%d]\n", i, j);
-				j++;
+				free(map->c_colours_matrix[i]);
 			}
-			free(map->c_colours_matrix[i]);
 			i++;
 		}
 		free(map->c_colours_matrix);
 	}
 }
 
-void	free_z_matrix(t_map *map)
+
+void free_z_matrix(t_map *map)
 {
-	int	i;
-	
+		int i;
+
 	i = 0;
 	if (map->z_matrix)
 	{
-		while (i < map->y && map->z_matrix[i])
+		while (i < map->y)
 		{
-			ft_printf("Freeing z_matrix row %d: %p\n", i, map->z_matrix[i]);
-			free(map->z_matrix[i]);
-			map->z_matrix[i] = NULL;
-			i++;
+			if (map->z_matrix[i])
+			{
+				ft_printf("Freeing z_matrix row %d: %p\n", i, map->z_matrix[i]);
+				free(map->z_matrix[i]);
+			}
+		i++;
 		}
 		free(map->z_matrix);
 		map->z_matrix = NULL;
 	}
 }
+
 
 
 void	free_colours_matrix(t_map *map)
@@ -106,7 +130,7 @@ void	free_colours_matrix(t_map *map)
 	i = 0;
 	if (map->colours_matrix)
 	{
-		while (i < map->y && map->colours_matrix[i])
+		while (i < map->y)
 		{
 			ft_printf("Freeing colours_matrix row %d: %p\n", i, map->colours_matrix[i]);
 			free(map->colours_matrix[i]);
@@ -116,21 +140,6 @@ void	free_colours_matrix(t_map *map)
 		free(map->colours_matrix);
 		map->colours_matrix = NULL;
 	}
-}
-
-
-void free_t_map(t_map *map)
-{
-	if (!map)
-		return ;
-	free_char_matrix_stash(map);
-	free_z_matrix(map);
-	free_colours_matrix(map);
-	free_c_z_matrix(map);
-	free_c_colours_matrix(map);
-	 if (map->line)
-		free(map->line);
-	free(map);
 }
 
 void	free_conversion_grid(t_map *map)
@@ -149,6 +158,24 @@ void	free_conversion_grid(t_map *map)
 		}
 		free(map->conversion_grid);
 		map->conversion_grid = NULL;
+	}
+}
+void	free_rgb_grid(t_map *map)
+{
+	int	i;
+	
+	i = 0;
+	if (map->colour->rgb_grid)
+	{
+		while (i < map->y && map->colour->rgb_grid[i])
+		{
+			ft_printf("Freeing rgb_grid row %d: %p\n", i, map->colour->rgb_grid[i]);
+			free(map->colour->rgb_grid[i]);
+			map->colour->rgb_grid[i] = NULL;
+			i++;
+		}
+		free(map->colour->rgb_grid);
+		map->colour->rgb_grid = NULL;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 07:27:18 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/24 13:34:28 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/13 14:15:40 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		len = 0;
 	if (s_len - start < len)
 		len = s_len - start;
-	sub_s = malloc(len + 1 * sizeof(char));
+	sub_s = malloc((len + 1) * sizeof(char));
 	if (!sub_s)
 		return (NULL);
 	i = 0;

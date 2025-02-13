@@ -25,7 +25,7 @@ void	alloc_coordinates_grid(t_map *map)
 	row = 0;
 	while (row < map->y)
 	{
-		map->coordinates_grid[row] = malloc((sizeof(int*)) * map->x);
+		map->coordinates_grid[row] = malloc(sizeof(int*) * map->x);
 		if (!map->coordinates_grid[row])
 		{
 			return;
@@ -33,7 +33,7 @@ void	alloc_coordinates_grid(t_map *map)
 		col = 0;
 		while (col < map->x)
 		{
-			map->coordinates_grid[row][col] = malloc((sizeof(int*)) * 3);
+			map->coordinates_grid[row][col] = malloc(sizeof(int) * 3);
 			if (!map->coordinates_grid[row][col])
 			{
 				return;
@@ -45,4 +45,5 @@ void	alloc_coordinates_grid(t_map *map)
 		}
 	row++;
 	}
+	free_z_matrix(map);
 }

@@ -38,12 +38,12 @@ void draw_line(void *mlx, void *win, t_map *map, int current_colour)
 	map->iso->err = map->iso->dif_x - map->iso->dif_y;
 	while (1)
 	{
-		// // Clamp the values of x1 and y1
-		// if (map->iso->x1 < 0) map->iso->x1 = 0;
-		// else if (map->iso->x1 >= map->iso->window_width) map->iso->x1 = map->iso->window_width - 1;
+		// Clamp the values of x1 and y1
+		if (map->iso->x1 < 0) map->iso->x1 = 0;
+		else if (map->iso->x1 >= map->iso->window_width) map->iso->x1 = map->iso->window_width - 1;
 
-		// if (map->iso->y1 < 0) map->iso->y1 = 0;
-		// else if (map->iso->y1 >= map->iso->window_height) map->iso->y1 = map->iso->window_height - 1;
+		if (map->iso->y1 < 0) map->iso->y1 = 0;
+		else if (map->iso->y1 >= map->iso->window_height) map->iso->y1 = map->iso->window_height - 1;
 
 		// Now check if the coordinates are still valid (this should not trigger if clamping works)
 		if (map->iso->x1 < 0 || map->iso->x1 >= map->iso->window_width ||
@@ -66,12 +66,12 @@ void draw_line(void *mlx, void *win, t_map *map, int current_colour)
 			exit(EXIT_FAILURE);
 		}
 
-		// if (!map->colour->rgb_grid[map->colour->x_colour_grid][map->colour->y_colour_grid])
-		// {
-		// 	printf("Error: rgb_grid[%d][%d] is NULL\n", 
-		// 		map->colour->x_colour_grid, map->colour->y_colour_grid);
-		// 	exit(EXIT_FAILURE);
-		// }
+		if (!map->colour->rgb_grid[map->colour->x_colour_grid][map->colour->y_colour_grid])
+		{
+			printf("Error: rgb_grid[%d][%d] is NULL\n", 
+				map->colour->x_colour_grid, map->colour->y_colour_grid);
+			exit(EXIT_FAILURE);
+		}
 		// Ensure x_colour_grid is within bounds
 		if (map->colour->x_colour_grid < 0)
 			map->colour->x_colour_grid = 0;

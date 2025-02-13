@@ -38,12 +38,12 @@ void draw_line(void *mlx, void *win, t_map *map, int current_colour)
 	map->iso->err = map->iso->dif_x - map->iso->dif_y;
 	while (1)
 	{
-		// // Clamp the values of x1 and y1
-		// if (map->iso->x1 < 0) map->iso->x1 = 0;
-		// else if (map->iso->x1 >= map->iso->window_width) map->iso->x1 = map->iso->window_width - 1;
+		// Clamp the values of x1 and y1
+		if (map->iso->x1 < 0) map->iso->x1 = 0;
+		else if (map->iso->x1 >= map->iso->window_width) map->iso->x1 = map->iso->window_width - 1;
 
-		// if (map->iso->y1 < 0) map->iso->y1 = 0;
-		// else if (map->iso->y1 >= map->iso->window_height) map->iso->y1 = map->iso->window_height - 1;
+		if (map->iso->y1 < 0) map->iso->y1 = 0;
+		else if (map->iso->y1 >= map->iso->window_height) map->iso->y1 = map->iso->window_height - 1;
 
 		// Now check if the coordinates are still valid (this should not trigger if clamping works)
 		if (map->iso->x1 < 0 || map->iso->x1 >= map->iso->window_width ||

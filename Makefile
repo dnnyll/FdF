@@ -6,7 +6,7 @@
 #    By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/06 13:24:44 by daniefe2          #+#    #+#              #
-#    Updated: 2025/02/10 14:34:56 by daniefe2         ###   ########.fr        #
+#    Updated: 2025/02/13 10:42:18 by daniefe2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,12 @@ SRCS =	sources/main.c \
 		sources/printers/matrix_printer.c \
  		sources/converters/atoi_base.c \
 		sources/converters/convert_to_int.c \
-		sources/memory/matrix_mem_alloc.c \
 		sources/memory/free_matrix.c \
 		sources/memory/free_coordinates_grid.c \
+		sources/memory/free_ressources.c \
+		sources/memory/alloc_char_matrix.c \
+		sources/memory/alloc_int_matrix.c \
+		sources/maps/initialize_matrices.c \
 		sources/maps/map_parsing.c \
 		sources/maps/read_map.c \
 		sources/maps/coordinates_grid.c \
