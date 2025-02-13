@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:04:56 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/01/24 10:11:43 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/13 08:30:04 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void free_t_map(t_map *map)
 {
-	int	index;
-	int	jndex;
+	int	i;
+	int	j;
 
 	// Free `line` if allocated
 	if (map->line)
@@ -24,11 +24,11 @@ void free_t_map(t_map *map)
 	// Free `char_matrix_stash` (a `char **`)
 	if (map->char_matrix_stash)
 	{
-		index = 0;
-		while (map->char_matrix_stash[index])
+		i = 0;
+		while (map->char_matrix_stash[i])
 		{
-			free(map->char_matrix_stash[index]);
-			index++;
+			free(map->char_matrix_stash[i]);
+			i++;
 		}
 		free(map->char_matrix_stash);
 	}
@@ -36,11 +36,11 @@ void free_t_map(t_map *map)
 	// Free `z_matrix` (an `int **`)
 	if (map->z_matrix)
 	{
-		index = 0;
-		while (map->z_matrix[index])
+		i = 0;
+		while (map->z_matrix[i])
 		{
-			free(map->z_matrix[index]);
-			index++;
+			free(map->z_matrix[i]);
+			i++;
 		}
 		free(map->z_matrix);
 	}
@@ -48,11 +48,11 @@ void free_t_map(t_map *map)
 	// Free `colours_matrix` (an `int **`)
 	if (map->colours_matrix)
 	{
-		index = 0;
-		while (map->colours_matrix[index])
+		i = 0;
+		while (map->colours_matrix[i])
 		{
-			free(map->colours_matrix[index]);
-			index++;
+			free(map->colours_matrix[i]);
+			i++;
 		}
 		free(map->colours_matrix);
 	}
@@ -60,15 +60,17 @@ void free_t_map(t_map *map)
 	// Free `c_z_matrix` (a `char ***`)
 	if (map->c_z_matrix)
 	{
-		index = 0;
-		while (map->c_z_matrix[index]) {
-			jndex = 0;
-			while (map->c_z_matrix[index][jndex]) {
-				free(map->c_z_matrix[index][jndex]);
-				jndex++;
+		i = 0;
+		while (map->c_z_matrix[i])
+		{
+			j = 0;
+			while (map->c_z_matrix[i][j])
+			{
+				free(map->c_z_matrix[i][j]);
+				j++;
 			}
-			free(map->c_z_matrix[index]);
-			index++;
+			free(map->c_z_matrix[i]);
+			i++;
 		}
 		free(map->c_z_matrix);
 	}
@@ -76,15 +78,17 @@ void free_t_map(t_map *map)
 	// Free `c_colours_matrix` (a `char ***`)
 	if (map->c_colours_matrix)
 	{
-		index = 0;
-		while (map->c_colours_matrix[index]) {
-			jndex = 0;
-			while (map->c_colours_matrix[index][jndex]) {
-				free(map->c_colours_matrix[index][jndex]);
-				jndex++;
+		i = 0;
+		while (map->c_colours_matrix[i])
+		{
+			j = 0;
+			while (map->c_colours_matrix[i][j])
+			{
+				free(map->c_colours_matrix[i][j]);
+				j++;
 			}
-			free(map->c_colours_matrix[index]);
-			index++;
+			free(map->c_colours_matrix[i]);
+			i++;
 		}
 		free(map->c_colours_matrix);
 	}

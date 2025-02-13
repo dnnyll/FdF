@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_mem_alloc.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:37:42 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/10 14:40:10 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/13 08:22:18 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	char_matrix_alloc(t_map *map)
 {
 	int	i;
 
-	// ft_printf("Allocating memory - Width: %d, Height: %d\n", map->x, map->y);
 	map->char_matrix_stash = malloc(sizeof(char *) * map->y);
 	map->c_z_matrix = malloc(sizeof(char **) * map->y);
 	map->c_colours_matrix = malloc(sizeof(char **) * map->y);

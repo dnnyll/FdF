@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:35:37 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/10 14:15:37 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/13 08:35:35 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	main(int argc, char **argv)
 	read_map_repeat(map, file);
 	matrix_converter(map);
 	alloc_coordinates_grid(map);
-	print_int_colours_matrix(map);
 	malloc_rgb_grid(map);
 	rgb_grid_populate(map);
 	scaling_coordinates(map);
