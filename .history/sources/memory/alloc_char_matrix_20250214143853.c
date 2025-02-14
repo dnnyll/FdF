@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 10:36:23 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/14 14:38:55 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/14 14:38:53 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int alloc_c_z_matrix(t_map *map)
     }
 	return 1;
 }
+
+
 
 int	alloc_c_colours_matrix(t_map *map)
 {

@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 10:36:23 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/14 14:38:55 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/14 14:38:29 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,46 @@ int	alloc_char_matrix_stash(t_map *map)
 	return 1;  // Successful allocation
 }
 
-int alloc_c_z_matrix(t_map *map)
-{
-    map->c_z_matrix = (char ***)malloc(sizeof(char *) * map->y);
-    if (!map->c_z_matrix)
-    {
-        ft_printf("Memory allocation for c_z_matrix failed\n");
-        exit(0);
-    }
+// int alloc_c_z_matrix(t_map *map)
+// {
+//     map->c_z_matrix = (char ***)malloc(sizeof(char *) * map->y);
+//     if (!map->c_z_matrix)
+//     {
+//         ft_printf("Memory allocation for c_z_matrix failed\n");
+//         exit(0);
+//     }
 
-    int row = 0;
-    while (row < map->y)
-    {
-        map->c_z_matrix[row] = NULL;  // Initialize each row to NULL
-        row++;
-    }
-	return 1;
+//     int row = 0;
+//     while (row < map->y)
+//     {
+//         map->c_z_matrix[row] = NULL;  // Initialize each row to NULL
+//         row++;
+//     }
+// 	return 1;
+// }
+
+int	alloc_c_z_matrix(t_map *map)
+{
+	map->c_z_matrix = malloc(sizeof(char **) * map->y);
+	if (!map->c_z_matrix)
+	{
+		ft_printf("Error: memory allocation failed for c_z_matrix\n");
+		return 0;
+	}
+
+	int i = 0;
+	while (i < map->y)
+	{
+		map->c_z_matrix[i] = malloc(sizeof(char *) * map->x);
+		if (!map->c_z_matrix[i])
+		{
+			ft_printf("Error: memory allocation failed at row %d for c_z_matrix\n", i);
+			free_c_z_matrix(map);
+			return 0;
+		}
+		i++;
+	}
+	return (1);  // Successful allocation
 }
 
 int	alloc_c_colours_matrix(t_map *map)

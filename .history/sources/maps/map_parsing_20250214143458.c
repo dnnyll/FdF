@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:08:55 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/14 14:35:10 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/14 14:34:58 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ void	read_map_repeat(t_map *map, char *filename)
 	store_map_lines(map, fd);
 	process_lines(map);
 	free_char_matrix_stash(map);
+	free_t_map(map);
 	close(fd);
 	print_c_z_matrix(map);
 }
