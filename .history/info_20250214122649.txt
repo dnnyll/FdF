@@ -1,0 +1,7 @@
+information:
+
+X11 key values: /usr/include/X11/keysymdef.h
+cc : cc main.c -L../minilibx-linux -lmlx -lX11 -lXext -lm -lz -lGL
+
+
+valgrind --leak-check=full --show-leak-kinds=all track./fdf maps/test_maps/mars.fdf
