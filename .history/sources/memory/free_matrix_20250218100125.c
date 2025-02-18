@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:26:46 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/18 11:23:25 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/18 10:01:24 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,54 +34,15 @@ void	free_t_map(t_map *map)
 		free_coordinates_grid(map);
 	free(map);
 }
+
 void free_char_matrix_stash(t_map *map)
 {
 	if (!map->char_matrix_stash)
 		return;
-
-	int row = 0;
-	while (row < map->y)
-	{
-		if (map->char_matrix_stash[row])
-			free(map->char_matrix_stash[row]); // Free each line
-		row++;
-	}
-
-	free(map->char_matrix_stash); // Free the main array
-	map->char_matrix_stash = NULL;
+	ft_printf("Freeing char_matrix_stash: %p\n", 
+		
+	)
 }
-
-// void free_char_matrix_stash(t_map *map)
-// {
-// 	// if (!map->char_matrix_stash)
-// 	// 	return;
-
-// 	int row;
-	
-// 	row = 0;
-// 	if (row < map->y)
-// 	{
-// 		if (map->char_matrix_stash[row])
-// 		{
-// 			ft_printf("Freeing char_matrix_stash row %d: %p\n", row, map->char_matrix_stash[row]);
-// 			free(map->char_matrix_stash[row]);
-// 			map->char_matrix_stash[row] = NULL;
-// 			row++;
-// 		}
-// 		free(map->char_matrix_stash);
-// 		map->char_matrix_stash = NULL;
-// 	}
-
-// }
-
-// void	free_char_matrix_stash(t_map *map)
-// {
-// 	if (!map->char_matrix_stash)
-// 		return;
-// 	ft_printf("Freeing char_matrix_stash: %p\n", map->char_matrix_stash);
-// 	free(map->char_matrix_stash);
-// 	map->char_matrix_stash = NULL;
-// }
 
 
 void free_c_z_matrix(t_map *map)

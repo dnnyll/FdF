@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:08:55 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/18 11:40:15 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/18 10:55:21 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,18 +91,20 @@ void process_parts(t_map *map, int row, int col)
 	{
 		*comma_pos = '\0';
 		if (map->c_colours_matrix[row][col])
-			free(map->c_colours_matrix[row][col]);
+			free(map->c_colours_matrix[row][col]); // Free existing color
 		map->c_colours_matrix[row][col] = ft_strdup(comma_pos + 1);
 	}
 	else
 	{
 		if (map->c_colours_matrix[row][col])
-			free(map->c_colours_matrix[row][col]);
+			free(map->c_colours_matrix[row][col]); // Free existing color
 		map->c_colours_matrix[row][col] = NULL;
 	}
 	map->c_z_matrix[row][col] = ft_strdup(value_element);
-	free(value_element);
 }
+
+
+
 
 void	read_map_repeat(t_map *map, char *filename)
 {

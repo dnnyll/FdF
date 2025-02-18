@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:08:55 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/18 11:40:15 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/18 10:42:33 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,33 @@
 
 void	store_map_lines(t_map *map, int fd)
 {
-	int i = 0;
+	int index = 0;
 
-	while (i < map->y)
+	while (index < map->y)
 	{
 		map->line = get_next_line(fd);
 		if (!map->line)
 		{
 			ft_printf("Error: no line\n");
-			while (i-- > 0)  // Free previous lines
-				free(map->char_matrix_stash[i]);
+			while (index-- > 0)  // Free previous lines
+				free(map->char_matrix_stash[index]);
 			free(map->char_matrix_stash);
 			map->char_matrix_stash = NULL;
 			return;
 		}
-		map->char_matrix_stash[i] = ft_strdup(map->line);
+		map->char_matrix_stash[index] = ft_strdup(map->line);
 		ft_printf("Stored line %d at %p\n", i, map->char_matrix_stash[i]);
 		free(map->line);
-		i++;
+		index++;
 	}
 }
 
 // void	store_map_lines(t_map *map, int fd)
 // {
-// 	int		i;
+// 	int		index;
 
-// 	i = 0;
-// 	while (i < map->y)
+// 	index = 0;
+// 	while (index < map->y)
 // 	{
 // 		map->line = get_next_line(fd);
 // 		if (!map->line)
@@ -49,9 +49,9 @@ void	store_map_lines(t_map *map, int fd)
 // 			free(map->line);
 // 			return;
 // 		}
-// 		map->char_matrix_stash[i] = ft_strdup(map->line);
+// 		map->char_matrix_stash[index] = ft_strdup(map->line);
 // 		free(map->line);
-// 		i++;
+// 		index++;
 // 	}
 // }
 
@@ -89,20 +89,22 @@ void process_parts(t_map *map, int row, int col)
 	comma_pos = ft_strchr(value_element, ',');
 	if (comma_pos)
 	{
-		*comma_pos = '\0';
+		*comma_pos = '\0';    
 		if (map->c_colours_matrix[row][col])
-			free(map->c_colours_matrix[row][col]);
+			free(map->c_colours_matrix[row][col]); // Free existing color
 		map->c_colours_matrix[row][col] = ft_strdup(comma_pos + 1);
 	}
 	else
 	{
 		if (map->c_colours_matrix[row][col])
-			free(map->c_colours_matrix[row][col]);
+			free(map->c_colours_matrix[row][col]); // Free existing color
 		map->c_colours_matrix[row][col] = NULL;
 	}
 	map->c_z_matrix[row][col] = ft_strdup(value_element);
-	free(value_element);
 }
+
+
+
 
 void	read_map_repeat(t_map *map, char *filename)
 {

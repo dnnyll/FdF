@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:26:46 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/18 11:23:25 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:23:22 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,28 +84,28 @@ void free_char_matrix_stash(t_map *map)
 // }
 
 
-void free_c_z_matrix(t_map *map)
-{
-	int row;
-	int col;
+// void free_c_z_matrix(t_map *map)
+// {
+// 	int row;
+// 	int col;
 
-	row = 0;
-	while (row < map->y)
-	{
-		if (map->c_z_matrix[row])
-		{
-			col = 0;
-			while (map->c_z_matrix[row][col])
-			{
-				free(map->c_z_matrix[row][col]);
-				col++;
-			}
-			free(map->c_z_matrix[row]);
-		}
-		row++;
-	}
-	free(map->c_z_matrix);
-}
+// 	row = 0;
+// 	while (row < map->y)
+// 	{
+// 		if (map->c_z_matrix[row])
+// 		{
+// 			col = 0;
+// 			while (map->c_z_matrix[row][col])
+// 			{
+// 				free(map->c_z_matrix[row][col]);
+// 				col++;
+// 			}
+// 			free(map->c_z_matrix[row]);
+// 		}
+// 		row++;
+// 	}
+// 	free(map->c_z_matrix);
+// }
 // void free_c_z_matrix(t_map *map)
 // {
 //     int row;

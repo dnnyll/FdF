@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:08:55 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/18 11:40:15 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:22:13 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,30 +55,30 @@ void	store_map_lines(t_map *map, int fd)
 // 	}
 // }
 
-void	process_lines(t_map *map)
-{
-	int	row;
-	int	col;
+// void	process_lines(t_map *map)
+// {
+// 	int	row;
+// 	int	col;
 
-	row = 0;
-	while (row < map->y)
-	{
-		col = 0;
-		map->c_z_matrix[row] = ft_split(map->char_matrix_stash[row], ' ');
-		if (!map->c_z_matrix[row])
-		{
-			ft_printf("Error: no row content\n");
-			free_c_z_matrix(map);
-			return;
-		}
-		while (map->c_z_matrix[row][col])
-		{
-			process_parts(map, row, col);
-			col++;
-		}
-		row++;
-	}
-}
+// 	row = 0;
+// 	while (row < map->y)
+// 	{
+// 		col = 0;
+// 		map->c_z_matrix[row] = ft_split(map->char_matrix_stash[row], ' ');
+// 		if (!map->c_z_matrix[row])
+// 		{
+// 			ft_printf("Error: no row content\n");
+// 			free_c_z_matrix(map);
+// 			return;
+// 		}
+// 		while (map->c_z_matrix[row][col])
+// 		{
+// 			process_parts(map, row, col);
+// 			col++;
+// 		}
+// 		row++;
+// 	}
+// }
 
 void process_parts(t_map *map, int row, int col)
 {
@@ -101,7 +101,6 @@ void process_parts(t_map *map, int row, int col)
 		map->c_colours_matrix[row][col] = NULL;
 	}
 	map->c_z_matrix[row][col] = ft_strdup(value_element);
-	free(value_element);
 }
 
 void	read_map_repeat(t_map *map, char *filename)

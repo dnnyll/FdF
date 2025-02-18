@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 10:36:23 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/18 11:15:24 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/18 09:56:11 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,70 +14,24 @@
 
 int	alloc_char_matrix_stash(t_map *map)
 {
-	if (map->char_matrix_stash) // Prevent leak from previous allocation
-	{
-		ft_printf("WARNING: char_matrix_stash was already allocated at %p!\n", (void*)map->char_matrix_stash);	
-		free_char_matrix_stash(map);
-	}
 	map->char_matrix_stash = malloc(sizeof(char *) * map->y);
 	if (!map->char_matrix_stash)
 	{
 		ft_printf("Error: memory allocation failed for char_matrix_stash\n");
-		return (0);
+		return 0;
 	}
-	    ft_printf("Allocated char_matrix_stash at %p\n", (void*)map->char_matrix_stash);
-	int row = 0;
-	while (row < map->y)
-	{
-		map->char_matrix_stash[row] = NULL; // Initialize to NULL for safety
-		row++;
-	}
-	return (1);
-}
-
-// int alloc_char_matrix_stash(t_map *map)
-// {
-//     map->char_matrix_stash = malloc(sizeof(char *) * map->y);
-//     if (!map->char_matrix_stash)
-//     {
-//         ft_printf("Error: memory allocation failed for char_matrix_stash\n");
-//         return 0;
-//     }
-
-//     int i = 0;
-//     while (i < map->y)
-//     {
-//         map->char_matrix_stash[i] = NULL; // Initialize NULL to track unallocated rows
-//         ft_printf("Allocated row pointer %d at %p\n", i, &map->char_matrix_stash[i]);
-//         i++;
-//     }
-//     return 1;  
-// }
-
-// int	alloc_char_matrix_stash(t_map *map)
-// {
-// 	int	i;
-	
-// 	map->char_matrix_stash = malloc(sizeof(char *) * map->y);
-// 	if (!map->char_matrix_stash)
-// 	{
-// 		ft_printf("Error: memory allocation failed for char_matrix_stash\n");
-// 		return (0);
-// 	}
 		
-// 	i = 0;
-// 	while (i < map->y)
-// 	{
-// 		map->char_matrix_stash[i] = malloc(sizeof(char *) *map->x);
-// 		if (!map->char_matrix_stash[i])
-// 		{
-// 			ft_printf("Error: memory allocation failed for row %d\n", i);
-// 			return (0);
-// 		}
-// 		i++;
-// 	}
-// 	return (1);
-// }
+	int i = 0;
+	while (i < map->y)
+	{
+		map->char_matrix_stash[i] = malloc(sizeof(char *) *map->x);
+		if (!map->char_matrix_stash[i])
+		{
+			ft_printf("Error: memory allocation failed for row %d")
+		}
+	}
+	return 1;  // Successful allocation
+}
 
 int alloc_c_z_matrix(t_map *map)
 {

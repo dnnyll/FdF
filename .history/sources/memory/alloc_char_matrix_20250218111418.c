@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 10:36:23 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/18 11:15:24 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:14:18 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,13 @@ int	alloc_char_matrix_stash(t_map *map)
 {
 	if (map->char_matrix_stash) // Prevent leak from previous allocation
 	{
-		ft_printf("WARNING: char_matrix_stash was already allocated at %p!\n", (void*)map->char_matrix_stash);	
+			
 		free_char_matrix_stash(map);
-	}
+
 	map->char_matrix_stash = malloc(sizeof(char *) * map->y);
 	if (!map->char_matrix_stash)
-	{
-		ft_printf("Error: memory allocation failed for char_matrix_stash\n");
 		return (0);
-	}
-	    ft_printf("Allocated char_matrix_stash at %p\n", (void*)map->char_matrix_stash);
+	
 	int row = 0;
 	while (row < map->y)
 	{

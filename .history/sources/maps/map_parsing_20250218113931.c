@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:08:55 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/18 11:40:15 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:39:31 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void process_parts(t_map *map, int row, int col)
 		map->c_colours_matrix[row][col] = NULL;
 	}
 	map->c_z_matrix[row][col] = ft_strdup(value_element);
-	free(value_element);
+	free()
 }
 
 void	read_map_repeat(t_map *map, char *filename)
