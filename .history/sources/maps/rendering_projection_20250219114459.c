@@ -46,15 +46,15 @@ void draw_line(void *mlx, void *win, t_map *map, int current_colour)
 		// else if (map->iso->y1 >= map->iso->window_height) map->iso->y1 = map->iso->window_height - 1;
 
 		// Now check if the coordinates are still valid (this should not trigger if clamping works)
-		if (map->iso->x1 < 0 || map->iso->x1 >= map->iso->window_width ||
-			map->iso->y1 < 0 || map->iso->y1 >= map->iso->window_height)
+		if (map->iso->x1 < 0 || map->iso->x1 >= map->window->win_width ||
+			map->iso->y1 < 0 || map->iso->y1 >= map->window->win_height)
 		{
 			printf("Warning: Exiting at (%f, %f) - Out of bounds\n", map->iso->x1, map->iso->y1);
 			exit(EXIT_FAILURE);
 		}
 
-		if (map->iso->x1 < 0 || map->iso->x1 >= map->iso->window_width ||
-		map->iso->y1 < 0 || map->iso->y1 >= map->iso->window_height)
+		if (map->iso->x1 < 0 || map->iso->x1 >= map->window->win_width ||
+		map->iso->y1 < 0 || map->iso->y1 >= map->window->win_height)
 		{
 			printf("Warning: Exiting at (%f, %f) - Out of bounds\n", map->iso->x1, map->iso->y1);
 			exit(EXIT_FAILURE);
@@ -82,7 +82,7 @@ void draw_line(void *mlx, void *win, t_map *map, int current_colour)
 			map->colour->y_colour_grid = 0;
 		else if (map->colour->y_colour_grid >= map->y)
 			map->colour->y_colour_grid = map->y - 1;
-		mlx_pixel_put(mlx, win, map->iso->x1, map->iso->y1, current_colour);
+		put_pixel(map, (int)map->iso->x1, (int)map->iso->y1, current_colour);
 		// If we've reached the destination, break the loop
 		if (dif_check(map->iso->x1, map->iso->x2, epsilon) && 
 			dif_check(map->iso->y1, map->iso->y2, epsilon))
@@ -106,62 +106,62 @@ void draw_line(void *mlx, void *win, t_map *map, int current_colour)
 	}
 }
 
-void	draw_grid(void *mlx_ptr, void *win_ptr, t_map *map)
-{
-	draw_horizontal_lines(mlx_ptr, win_ptr, map);
-	draw_vertical_lines(mlx_ptr, win_ptr, map);
-}
+// void	draw_grid(void *mlx_ptr, void *win_ptr, t_map *map)
+// {
+// 	draw_horizontal_lines(mlx_ptr, win_ptr, map);
+// 	draw_vertical_lines(mlx_ptr, win_ptr, map);
+// }
 
-void draw_horizontal_lines(void *mlx_ptr, void *win_ptr, t_map *map)
-{
-	int	i;
-	int	j;
-	int	current_colour;
+// void draw_horizontal_lines(void *mlx_ptr, void *win_ptr, t_map *map)
+// {
+// 	int	i;
+// 	int	j;
+// 	int	current_colour;
 
-	i = 0;
-	while (i < map->y)
-	{
-		j = 0;
-		while (j < map->x - 1)
-		{
-			map->iso->x1 = (int)roundf(map->conversion_grid[i][j * 2]);
-			map->iso->y1 = (int)roundf(map->conversion_grid[i][j * 2 + 1]);
-			map->iso->x2 = (int)roundf(map->conversion_grid[i][(j + 1) * 2]);
-			map->iso->y2 = (int)roundf(map->conversion_grid[i][(j + 1) * 2 + 1]);
-			// i, j, map->iso->x1, map->iso->y1, map->iso->x2, map->iso->y2);
-			current_colour = map->colours_matrix[i][j];
-			// get_rgb_values(current_colour) ==> struct {r= 1, g = 45, b =5}
-			// get_gradient_values(struct rgb, )
-			// int current_colour = turn_rgb_to_int(struct rgb)
-			draw_line(mlx_ptr, win_ptr, map, current_colour);
-			j++;
-		}
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (i < map->y)
+// 	{
+// 		j = 0;
+// 		while (j < map->x - 1)
+// 		{
+// 			map->iso->x1 = (int)roundf(map->conversion_grid[i][j * 2]);
+// 			map->iso->y1 = (int)roundf(map->conversion_grid[i][j * 2 + 1]);
+// 			map->iso->x2 = (int)roundf(map->conversion_grid[i][(j + 1) * 2]);
+// 			map->iso->y2 = (int)roundf(map->conversion_grid[i][(j + 1) * 2 + 1]);
+// 			// i, j, map->iso->x1, map->iso->y1, map->iso->x2, map->iso->y2);
+// 			current_colour = map->colours_matrix[i][j];
+// 			// get_rgb_values(current_colour) ==> struct {r= 1, g = 45, b =5}
+// 			// get_gradient_values(struct rgb, )
+// 			// int current_colour = turn_rgb_to_int(struct rgb)
+// 			draw_line(mlx_ptr, win_ptr, map, current_colour);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }
 
-void draw_vertical_lines(void *mlx_ptr, void *win_ptr, t_map *map)
-{
-	int	i;
-	int	j;
+// void draw_vertical_lines(void *mlx_ptr, void *win_ptr, t_map *map)
+// {
+// 	int	i;
+// 	int	j;
 
-	i = 0;
-	while (i < map->y - 1)
-	{
-		j = 0;
-		while (j < map->x)
-		{
-			map->iso->x1 = (int)roundf(map->conversion_grid[i][j * 2]);
-			map->iso->y1 = (int)roundf(map->conversion_grid[i][j * 2 + 1]);
-			map->iso->x2 = (int)roundf(map->conversion_grid[i + 1][j * 2]);
-			map->iso->y2 = (int)roundf(map->conversion_grid[i + 1][j * 2 + 1]);
-			int	current_colour = map->colours_matrix[i][j];
-			draw_line(mlx_ptr, win_ptr, map, current_colour);
-			j++;
-		}
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (i < map->y - 1)
+// 	{
+// 		j = 0;
+// 		while (j < map->x)
+// 		{
+// 			map->iso->x1 = (int)roundf(map->conversion_grid[i][j * 2]);
+// 			map->iso->y1 = (int)roundf(map->conversion_grid[i][j * 2 + 1]);
+// 			map->iso->x2 = (int)roundf(map->conversion_grid[i + 1][j * 2]);
+// 			map->iso->y2 = (int)roundf(map->conversion_grid[i + 1][j * 2 + 1]);
+// 			int	current_colour = map->colours_matrix[i][j];
+// 			draw_line(mlx_ptr, win_ptr, map, current_colour);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }
 
 // Check if two floats are approximately equal within an epsilon threshold
 int dif_check(double a, double b, double epsilon)
