@@ -14,6 +14,9 @@
 
 void draw_line(void *mlx, void *win, t_map *map, int current_colour)
 {
+
+	(void)mlx;
+	(void)win;
 	double	epsilon = 0.00000000001;
 	// Calculate the differences
 	map->iso->dif_x = map->iso->x2 - map->iso->x1;
@@ -82,7 +85,9 @@ void draw_line(void *mlx, void *win, t_map *map, int current_colour)
 			map->colour->y_colour_grid = 0;
 		else if (map->colour->y_colour_grid >= map->y)
 			map->colour->y_colour_grid = map->y - 1;
-		mlx_pixel_put(mlx, win, map->iso->x1, map->iso->y1, current_colour);
+
+		set_pixel(map, current_colour);
+
 		// If we've reached the destination, break the loop
 		if (dif_check(map->iso->x1, map->iso->x2, epsilon) && 
 			dif_check(map->iso->y1, map->iso->y2, epsilon))
@@ -108,8 +113,15 @@ void draw_line(void *mlx, void *win, t_map *map, int current_colour)
 
 void	draw_grid(void *mlx_ptr, void *win_ptr, t_map *map)
 {
+	// int k = 0;
 	draw_horizontal_lines(mlx_ptr, win_ptr, map);
 	draw_vertical_lines(mlx_ptr, win_ptr, map);
+	// while (k < map->size_line * map->y)
+	// {
+		// ft_printf("buffer content outside buffer [%d]:%d\n", k, map->buffer[k]);
+	// 	k++;
+	// }
+	mlx_put_image_to_window(map->window->mlx_ptr, map->window->win_ptr, map->window->img_ptr, 0 , 0);
 }
 
 void draw_horizontal_lines(void *mlx_ptr, void *win_ptr, t_map *map)
@@ -128,11 +140,8 @@ void draw_horizontal_lines(void *mlx_ptr, void *win_ptr, t_map *map)
 			map->iso->y1 = (int)roundf(map->conversion_grid[i][j * 2 + 1]);
 			map->iso->x2 = (int)roundf(map->conversion_grid[i][(j + 1) * 2]);
 			map->iso->y2 = (int)roundf(map->conversion_grid[i][(j + 1) * 2 + 1]);
-			// i, j, map->iso->x1, map->iso->y1, map->iso->x2, map->iso->y2);
 			current_colour = map->colours_matrix[i][j];
-			// get_rgb_values(current_colour) ==> struct {r= 1, g = 45, b =5}
-			// get_gradient_values(struct rgb, )
-			// int current_colour = turn_rgb_to_int(struct rgb)
+			// ft_printf("current_colours: %d\n", current_colour);
 			draw_line(mlx_ptr, win_ptr, map, current_colour);
 			j++;
 		}
@@ -144,6 +153,7 @@ void draw_vertical_lines(void *mlx_ptr, void *win_ptr, t_map *map)
 {
 	int	i;
 	int	j;
+	int	current_colour;
 
 	i = 0;
 	while (i < map->y - 1)
@@ -155,7 +165,9 @@ void draw_vertical_lines(void *mlx_ptr, void *win_ptr, t_map *map)
 			map->iso->y1 = (int)roundf(map->conversion_grid[i][j * 2 + 1]);
 			map->iso->x2 = (int)roundf(map->conversion_grid[i + 1][j * 2]);
 			map->iso->y2 = (int)roundf(map->conversion_grid[i + 1][j * 2 + 1]);
-			int	current_colour = map->colours_matrix[i][j];
+			current_colour = map->colours_matrix[i][j];
+			// ft_printf("current_colours: %d\n", current_colour);
+
 			draw_line(mlx_ptr, win_ptr, map, current_colour);
 			j++;
 		}

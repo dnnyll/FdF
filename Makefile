@@ -6,13 +6,13 @@
 #    By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/06 13:24:44 by daniefe2          #+#    #+#              #
-#    Updated: 2025/02/14 07:18:26 by daniefe2         ###   ########.fr        #
+#    Updated: 2025/02/20 16:15:47 by daniefe2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compiler and flags
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -I./headers
+CFLAGS = -Wall -Wextra -Werror -g3 -I./headers
 
 # Source files and object files
 SRCS =	sources/main.c \
@@ -33,6 +33,7 @@ SRCS =	sources/main.c \
 		sources/maps/iso_conversion.c \
 		sources/maps/coodinates_shifting.c \
 		sources/maps/rendering_projection.c \
+		sources/maps/set_pixel.c \
 		sources/colour_management/rgb.c \
 		sources/window_hooks/window_hooks.c
 

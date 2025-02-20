@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:35:37 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/18 09:40:24 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/20 16:44:33 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ int	main(int argc, char **argv)
 	map = initialize_map();
 	if (!map)
 		exit (EXIT_FAILURE);
+	map->window->mlx_ptr = mlx_init();
+	map->window->win_ptr = mlx_new_window(map->window->mlx_ptr, 3200, 2048, "FdF");
+	map->window->img_ptr = mlx_new_image(map->window->mlx_ptr, 3200, 2048);
+	if (!map->window->img_ptr)
+		ft_printf("BUG\n");
+	map->buffer = mlx_get_data_addr(map->window->img_ptr, &map->bpp, &map->size_line, &map->endian);
 	read_map_size(map, file);
 	read_map_repeat(map, file);
 
@@ -38,9 +44,7 @@ int	main(int argc, char **argv)
 	alloc_conversion_grid(map);
 	iso_conversion_grid(map);
 	coordinates_shifting(map);
-	map->window->mlx_ptr = mlx_init();
-	map->window->win_ptr = mlx_new_window(map->window->mlx_ptr, map->iso->window_width, 
-	map->iso->window_height, "FdF");
+	
 	mlx_key_hook(map->window->win_ptr, key_hook, map);
 	draw_grid(map->window->mlx_ptr, map->window->win_ptr, map);
 	free_conversion_grid(map);

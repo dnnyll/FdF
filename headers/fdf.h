@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/14 10:36:25 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:36:33 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,9 @@ typedef	struct s_window
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
+	void	*img_ptr;
 }
 t_window;
-
-// Main application structure
-typedef	struct s_app
-{
-	t_window win;
-	
-}
-t_app;
 
 // map parsing structure
 typedef struct	s_colour
@@ -115,8 +108,10 @@ t_iso;
 	
 typedef	struct s_map
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
+	int		endian;
+	char	*buffer;
+	int		bpp;
+	int		size_line;
 	int		x;
 	int		y;
 	int		z;
@@ -161,6 +156,8 @@ void	draw_vertical_lines(void *mlx_ptr, void *win_ptr, t_map *map);
 void	draw_horizontal_lines(void *mlx_ptr, void *win_ptr, t_map *map);
 double	find_x_iso_min(t_map *map);
 double	find_y_iso_min(t_map *map);
+
+void	set_pixel(t_map *map, int current_colour);
 
 
 
