@@ -6,11 +6,10 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:23:18 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/13 13:47:05 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/20 18:29:42 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//this group is responsible for calculating and centering our projection
 #include "fdf.h"
 
 void	axis_point_calculation(t_map *map)
@@ -50,8 +49,8 @@ void	coordinates_shifting(t_map *map)
 
 	axis_point_calculation(map);
 	center_calculation(map);
-	offset_x = (map->iso->window_width / 2) - map->iso->center_x;
-	offset_y = (map->iso->window_height / 2) - map->iso->center_y;
+	offset_x = (map->window->width / 2) - map->iso->center_x;
+	offset_y = (map->window->height / 2) - map->iso->center_y;
 	row = 0;
 	while (row < map->y)
 	{

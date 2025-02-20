@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:00:10 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/20 15:48:43 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/20 18:30:58 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void print_char_values_matrix(t_map *map)
 {
 	ft_printf("Initiating parts_values matrix printing.\n");
 	int i = 0;
-	while (i < map->y) {  // Iterating over rows
+	while (i < map->y)
+	{
 		int j = 0;
 		while (j < map->x) {  // Iterating over columns
 			ft_printf("%s", map->c_z_matrix[i][j]);  // Print the value

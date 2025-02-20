@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:26:59 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/10 14:29:02 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/20 18:22:19 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	read_map_size(t_map *map, char *filename)
 	free(map->line);
 	close(fd);
 }
-// deactivated the verification of the input lines consistency bcs it causes problems (mars map)
+
 void	read_map_width(t_map *map, char *line)
 {
 	char	**parts;
@@ -52,13 +52,6 @@ void	read_map_width(t_map *map, char *line)
 	x = count_line_elements(parts);
 	if (map->x == 0)
 		map->x = x;
-	// else if (map->x != x)
-	// {
-	// 	ft_printf("Error: inconsistent row x\n");
-	// 	free_split_result(parts);
-	// 	exit(EXIT_FAILURE);
-	// }
-	// ft_printf("x: %d\n" ,map->x);
 	free_split_result(parts);
 }
 

@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/20 15:36:33 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/20 18:31:35 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,22 @@
 #include "../lib/Libft/libft.h"
 #include <math.h>
 
-
-//maping keys
-
 #define KEY_ESC 0xff1b
 #define KEY_W 119
 #define KEY_S 115
 #define KEY_A 97
 #define KEY_D 100
 
-// structure to hold the window and mlx pointers
 typedef	struct s_window
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	void	*img_ptr;
+	int		width;
+	int		height;
 }
 t_window;
 
-// map parsing structure
 typedef struct	s_colour
 {
 	int	red;
@@ -49,7 +46,6 @@ typedef struct	s_colour
 	int	y_colour_grid;
 	int	start_colour;
 	int	end_colour;
-
 	int start_red;
 	int start_green;
 	int start_blue;
@@ -85,18 +81,13 @@ typedef	struct	s_iso
 	int		sum_y_points;
 	int		center_x;
 	int		center_y;
-
-	int		window_width; 	//needs to be transfered to window struct
-	int		window_height;	//needs to be transfered to window struct
 	double	x_shift;
 	double	y_shift;
 	double	zoom;
-
 	double	x1;
 	double	y1;
 	double	x2;
 	double	y2;
-
 	int		dif_x;
 	int		dif_y;
 	int		step_drct_x;
