@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 10:00:25 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/14 08:34:00 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/24 09:55:56 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ void	initialize_matrices(t_map *map)
 
 void	init_row_pointers(t_map *map)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	while (i < map->y)
 	{
 		if (map->c_z_matrix)
@@ -36,8 +37,6 @@ void	init_row_pointers(t_map *map)
 			map->z_matrix[i] = NULL;
 		if (map->colours_matrix)
 			map->colours_matrix[i] = NULL;
-		if (map->colour->rgb_grid)
-			map->colour->rgb_grid[i] = NULL;
 		i++;
 	}
 	if (map->char_matrix_stash)
@@ -46,9 +45,10 @@ void	init_row_pointers(t_map *map)
 
 void	init_cell_pointers(t_map *map)
 {
-	int i = 0;
-	int j;
+	int	i;
+	int	j;
 
+	i = 0;
 	while (i < map->y)
 	{
 		j = 0;

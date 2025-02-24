@@ -12,9 +12,72 @@
 
 #include "fdf.h"
 
+// void	setup_line_params(t_map *map)
+// {
+// 	map->iso->dif_x = map->iso->x2 - map->iso->x1;
+// 	if (map->iso->dif_x < 0)
+// 		map->iso->dif_x = -map->iso->dif_x;
+// 	map->iso->dif_y = map->iso->y2 - map->iso->y1;
+// 	if (map->iso->dif_y < 0)
+// 		map->iso->dif_y = -map->iso->dif_y;
+// 	map->iso->step_drct_x = -1;
+// 	map->iso->step_drct_y = -1;
+// 	if (map->iso->x1 < map->iso->x2)
+// 		map->iso->step_drct_x = 1;
+// 	if (map->iso->y1 < map->iso->y2)
+// 		map->iso->step_drct_y = 1;
+// 	map->iso->err = map->iso->dif_x - map->iso->dif_y;
+// }
+
+// int	validate_and_set_pixel(t_map *map, int current_colour)
+// {
+// 	if (map->iso->x1 < 0 || map->iso->x1 >= map->window->width ||
+// 		map->iso->y1 < 0 || map->iso->y1 >= map->window->height)
+// 		return (0);
+// 	if (map->colour->x_colour_grid >= map->x || map->colour->y_colour_grid >= map->y)
+// 		return (0);
+// 	if (map->colour->x_colour_grid < 0)
+// 		map->colour->x_colour_grid = 0;
+// 	else if (map->colour->x_colour_grid >= map->x)
+// 		map->colour->x_colour_grid = map->x - 1;
+// 	if (map->colour->y_colour_grid < 0)
+// 		map->colour->y_colour_grid = 0;
+// 	else if (map->colour->y_colour_grid >= map->y)
+// 		map->colour->y_colour_grid = map->y - 1;
+// 	set_pixel(map, current_colour);
+// 	return (1);
+// }
+
+// void	draw_line(t_map *map, int current_colour)
+// {
+// 	double epsilon = 0.00000000001;
+
+// 	epsilon = 0.00000000001;
+// 	setup_line_params(map);
+// 	while (1)
+// 	{
+// 		if (!validate_and_set_pixel(map, current_colour))
+// 			break;
+// 		if (dif_check(map->iso->x1, map->iso->x2, epsilon) &&
+// 			dif_check(map->iso->y1, map->iso->y2, epsilon))
+// 			break;
+		
+// 		map->iso->temp_err = 2 * map->iso->err;
+// 		if (map->iso->temp_err > -map->iso->dif_y)
+// 		{
+// 			map->iso->err -= map->iso->dif_y;
+// 			map->iso->x1 += map->iso->step_drct_x;
+// 		}
+// 		if (map->iso->temp_err < map->iso->dif_x)
+// 		{
+// 			map->iso->err += map->iso->dif_x;
+// 			map->iso->y1 += map->iso->step_drct_y;
+// 		}
+// 	}
+// }
+
 void draw_line(void *mlx, void *win, t_map *map, int current_colour)
 {
-
 	(void)mlx;
 	(void)win;
 	double	epsilon = 0.00000000001;
@@ -41,13 +104,6 @@ void draw_line(void *mlx, void *win, t_map *map, int current_colour)
 	map->iso->err = map->iso->dif_x - map->iso->dif_y;
 	while (1)
 	{
-		// // Clamp the values of x1 and y1
-		// if (map->iso->x1 < 0) map->iso->x1 = 0;
-		// else if (map->iso->x1 >= map->window->width) map->iso->x1 = map->window->width - 1;
-
-		// if (map->iso->y1 < 0) map->iso->y1 = 0;
-		// else if (map->iso->y1 >= map->window->height) map->iso->y1 = map->window->height - 1;
-
 		// Now check if the coordinates are still valid (this should not trigger if clamping works)
 		if (map->iso->x1 < 0 || map->iso->x1 >= map->window->width ||
 			map->iso->y1 < 0 || map->iso->y1 >= map->window->height)
@@ -55,7 +111,6 @@ void draw_line(void *mlx, void *win, t_map *map, int current_colour)
 			printf("Warning: Exiting at (%f, %f) - Out of bounds\n", map->iso->x1, map->iso->y1);
 			exit(EXIT_FAILURE);
 		}
-
 		if (map->iso->x1 < 0 || map->iso->x1 >= map->window->width ||
 		map->iso->y1 < 0 || map->iso->y1 >= map->window->height)
 		{
@@ -68,13 +123,6 @@ void draw_line(void *mlx, void *win, t_map *map, int current_colour)
 				map->colour->x_colour_grid, map->colour->y_colour_grid);
 			exit(EXIT_FAILURE);
 		}
-
-		// if (!map->colour->rgb_grid[map->colour->x_colour_grid][map->colour->y_colour_grid])
-		// {
-		// 	printf("Error: rgb_grid[%d][%d] is NULL\n", 
-		// 		map->colour->x_colour_grid, map->colour->y_colour_grid);
-		// 	exit(EXIT_FAILURE);
-		// }
 		// Ensure x_colour_grid is within bounds
 		if (map->colour->x_colour_grid < 0)
 			map->colour->x_colour_grid = 0;
@@ -85,9 +133,7 @@ void draw_line(void *mlx, void *win, t_map *map, int current_colour)
 			map->colour->y_colour_grid = 0;
 		else if (map->colour->y_colour_grid >= map->y)
 			map->colour->y_colour_grid = map->y - 1;
-
 		set_pixel(map, current_colour);
-
 		// If we've reached the destination, break the loop
 		if (dif_check(map->iso->x1, map->iso->x2, epsilon) && 
 			dif_check(map->iso->y1, map->iso->y2, epsilon))
@@ -113,14 +159,8 @@ void draw_line(void *mlx, void *win, t_map *map, int current_colour)
 
 void	draw_grid(void *mlx_ptr, void *win_ptr, t_map *map)
 {
-	// int k = 0;
 	draw_horizontal_lines(mlx_ptr, win_ptr, map);
 	draw_vertical_lines(mlx_ptr, win_ptr, map);
-	// while (k < map->size_line * map->y)
-	// {
-		// ft_printf("buffer content outside buffer [%d]:%d\n", k, map->buffer[k]);
-	// 	k++;
-	// }
 	mlx_put_image_to_window(map->window->mlx_ptr, map->window->win_ptr, map->window->img_ptr, 0 , 0);
 }
 
@@ -141,7 +181,6 @@ void draw_horizontal_lines(void *mlx_ptr, void *win_ptr, t_map *map)
 			map->iso->x2 = (int)roundf(map->conversion_grid[i][(j + 1) * 2]);
 			map->iso->y2 = (int)roundf(map->conversion_grid[i][(j + 1) * 2 + 1]);
 			current_colour = map->colours_matrix[i][j];
-			// ft_printf("current_colours: %d\n", current_colour);
 			draw_line(mlx_ptr, win_ptr, map, current_colour);
 			j++;
 		}
@@ -166,8 +205,6 @@ void draw_vertical_lines(void *mlx_ptr, void *win_ptr, t_map *map)
 			map->iso->x2 = (int)roundf(map->conversion_grid[i + 1][j * 2]);
 			map->iso->y2 = (int)roundf(map->conversion_grid[i + 1][j * 2 + 1]);
 			current_colour = map->colours_matrix[i][j];
-			// ft_printf("current_colours: %d\n", current_colour);
-
 			draw_line(mlx_ptr, win_ptr, map, current_colour);
 			j++;
 		}
@@ -175,10 +212,7 @@ void draw_vertical_lines(void *mlx_ptr, void *win_ptr, t_map *map)
 	}
 }
 
-// Check if two floats are approximately equal within an epsilon threshold
 int dif_check(double a, double b, double epsilon)
 {
-	return fabs(a - b) < epsilon;	// If the absolute difference is less than epsilon, return true
+	return fabs(a - b) < epsilon;
 }
-
-

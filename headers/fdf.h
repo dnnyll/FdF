@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/20 18:31:35 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/24 10:19:30 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ t_iso;
 	
 typedef	struct s_map
 {
+	int		result;
+	int		sign;
 	int		endian;
 	char	*buffer;
 	int		bpp;
@@ -149,6 +151,8 @@ double	find_x_iso_min(t_map *map);
 double	find_y_iso_min(t_map *map);
 
 void	set_pixel(t_map *map, int current_colour);
+void	setup_line_params(t_map *map);
+int		validate_and_set_pixel(t_map *map, int current_colour);
 
 
 
@@ -193,6 +197,10 @@ int		alloc_z_matrix(t_map *map);
 int		alloc_colours_matrix(t_map *map);
 void	int_matrix_alloc(t_map *map);
 
+void	alloc_coordinates_row(t_map *map, int row);
+void	alloc_coordinates_grid(t_map *map);
+
+
 //		-=""printers			/////////////////////////////////////////////
 void	print_char_values_matrix(t_map *map);
 void	print_char_colours_matrix(t_map *map);
@@ -205,10 +213,10 @@ void	print_conversion_grid(t_map *map);
 void	print_c_z_matrix(t_map *map);
 //		-=""conversions			///////////////////////////////////////////////
 void 	matrix_converter(t_map *map);
-int		colour_converter(const char *hex_parts);
+int		colour_converter(t_map *map, const char *hex_parts);
 void	populate_int_values(t_map *map);
 void	populate_int_colours(t_map *map);
-int		ft_atoi_base(const char *parts, const char *base);
+int		ft_atoi_base(t_map *map, const char *parts, const char *base);
 int		ft_isspace(char c);
 int		get_base_len(const char *base);
 int		is_valid_base(const char *base);

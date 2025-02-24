@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:23:18 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/20 18:29:42 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/24 10:06:16 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	axis_point_calculation(t_map *map)
 {
 	int	row;
 	int	col;
-	
+
 	row = 0;
 	map->iso->sum_x_points = 0;
 	map->iso->sum_y_points = 0;
@@ -27,7 +27,7 @@ void	axis_point_calculation(t_map *map)
 		{
 			map->iso->sum_x_points += map->conversion_grid[row][col * 2];
 			map->iso->sum_y_points += map->conversion_grid[row][col * 2 + 1];
-			col++;	
+			col++;
 		}
 		row++;
 	}
@@ -35,7 +35,9 @@ void	axis_point_calculation(t_map *map)
 
 void	center_calculation(t_map *map)
 {
-	int count_points = map->x * map->y;
+	int	count_points;
+
+	count_points = map->x * map->y;
 	map->iso->center_x = map->iso->sum_x_points / count_points;
 	map->iso->center_y = map->iso->sum_y_points / count_points;
 }

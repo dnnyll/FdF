@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 08:19:52 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/20 18:36:25 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/24 09:30:12 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	matrix_converter(t_map *map)
 	free_c_colours_matrix(map);
 }
 
-int	colour_converter(const char *hex_str)
+int	colour_converter(t_map *map, const char *hex_str)
 {
 	const char	*hex_base;
 	int			result;
@@ -34,7 +34,7 @@ int	colour_converter(const char *hex_str)
 	}
 	if (hex_str[0] == '0' && (hex_str[1] == 'x' || hex_str[1] == 'X'))
 		hex_str += 2;
-	result = ft_atoi_base(hex_str, hex_base);
+	result = ft_atoi_base(map, hex_str, hex_base);
 	return (result);
 }
 
@@ -69,7 +69,7 @@ void	populate_int_colours(t_map *map)
 		{
 			if (map->c_colours_matrix[i][j])
 				map->colours_matrix[i][j] = \
-				colour_converter(map->c_colours_matrix[i][j]);
+				colour_converter(map, map->c_colours_matrix[i][j]);
 			else
 				map->colours_matrix[i][j] = map->colour->default_colour;
 			j++;

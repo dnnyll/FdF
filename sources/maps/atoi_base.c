@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 09:13:23 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/20 18:33:57 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/24 09:40:36 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,28 +65,30 @@ int	get_base_i(char c, const char *base)
 	return (-1);
 }
 
-int	ft_atoi_base(const char *str, const char *base)
+int	ft_atoi_base(t_map *map, const char *str, const char *base)
 {
 	int	base_len;
-	int	result;
-	int	sign;
+	int	i;
 
 	base_len = get_base_len(base);
-	result = 0;
-	sign = 1;
 	if (!is_valid_base(base))
 		return (0);
 	while (ft_isspace(*str))
 		str++;
-	if (*str == '-' || *str == '+')
-		sign = (*str++ == '-') ? -1 : 1;
-	while (*str)
+	if (*str == '-')
 	{
-		int	i = get_base_i(*str, base);
-		if (i == -1)
-			break ;
-		result = result * base_len + i;
+		map->sign = -1;
 		str++;
 	}
-	return (result * sign);
+	else if (*str == '+')
+		str++;
+	while (*str)
+	{
+		i = get_base_i(*str, base);
+		if (i == -1)
+			break ;
+		map->result = map->result * base_len + i;
+		str++;
+	}
+	return (map->result * map->sign);
 }

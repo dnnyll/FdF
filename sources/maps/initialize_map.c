@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:57:05 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/20 18:15:02 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/24 09:37:26 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	initialize_other_fields(t_map *map)
 	map->x = 0;
 	map->y = 0;
 	map->z = 0;
+	map->result = 0;
+	map->sign = 1;
 	map->line = NULL;
 	map->char_matrix_stash = NULL;
 	map->z_matrix = NULL;
@@ -67,14 +69,14 @@ void	initialize_map_fields(t_map *map)
 
 t_map	*allocate_map(void)
 {
-	t_map *map = (t_map *)malloc(sizeof(t_map));
+	t_map	*map;
+
+	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
 		return (NULL);
-
 	map->iso = (t_iso *)malloc(sizeof(t_iso));
 	map->colour = (t_colour *)malloc(sizeof(t_colour));
 	map->window = (t_window *)malloc(sizeof(t_window));
-
 	if (!map->iso || !map->colour || !map->window)
 	{
 		free(map->iso);
@@ -88,8 +90,9 @@ t_map	*allocate_map(void)
 
 t_map	*initialize_map(void)
 {
-	t_map *map = allocate_map();
-	
+	t_map	*map;
+
+	map = allocate_map();
 	if (!map)
 		return (NULL);
 	initialize_map_fields(map);

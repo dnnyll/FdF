@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:08:55 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/18 11:40:15 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/24 10:43:10 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,46 +14,26 @@
 
 void	store_map_lines(t_map *map, int fd)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	while (i < map->y)
 	{
 		map->line = get_next_line(fd);
 		if (!map->line)
 		{
 			ft_printf("Error: no line\n");
-			while (i-- > 0)  // Free previous lines
+			while (i-- > 0)
 				free(map->char_matrix_stash[i]);
 			free(map->char_matrix_stash);
 			map->char_matrix_stash = NULL;
-			return;
+			return ;
 		}
 		map->char_matrix_stash[i] = ft_strdup(map->line);
-		ft_printf("Stored line %d at %p\n", i, map->char_matrix_stash[i]);
 		free(map->line);
 		i++;
 	}
 }
-
-// void	store_map_lines(t_map *map, int fd)
-// {
-// 	int		i;
-
-// 	i = 0;
-// 	while (i < map->y)
-// 	{
-// 		map->line = get_next_line(fd);
-// 		if (!map->line)
-// 		{
-// 			ft_printf("Error: no line\n");
-// 			free(map->line);
-// 			return;
-// 		}
-// 		map->char_matrix_stash[i] = ft_strdup(map->line);
-// 		free(map->line);
-// 		i++;
-// 	}
-// }
 
 void	process_lines(t_map *map)
 {
@@ -69,7 +49,7 @@ void	process_lines(t_map *map)
 		{
 			ft_printf("Error: no row content\n");
 			free_c_z_matrix(map);
-			return;
+			return ;
 		}
 		while (map->c_z_matrix[row][col])
 		{
@@ -80,10 +60,10 @@ void	process_lines(t_map *map)
 	}
 }
 
-void process_parts(t_map *map, int row, int col)
+void	process_parts(t_map *map, int row, int col)
 {
-	char *value_element;
-	char *comma_pos;
+	char	*value_element;
+	char	*comma_pos;
 
 	value_element = map->c_z_matrix[row][col];
 	comma_pos = ft_strchr(value_element, ',');
@@ -112,7 +92,7 @@ void	read_map_repeat(t_map *map, char *filename)
 	if (fd < 0)
 	{
 		ft_printf("Error opening and reading file\n");
-		return;
+		return ;
 	}
 	alloc_char_matrix_stash(map);
 	char_matrix_alloc(map);
@@ -120,5 +100,4 @@ void	read_map_repeat(t_map *map, char *filename)
 	process_lines(map);
 	free_char_matrix_stash(map);
 	close(fd);
-	print_c_z_matrix(map);
 }

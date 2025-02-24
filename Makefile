@@ -6,7 +6,7 @@
 #    By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/06 13:24:44 by daniefe2          #+#    #+#              #
-#    Updated: 2025/02/20 16:15:47 by daniefe2         ###   ########.fr        #
+#    Updated: 2025/02/24 10:42:40 by daniefe2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,9 @@ SRCS =	sources/main.c \
 		sources/maps/initialize_map.c \
 		lib/get_next_line/get_next_line.c \
 		lib/get_next_line/get_next_line_utils.c \
-		sources/printers/matrix_printer.c \
- 		sources/converters/atoi_base.c \
-		sources/converters/convert_to_int.c \
+ 		sources/maps/atoi_base.c \
+		sources/maps/convert_to_int.c \
+		sources/memory/free_grids.c \
 		sources/memory/free_matrix.c \
 		sources/memory/free_ressources.c \
 		sources/memory/alloc_char_matrix.c \
@@ -34,7 +34,6 @@ SRCS =	sources/main.c \
 		sources/maps/coodinates_shifting.c \
 		sources/maps/rendering_projection.c \
 		sources/maps/set_pixel.c \
-		sources/colour_management/rgb.c \
 		sources/window_hooks/window_hooks.c
 
 # Automatically generate object files from .c files

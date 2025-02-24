@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:35:37 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/20 18:43:05 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/24 09:19:41 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ int	main(int argc, char **argv)
 	read_map_repeat(map, file);
 	matrix_converter(map);
 	alloc_coordinates_grid(map); 
-	// malloc_rgb_grid(map);
-	// rgb_grid_populate(map);
 	scaling_coordinates(map);
 	alloc_conversion_grid(map);
 	iso_conversion_grid(map);

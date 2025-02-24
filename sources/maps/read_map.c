@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:26:59 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/20 18:22:19 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/24 09:43:31 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	read_map_size(t_map *map, char *filename)
 	{
 		ft_printf("Error opening and reading file\n");
 		free_t_map(map);
-		return;
+		return ;
 	}
 	map->line = get_next_line(fd);
 	while (map->line)
@@ -47,7 +47,7 @@ void	read_map_width(t_map *map, char *line)
 	if (!parts)
 	{
 		ft_printf("Error splitting line\n");
-		return;
+		return ;
 	}
 	x = count_line_elements(parts);
 	if (map->x == 0)
@@ -68,10 +68,10 @@ int	count_line_elements(char **parts)
 void	free_split_result(char **parts)
 {
 	int	i;
-	
+
 	i = 0;
-	if(!parts)
-		return;
+	if (!parts)
+		return ;
 	while (parts[i])
 		free(parts[i++]);
 	free(parts);
