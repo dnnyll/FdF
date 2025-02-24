@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_str.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daniefe2 <daniefe2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 11:03:48 by daniefe2          #+#    #+#             */
-/*   Updated: 2024/11/26 13:47:37 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/24 10:53:44 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ int	ft_printf_str(char *str)
 		return (6);
 	}
 	ft_putstr_fd(str, 1);
-		char_counter = ft_strlen(str);
+	char_counter = ft_strlen(str);
 	return (char_counter);
 }

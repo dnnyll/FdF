@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:57:05 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/24 09:37:26 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/24 14:06:30 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 void	initialize_other_fields(t_map *map)
 {
-	map->scaling_factor = 1;
+	map->scaling_factor = 2;
+	map->window->width = 3200;
+	map->window->height = 2048;
+	map->epsilon = 0.00000000001;
 	map->x = 0;
 	map->y = 0;
 	map->z = 0;
@@ -36,15 +39,13 @@ void	initialize_other_fields(t_map *map)
 	map->size_line = 0;
 	map->endian = 0;
 	map->buffer = NULL;
-	map->window->width = 3200;
-	map->window->height = 2048;
 }
 
 void	initialize_iso_fields(t_iso *iso)
 {
 	iso->pi_val = M_PI;
-	iso->alpha = 90.0 * (iso->pi_val / 180.0);
-	iso->beta = 45.0 * (iso->pi_val / 180.0);
+	iso->alpha = 45.0 * (iso->pi_val / 180.0);
+	iso->beta = 30.0 * (iso->pi_val / 180.0);
 	iso->cos_alpha = cos(iso->alpha);
 	iso->sin_alpha = sin(iso->alpha);
 	iso->cos_beta = cos(iso->beta);

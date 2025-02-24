@@ -6,7 +6,7 @@
 #    By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/06 13:24:44 by daniefe2          #+#    #+#              #
-#    Updated: 2025/02/24 10:42:40 by daniefe2         ###   ########.fr        #
+#    Updated: 2025/02/24 13:58:49 by daniefe2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,9 @@ SRCS =	sources/main.c \
 		sources/maps/iso_conversion.c \
 		sources/maps/coodinates_shifting.c \
 		sources/maps/rendering_projection.c \
+		sources/maps/bersenham.c \
 		sources/maps/set_pixel.c \
+		sources/maps/operations.c \
 		sources/window_hooks/window_hooks.c
 
 # Automatically generate object files from .c files
@@ -42,7 +44,6 @@ OBJS = $(SRCS:.c=.o)
 # Rule to compile .c files from any subdirectory
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
-
 
 # Name of the output executable
 NAME = fdf

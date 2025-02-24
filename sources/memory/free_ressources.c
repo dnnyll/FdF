@@ -6,13 +6,13 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 09:37:44 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/24 10:28:50 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/24 12:37:50 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	free_map_resources(t_map *map)
+void	free_map_ressources(t_map *map)
 {
 	if (!map)
 		return ;

@@ -6,13 +6,10 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:26:59 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/24 09:43:31 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/24 13:50:25 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//	Opens and reads the map input
-//	Calculates the y and x of the map
-//	Verifies if the input is valid?!?!?!
 #include "fdf.h"
 
 void	read_map_size(t_map *map, char *filename)
