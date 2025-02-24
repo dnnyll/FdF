@@ -6,20 +6,30 @@
 #    By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/06 13:24:44 by daniefe2          #+#    #+#              #
-#    Updated: 2025/02/24 13:58:49 by daniefe2         ###   ########.fr        #
+#    Updated: 2025/02/24 14:40:06 by daniefe2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Compiler and flags
+# Paths
+MLX_DIR = lib/minilibx-linux
+PRINTF_DIR = lib/ft_printf
+LIBFT_DIR = lib/Libft
+
+# Compiler and Flags
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g3 -I./headers
 
-# Source files and object files
+# Libraries
+MLX = -L $(MLX_DIR) -lmlx -lX11 -lXext -lm -lz -lGL
+PRF = -L $(PRINTF_DIR) -lftprintf
+LIB = -L $(LIBFT_DIR) -lft
+
+# Source files
 SRCS =	sources/main.c \
 		sources/maps/initialize_map.c \
 		lib/get_next_line/get_next_line.c \
 		lib/get_next_line/get_next_line_utils.c \
- 		sources/maps/atoi_base.c \
+		sources/maps/atoi_base.c \
 		sources/maps/convert_to_int.c \
 		sources/memory/free_grids.c \
 		sources/memory/free_matrix.c \
@@ -38,44 +48,38 @@ SRCS =	sources/main.c \
 		sources/maps/operations.c \
 		sources/window_hooks/window_hooks.c
 
-# Automatically generate object files from .c files
 OBJS = $(SRCS:.c=.o)
-
-# Rule to compile .c files from any subdirectory
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-# Name of the output executable
 NAME = fdf
 
-# MLX, ft_printf, and Libft libraries
-MLX = -L lib/minilibx-linux -lmlx -lX11 -lXext -lm -lz -lGL
-PRF = -L lib/ft_printf -lftprintf
-LIB = -L lib/Libft -lft
+# Ensure libraries are built before linking
+all: libft printf mlx $(NAME)
 
-
-# Default target to build the program
-all: $(NAME)
-
-# Rule to create the final executable
-# Calls libraries MLX, PRF, LIB
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(MLX) $(PRF) $(LIB) -o $(NAME)  # Link the object files to create the final executable
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(MLX) $(PRF) $(LIB)
 
-# Pattern rule to compile .c files from sources/ into .o object files
-%.o: sources/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+# Ensure libraries are compiled
+libft:
+	make -C $(LIBFT_DIR) all
 
-# Target to remove all object files
+printf:
+	make -C $(PRINTF_DIR) all
+
+mlx:
+	make -C $(MLX_DIR) all
+
 clean:
-	rm -f $(OBJS)  # Remove the object files
+	rm -f $(OBJS)
+	make -C $(LIBFT_DIR) clean
+	make -C $(PRINTF_DIR) clean
+	make -C $(MLX_DIR) clean
 
-# Target to remove both the object files and the final executable
 fclean: clean
-	rm -f $(NAME)  # Remove the final executable
+	rm -f $(NAME)
+	make -C $(LIBFT_DIR) fclean
+	make -C $(PRINTF_DIR) fclean
+	make -C $(MLX_DIR) clean
+
+re: fclean all
 
 test: all
 	./fdf
-
-# Target to clean and then rebuild everything from scratch
-re: fclean all

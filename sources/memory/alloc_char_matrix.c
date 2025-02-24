@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 10:36:23 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/24 10:34:49 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/24 17:11:55 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	alloc_c_colours_matrix(t_map *map)
 	i = 0;
 	while (i < map->y)
 	{
-		map->c_colours_matrix[i] = malloc(sizeof(char **) * map->x);
+		map->c_colours_matrix[i] = malloc(sizeof(char *) * map->x);
 		if (!map->c_colours_matrix[i])
 		{
 			free_c_colours_matrix(map);

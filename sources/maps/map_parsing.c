@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:08:55 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/24 13:53:05 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/24 15:24:15 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	process_parts(t_map *map, int row, int col)
 	if (comma_pos)
 	{
 		*comma_pos = '\0';
-		if (map->c_colours_matrix[row][col])
+		if (map->c_colours_matrix[row][col] != NULL)
 			free(map->c_colours_matrix[row][col]);
 		map->c_colours_matrix[row][col] = ft_strdup(comma_pos + 1);
 	}

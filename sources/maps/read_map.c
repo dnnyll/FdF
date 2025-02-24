@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:26:59 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/24 13:50:25 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/24 17:01:04 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	read_map_size(t_map *map, char *filename)
 	int		fd;
 
 	fd = open(filename, O_RDONLY);
-	if (fd <= 0)
+	if (fd < 0)
 	{
 		ft_printf("Error opening and reading file\n");
 		free_t_map(map);
-		return ;
+		exit (EXIT_FAILURE);
 	}
 	map->line = get_next_line(fd);
 	while (map->line)
@@ -32,6 +32,11 @@ void	read_map_size(t_map *map, char *filename)
 		map->line = get_next_line(fd);
 	}
 	free(map->line);
+	if(map ->x == 0 && map->y == 0)
+	{
+		ft_printf("Error: Empty map!");
+		exit (EXIT_FAILURE);
+	}
 	close(fd);
 }
 
@@ -44,7 +49,7 @@ void	read_map_width(t_map *map, char *line)
 	if (!parts)
 	{
 		ft_printf("Error splitting line\n");
-		return ;
+		exit (EXIT_FAILURE);
 	}
 	x = count_line_elements(parts);
 	if (map->x == 0)
@@ -68,7 +73,7 @@ void	free_split_result(char **parts)
 
 	i = 0;
 	if (!parts)
-		return ;
+		exit (EXIT_FAILURE);
 	while (parts[i])
 		free(parts[i++]);
 	free(parts);
