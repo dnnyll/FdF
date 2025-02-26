@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:26:59 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/26 11:41:06 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/26 13:08:34 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	read_map_size(t_map *map, char *filename)
 	int		fd;
 
 	fd = open(filename, O_RDONLY);
-	if (fd == 0)
+	if (fd < 0)
 	{
 		ft_printf("Error opening and reading file\n");
 		free_t_map(map);
@@ -82,7 +82,6 @@ int	is_empty_spaces(char *line)
 	}
 	return (1);
 }
-
 
 int	count_line_elements(char **parts)
 {

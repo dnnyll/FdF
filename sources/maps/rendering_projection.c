@@ -20,6 +20,8 @@ void	draw_grid(void *mlx_ptr, void *win_ptr, t_map *map)
 	map->window->img_ptr, 0, 0);
 }
 
+//	loop through the conversion_grid and extract pairs of adjacent points,
+//	points define line segments, which are drawn using draw_line.
 void	draw_horizontal_lines(void *mlx_ptr, void *win_ptr, t_map *map)
 {
 	int	i;

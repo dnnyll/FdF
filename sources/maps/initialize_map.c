@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:57:05 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/24 14:06:30 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/26 12:56:35 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	initialize_other_fields(t_map *map)
 {
-	map->scaling_factor = 2;
+	map->scaling_factor = 20;
 	map->window->width = 3200;
 	map->window->height = 2048;
 	map->epsilon = 0.00000000001;

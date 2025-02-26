@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:35:37 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/26 11:42:44 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/26 13:07:22 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int argc, char **argv)
 	if (fd == -1)
 		exit(EXIT_FAILURE);
 	close(fd);
+	// check map is valid ()
 	map = initialize_map();
 	if (!map)
 		exit (EXIT_FAILURE);
