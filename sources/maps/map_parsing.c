@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:08:55 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/24 15:24:15 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/26 11:41:02 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ void	process_lines(t_map *map)
 	{
 		col = 0;
 		map->c_z_matrix[row] = ft_split(map->char_matrix_stash[row], ' ');
-		if (!map->c_z_matrix[row])
+		if (!map->c_z_matrix[row] || !map->c_z_matrix[row][0])
 		{
-			ft_printf("Error: no row content\n");
+			ft_printf("Error: Empty or invalid no row content row content.\n");
 			free_c_z_matrix(map);
 			return ;
 		}
@@ -89,7 +89,7 @@ void	read_map_repeat(t_map *map, char *filename)
 	int		fd;
 
 	fd = open(filename, O_RDONLY);
-	if (fd < 0)
+	if (fd == 0)
 	{
 		ft_printf("Error opening and reading file\n");
 		return ;

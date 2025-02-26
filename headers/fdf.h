@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/24 14:12:58 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/26 11:22:49 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,8 @@ void	operation_free(t_map *map);
 void	operation_mlx(t_map *map);
 //	-=	read_map			//////////////////////////////////////////////
 void	read_map_size(t_map *map, char *filename);
-void	read_map_width(t_map *map, char *line);
+void	read_map_width(t_map *map, char *line, int fd);
+int		is_empty_spaces(char *line);
 int		count_line_elements(char **parts);
 void	free_split_result(char **parts);
 //	-=	rendering_projection			//////////////////////////////////
@@ -184,6 +185,7 @@ void	free_z_matrix(t_map *map);
 void	free_colours_matrix(t_map *map);
 //	-=	free_ressources	//////////////////////////////////////////////////
 void	free_map_ressources(t_map *map);
+void	stop_map_inconsist(t_map *map);
 //	-=	window_hooks	//////////////////////////////////////////////////
 int		key_hook(int keycode, void *param);
 int		close_window(void *param);

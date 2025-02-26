@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 11:35:37 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/24 14:09:08 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/26 11:42:44 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@ int	main(int argc, char **argv)
 {
 	t_map	*map;
 	char	*file;
+	int		fd;
 
 	if (argc != 2)
-	{
-		ft_printf("Error opening file");
 		exit(EXIT_FAILURE);
-	}
 	file = argv[1];
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		exit(EXIT_FAILURE);
+	close(fd);
 	map = initialize_map();
 	if (!map)
 		exit (EXIT_FAILURE);
