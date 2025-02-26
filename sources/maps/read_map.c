@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:26:59 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/26 13:08:34 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:49:12 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,7 @@ void	read_map_size(t_map *map, char *filename)
 	int		fd;
 
 	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-	{
-		ft_printf("Error opening and reading file\n");
-		free_t_map(map);
-		exit (EXIT_FAILURE);
-	}
+	open_file_check(map, fd);
 	map->line = get_next_line(fd);
 	while (map->line)
 	{
@@ -32,12 +27,7 @@ void	read_map_size(t_map *map, char *filename)
 		map->line = get_next_line(fd);
 	}
 	free(map->line);
-	if (map ->x == 0 && map->y == 0)
-	{
-		ft_printf("Error: Empty map!");
-		close(fd);
-		exit (EXIT_FAILURE);
-	}
+	empty_check(map, fd);
 	close(fd);
 }
 

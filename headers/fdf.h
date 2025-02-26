@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/26 11:22:49 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:23:31 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,13 @@ t_map	*initialize_map(void);
 void	initialize_matrices(t_map *map);
 void	init_row_pointers(t_map *map);
 void	init_cell_pointers(t_map *map);
+//	-=	input_checks				//////////////////////////////////////
+void	open_file_check(t_map *map, int fd);
+void	valid_char_check(t_map *map);
+void	empty_check(t_map *map, int fd);
+void	valid_hex_check(t_map *map, int i);
+int		ft_isxdigit(char c);
+void	check_fdf_file(const char *filename);
 //	-=	iso_conversion			//////////////////////////////////////////
 void	scaling_coordinates(t_map *map);
 void	alloc_conversion_grid(t_map *map);

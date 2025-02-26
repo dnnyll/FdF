@@ -1,18 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_checks.c                                     :+:      :+:    :+:   */
+/*   input_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 13:12:20 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/26 13:16:37 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:34:24 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include
+#include "fdf.h"
 
-// check open file fd
+void	open_file_check (t_map *map, int fd)
+{
+	if(fd < 0)
+	{
+		ft_printf("Error opening and reading file\n");
+		free_t_map(map);
+		close (fd);
+		exit (EXIT_FAILURE);
+	}
+}
+void	empty_check(t_map *map, int fd)
+{
+	if (map ->x == 0 && map->y == 0)
+	{
+		ft_printf("Error: Empty map!");
+		stop_map_inconsist(map);
+		close(fd);
+		exit (EXIT_FAILURE);
+	}
+}
+
+void	check_fdf_file(const char *filename)
+{
+	int len;
+	
+	len = ft_strlen(filename);
+	if (len < 5 || ft_strncmp(filename + (len - 4), ".fdf", 4) != 0)
+	{
+		ft_printf("Error: Invalid file format. Must be a .fdf file\n");
+		exit(EXIT_FAILURE);
+	}
+}
+
+
+
+
 // check map has valid characters
 	// cehck ff input colour code
 // cehck map empty
