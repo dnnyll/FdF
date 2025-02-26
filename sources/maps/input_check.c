@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 13:12:20 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/26 16:34:24 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/26 19:55:23 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	open_file_check (t_map *map, int fd)
 {
-	if(fd < 0)
+	if (fd < 0)
 	{
 		ft_printf("Error opening and reading file\n");
 		free_t_map(map);
@@ -22,6 +22,7 @@ void	open_file_check (t_map *map, int fd)
 		exit (EXIT_FAILURE);
 	}
 }
+
 void	empty_check(t_map *map, int fd)
 {
 	if (map ->x == 0 && map->y == 0)
@@ -33,7 +34,7 @@ void	empty_check(t_map *map, int fd)
 	}
 }
 
-void	check_fdf_file(const char *filename)
+void	check_fdf_file(const char *filename, int fd)
 {
 	int len;
 	
@@ -41,14 +42,7 @@ void	check_fdf_file(const char *filename)
 	if (len < 5 || ft_strncmp(filename + (len - 4), ".fdf", 4) != 0)
 	{
 		ft_printf("Error: Invalid file format. Must be a .fdf file\n");
+		close (fd);
 		exit(EXIT_FAILURE);
 	}
 }
-
-
-
-
-// check map has valid characters
-	// cehck ff input colour code
-// cehck map empty
-// check file extention .fdf

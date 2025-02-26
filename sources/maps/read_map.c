@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:26:59 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/26 16:49:12 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/26 19:54:27 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	read_map_size(t_map *map, char *filename)
 	map->line = get_next_line(fd);
 	while (map->line)
 	{
+		// valid_char_check(map, fd);
 		read_map_width(map, map->line, fd);
 		map->y++;
 		free(map->line);

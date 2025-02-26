@@ -6,7 +6,7 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:22:58 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/26 16:23:31 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/02/26 19:55:47 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,18 +138,19 @@ void	init_row_pointers(t_map *map);
 void	init_cell_pointers(t_map *map);
 //	-=	input_checks				//////////////////////////////////////
 void	open_file_check(t_map *map, int fd);
-void	valid_char_check(t_map *map);
+void	valid_char_check(t_map *map, int fd);
 void	empty_check(t_map *map, int fd);
-void	valid_hex_check(t_map *map, int i);
-int		ft_isxdigit(char c);
-void	check_fdf_file(const char *filename);
+void	valid_hex_check(t_map *map, int i, int fd);
+void	check_fdf_file(const char *filename, int fd);
+int		check_hex_or_comma(t_map *map, int *i, int fd);
+int		check_digit_or_space(char c);
 //	-=	iso_conversion			//////////////////////////////////////////
 void	scaling_coordinates(t_map *map);
 void	alloc_conversion_grid(t_map *map);
 void	iso_conversion_grid(t_map *map);
 double	find_x_iso_min(t_map *map);
 double	find_y_iso_min(t_map *map);
-//	-=	map_parsing			//////////////////////////////////////////////
+//	-=	map_parsing				/////////////////////////////////////////
 void	store_map_lines(t_map *map, int fd);
 void	process_lines(t_map *map);
 void	process_parts(t_map *map, int row, int col);
