@@ -6,7 +6,7 @@
 #    By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/06 13:24:44 by daniefe2          #+#    #+#              #
-#    Updated: 2025/02/26 16:35:24 by daniefe2         ###   ########.fr        #
+#    Updated: 2025/03/01 11:25:35 by daniefe2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,6 @@ SRCS =	sources/main.c \
 		sources/maps/set_pixel.c \
 		sources/maps/operations.c \
 		sources/maps/input_check.c \
-		sources/maps/map_chars_check.c \
 		sources/window_hooks/window_hooks.c
 
 OBJS = $(SRCS:.c=.o)

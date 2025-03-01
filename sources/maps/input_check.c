@@ -6,13 +6,13 @@
 /*   By: daniefe2 <daniefe2@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 13:12:20 by daniefe2          #+#    #+#             */
-/*   Updated: 2025/02/26 19:55:23 by daniefe2         ###   ########.fr       */
+/*   Updated: 2025/03/01 12:18:50 by daniefe2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	open_file_check (t_map *map, int fd)
+void	open_file_check(t_map *map, int fd)
 {
 	if (fd < 0)
 	{
@@ -27,7 +27,7 @@ void	empty_check(t_map *map, int fd)
 {
 	if (map ->x == 0 && map->y == 0)
 	{
-		ft_printf("Error: Empty map!");
+		ft_printf("Error: Empty map!\n");
 		stop_map_inconsist(map);
 		close(fd);
 		exit (EXIT_FAILURE);
@@ -36,8 +36,8 @@ void	empty_check(t_map *map, int fd)
 
 void	check_fdf_file(const char *filename, int fd)
 {
-	int len;
-	
+	int	len;
+
 	len = ft_strlen(filename);
 	if (len < 5 || ft_strncmp(filename + (len - 4), ".fdf", 4) != 0)
 	{
